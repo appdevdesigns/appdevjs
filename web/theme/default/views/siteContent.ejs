@@ -1,0 +1,222 @@
+
+<!-- Header. -->
+<div id="header">
+
+    <div id="header-inside">
+    
+        <div id="header-inside-left">
+            
+            <% 
+                // if exists(site.logo) then 
+            %>
+            
+            <a href="<%- siteURL %>" title="<%- Labels.getLabelRaw('[Home]') %>"><img alt="" src="<%- siteURL %>/theme/default/images/logo3.png"></a>
+            <% 
+                // endif 
+            %>
+     
+            <% 
+                // if exists(site.name || site.slogan) then 
+             %>
+            <div class="clearfix">
+            <% if (false) { 
+            // if exists(site.name ) then 
+            %>
+            <span id="site-name"><a href="site.url.home" title="<%- Labels.getLabelRaw('[Home]') %>">site.name</a></span>
+            <% } 
+            // endif site.name 
+            %>
+            <% 
+            // if exists(site.slogan ) then 
+            %>
+            <%- Labels.getLabel('[site.slogan]', {id:'slogan'}) %>
+            <% 
+            // endif 
+            %>
+            </div><!-- /site-name-wrapper -->
+            <% 
+            // endif exists(site.logo)
+            %>
+            
+            
+        </div>
+            
+        <div id="header-inside-right">
+        
+            <div id="site-language-switcher" class="clearfix">
+                <a tabindex="0" href="#langListContents" class="fg-button fg-button-icon-right" id="langList" style="font-size:x-small;color: #D5D5D5;float:right;">English</a>
+                <div class="hidden" id="langListContents">
+                    <ul>
+                    <% for(var indx=0; indx< listLanguages.length; indx++) { %>
+                        <li ><a href="#" code="<%- listLanguages[indx].language_code %>" ><%- listLanguages[indx].language_label %></a></li>
+                <% } %>
+                    </ul>
+                </div>
+            </div>
+         
+            
+            <div class="region region-search-area">
+                <div id="block-search-form" class="clear-block block block-search">
+                    <div class="content">
+                        <form action="/corporateclean/" method="post" id="search-block-form" accept-charset="UTF-8">
+                            <div>
+                                <div class="container-inline">
+                                    <h2 class="element-invisible">Search form</h2>
+                                    <div class="form-item form-type-textfield form-item-search-block-form">
+                                        <input onblur="if (this.value == '') {this.value = 'Search';}" onfocus="if (this.value == 'Search') {this.value = '';}" id="edit-search-block-form--2" name="search_block_form" value="Search" size="15" maxlength="128" class="form-text" type="text">
+                                    </div>
+                                    <div class="form-actions form-wrapper" id="edit-actions">
+                                        <input id="edit-submit" name="submit" src="<%- siteURL %>/theme/default/images/search-button.png" class="form-submit" type="image">
+                                    </div>
+                                    <input name="form_build_id" value="form-1_k5tdjo28cRPAIVuICrxIODJFhDU79WdPWsxJX33Ek" type="hidden">
+                                    <input name="form_id" value="search_block_form" type="hidden">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+ 
+        </div><!-- EOF: #header-inside-right -->
+    
+    </div><!-- EOF: #header-inside -->
+
+</div><!-- EOF: #header -->
+
+<!-- Header Menu. -->
+<div id="header-menu">
+
+<div id="header-menu-inside">
+
+
+    <ul class="menu"><li class="first leaf"><a href="#" title="" class="active">Home</a></li>
+        <li class="leaf"><a href="#" title="">News</a></li>
+        <li class="leaf"><a href="#" title="">Culture</a></li>
+        <li class="expanded"><a href="#" title="">Resources</a>
+            <ul class="menu">
+                <li class="first leaf"><a href="#" title="">Policy</a></li>
+                <li class="expanded"><a href="#" title="">Resources</a>
+                    <ul class="menu">
+                        <li class="last leaf"><a href="#">Message</a></li>
+                    </ul>
+                </li>
+                <li class="expanded"><a href="#" title="">Staff</a>
+                    <ul class="menu">
+                        <li class="first leaf"><a href="#">Development</a></li>
+                        <li class="last leaf"><a href="#">Other</a></li>
+                    </ul>
+                </li>
+                <li class="last leaf"><a href="#">Free Share</a></li>
+            </ul>
+        </li>
+        <li class="last leaf"><a href="#">Test</a></li>
+    </ul>
+
+</div><!-- EOF: #header-menu-inside -->
+
+</div><!-- EOF: #header-menu -->
+
+
+
+
+<!-- Content. -->
+<div id="content-body">
+
+    <div id="content-inside" class="inside">
+    
+        
+    <%- content %>
+    
+<%
+/// This is how to divide up into Main and Sidebar:
+if (false) {
+%>
+        <div id="main">
+            
+            <%- content %>
+ 
+            
+        </div><!-- EOF: #main -->
+        
+        <div id="sidebar">
+             
+            sidebar here
+
+        </div><!-- EOF: #sidebar -->
+<%
+} // end if(false)
+%>        
+        
+
+
+
+    </div><!-- EOF: #content-inside -->
+
+</div><!-- EOF: #content -->
+
+
+
+
+
+<!-- Footer --> 
+<%
+    if (false) {    // Content -> Footer content area
+%>   
+<div id="footer">
+
+    <div id="footer-inside">
+    
+        <div class="footer-area first">
+        Footer Area First
+        </div><!-- EOF: .footer-area -->
+        
+        <div class="footer-area second">
+        Footer Area Second
+        </div><!-- EOF: .footer-area -->
+        
+        <div class="footer-area third">
+        Footer Area third
+        </div><!-- EOF: .footer-area -->
+       
+    </div><!-- EOF: #footer-inside -->
+
+</div><!-- EOF: #footer -->
+<%
+    }  // End Footer content area
+%>
+
+
+
+
+
+<!-- Footer -->    
+<div id="footer-bottom">
+
+    <div id="footer-bottom-inside">
+    
+        <div id="footer-bottom-left">
+        
+            
+     
+        
+            <ul class="secondary-menu links clearfix"><li class="menu-1474 first"><a href="http://www.appdevdesigns.net/staff" title="">Staff Services</a></li>
+<li class="menu-1478"><a href="http://www.appdevdesigns.net/projects" title="">Projects</a></li>
+<li class="menu-1475"><a href="http://www.appdevdesigns.net/groups" title="">Groups</a></li>
+<li class="menu-1449"><a href="http://www.appdevdesigns.net/add" title="">Add Content</a></li>
+<li class="menu-15 last"><a href="http://www.appdevdesigns.net/logout">Log out</a></li>
+</ul>            
+                        
+        
+            
+        </div>
+        
+        <div id="footer-bottom-right">
+        
+            Footer-Bottom-Right
+        
+        </div><!-- EOF: #footer-bottom-right -->
+       
+    </div><!-- EOF: #footer-bottom-inside -->
+
+</div><!-- EOF: #footer -->
+

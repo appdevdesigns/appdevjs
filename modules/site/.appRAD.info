@@ -1,0 +1,25 @@
+// basic appRAD info for this module
+
+
+module.exports = {
+	"module": "site",
+	"name": "site",
+	"pathInfo": "/Users/codingMonkey/Sites/develop/appDev/modules/site/.appRAD.info",
+	"labels": {
+		"installed": []
+	},
+	"sqlTables": {
+		"site_multilingual_label": "site_multilingual_label",
+		"site_multilingual_language": "site_multilingual_language",
+		"site_perm_tasks_data": "site_perm_tasks_data",
+		"site_perm_tasks_trans": "site_perm_tasks_trans",
+		"site_perm_role_tasks": "site_perm_role_tasks",
+		"site_perm_roles": "site_perm_roles",
+		"site_perm_viewer_roles": "site_perm_viewer_roles",
+		"site_system": "site_system",
+		"site_settings": "site_settings",
+		"site_settings_viewer": "site_settings_viewer",
+		"site_viewer": "site_viewer",
+		"site_viewer_switcheroo": "site_viewer_switcheroo"
+	}
+};   

@@ -1,0 +1,36 @@
+<% /*
+
+    This is the template for the Accounts tool's QuickMenu
+
+*/ %>
+
+<div id="accounts-quickmenu">
+
+    <h4><%- labels.getLabel('[accounts.Pending Account Requests]') %></h4>
+    
+    <div class="table-container">
+        <table class="pending-account-requests">
+        
+            <tr class="template-row">
+                <td class="username">
+                </td>
+                <td class="lang">
+                </td>
+                <td class="operations">
+                    <button class="btn btn-success" operation="confirm">
+                        <%- labels.getLabel('[accounts.Confirm]') %>
+                    </button>
+                    <button class="btn btn-danger" operation="deny">
+                        <%- labels.getLabel('[accounts.Deny]') %>
+                    </button>
+                </td>
+            </tr>
+        
+        </table>
+    </div>
+    
+    <div>
+        <a href="#" class="work-area-trigger">Open Account Preferences</a>
+    </div>
+
+</div>

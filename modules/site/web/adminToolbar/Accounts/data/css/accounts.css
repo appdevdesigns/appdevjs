@@ -1,0 +1,350 @@
+/* textboxes and select lists use different sizing methods by default so
+   it is hard to get them to line up the same. this fixes that. */
+#accounts-workarea input,
+#accounts-workarea select
+{
+    height: auto;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+#accounts-workarea select
+{
+    text-align: center;
+    height: 28px; /* from bootstrap.css */
+}
+#accounts-workarea option
+{
+    text-align: left;
+}
+
+table.pending-account-requests tr.template-row,
+table.pending-account-requests tr.template-row td,
+#accounts-workarea .template-row
+{
+    display: none;
+}
+
+#accounts-quickmenu .table-container
+{
+    overflow: hidden;
+    max-height: 20em;
+}
+#accounts-quickmenu table
+{
+    /*width: 270px;*/
+    border: none 0;
+    margin-bottom: 1em;
+}
+#accounts-quickmenu table tr td
+{
+    border-left: none 0;
+    border-right: none 0;
+    border-top: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+}
+#accounts-quickmenu table tr td.operations
+{
+    text-align: right;
+}
+
+#accounts-approve table
+{
+    margin-bottom: 1em;
+}
+#accounts-approve table tr td.operations
+{
+    text-align: center;
+}
+
+
+
+#accounts-createnew
+{
+    padding: 1em;
+}
+#accounts-createnew .account-roles
+{
+    float: right;
+    border: solid 1px #bbb;
+    padding: 0 1em 1em 1em;
+}
+
+#accounts-createnew .account-form
+{
+}
+
+#accounts-createnew .account-form label
+{
+    float: left;
+    clear: left;
+    width: 12em;
+    display: block;
+    line-height: 1.8em;
+}
+#accounts-createnew .account-form input,
+#accounts-createnew .account-form select
+{
+    float: left;
+    clear: none;
+    width: 30em;
+    display: block;
+}
+
+#accounts-createnew .import-options
+{
+    margin-top: 1em;
+}
+#accounts-createnew .accounts-createnew-buttons
+{
+    float: right;
+    padding: 1em;
+}
+
+
+#accounts-import label
+{
+    font-weight: normal;
+}
+#accounts-import-nav
+{
+    padding: 8px 0;
+    min-height: 12em;
+}
+#accounts-import-nav li.hidden
+{
+    /*display: none;*/
+    visibility: hidden;
+}
+#accounts-import-main .button-pane
+{
+    text-align: right;
+}
+#accounts-import-data
+{
+    width: 95%;
+    min-height: 15em;
+}
+#accounts-import-roles .account-roles
+{
+    border: 1px solid #bbb;
+    width: 17em;
+    text-align: center;
+    padding: 19px;
+}
+#accounts-import-verify .table-container
+{
+    overflow: auto;
+    /*max-height: 19em;*/
+}
+#accounts-import-verify table
+{
+
+}
+#accounts-import-verify table td,
+#accounts-import-verify table th
+{
+    padding: 5px 0.6em;
+    max-width: 10em;
+    overflow: hidden;
+}
+#accounts-import-verify table tr.template-row
+{
+    display: none;
+}
+#accounts-import-verify div.account-roles
+{
+    border: 1px solid #bbb;
+    text-align: center;
+    padding: 8px 19px 19px;
+}
+#accounts-import-verify div.messages
+{
+    margin: 1em 0;
+    min-height: 2em;
+}
+#accounts-import-verify div.messages div
+{
+    display: none;
+}
+#accounts-import-import div.import-status
+{
+    overflow: auto;
+    padding: 1em;
+    /*max-height: 17em;*/
+}
+/* undo the weird changes by system.theme.css */
+    #accounts-import-import .progress .bar 
+    {
+        border: none;
+        margin: 0;
+        padding: 0;
+    }
+    #accounts-import-import .progress-success .bar 
+    {
+      background-color: #5eb95e;
+      background-image: -moz-linear-gradient(top, #62c462, #57a957);
+      background-image: -ms-linear-gradient(top, #62c462, #57a957);
+      background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#57a957));
+      background-image: -webkit-linear-gradient(top, #62c462, #57a957);
+      background-image: -o-linear-gradient(top, #62c462, #57a957);
+      background-image: linear-gradient(top, #62c462, #57a957);
+      background-repeat: repeat-x;
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#62c462', endColorstr='#57a957', GradientType=0);
+    }
+    #accounts-import-import .progress-striped .bar
+    {
+      background-color: #149bdf;
+      background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255, 255, 255, 0.15)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(0.75, rgba(255, 255, 255, 0.15)), color-stop(0.75, transparent), to(transparent));
+      background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+      background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+      background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+      background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+      background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+      -webkit-background-size: 40px 40px;
+      -moz-background-size: 40px 40px;
+      -o-background-size: 40px 40px;
+      background-size: 40px 40px;
+    }
+
+.accounts-view-panel
+{
+    border: solid 1px #ccc;
+    padding: 0.5em;
+}
+#accounts-view-filter
+{
+}
+#accounts-view-filter label
+{
+    float: left;
+    clear: left;
+    width: 7em;
+    display: block;
+    font-size: 0.9em;
+}
+#accounts-view-filter input,
+#accounts-view-filter select
+{
+    float: left;
+    clear: none;
+    width: 9em;
+    display: block;
+    font-size: 0.9em;
+}
+
+#accounts-view-list table
+{
+    border: none 0;
+}
+#accounts-view-list th
+{
+    border: none 0;
+    border-bottom: 1px solid #ddd;
+    background: none;
+    color: black;
+}
+#accounts-view-list tr
+{
+    border: none 0;
+    border-bottom: 1px solid #ddd;
+}
+#accounts-view-list td
+{
+    border: none 0;
+    border-bottom: 1px solid #ccc;
+}
+
+td.status
+{
+    width: 85px;
+}
+td.status .iPhoneCheckHandle
+{
+    width: 25px;
+}
+td.status .iPhoneCheckContainer label
+{
+    font-size: 1.0em !important;
+    font-weight: normal;
+    margin: 0;
+    float: none;
+}
+
+/* adjustments to Bootstrap base layout */
+#accounts-view .row-fluid > [class*="span"]
+{
+    margin-left: 1.1%;
+}
+#accounts-view .span1
+{
+    width: 8%;
+}
+#accounts-view .span1 h5
+{
+    margin-bottom: .2em;
+}
+#accounts-view .span1 select
+{
+    width: 69px;
+    height: auto;
+    font-size: 10px;
+}
+#accounts-view-language 
+{
+    clear: right;
+}
+#accounts-view-status 
+{
+    float: right;
+    margin-top: 9px;
+    margin-right: 4px;
+}
+#accounts-view-language .rounded-box,
+#accounts-view-status .rounded-box,
+#accounts-view-roles .rounded-box
+{
+    text-align: center;
+}
+#accounts-view-language .partial,
+#accounts-view-roles .partial,
+#accounts-view-status .partial
+{
+    background-color: #ddd;
+    background-image: none;
+}
+
+#account-approval-options,
+#default-role-page-options
+{
+    padding: 1em;
+    border: solid 1px #ccc;
+    margin-bottom: 1em;
+}
+#account-approval-options label
+{
+    float: left;
+    display: block;
+}
+#account-approval-options input
+{
+    float: left;
+    clear: left;
+    display: block;
+    margin-right: 1em;
+}
+#default-role-page-options label
+{
+    float: left;
+    clear: left;
+    display: block;
+    width: 45%;
+}
+#default-role-page-options select,
+#default-role-page-options input
+{
+    float: left;
+    display: block;
+    width: 45%;
+}

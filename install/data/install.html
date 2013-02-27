@@ -1,0 +1,1645 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>appDev - Install</title>
+<script type="text/javascript" src="scripts/jquery.min.js"></script>
+<script type="text/javascript" src="scripts/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/appDev/widgets/appdev_option_twocolumn/optiontwocolumn.js"></script>
+<link href="../scripts/SmartWizard/styles/style_wizard_vertical.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../scripts/SmartWizard/js/SmartWizard.js"></script>
+<script type="text/javascript" src="labels_en.js"></script>
+<script type="text/javascript" src="install/initialValues.js"></script>
+<style type="text/css">
+<!--
+#logo {
+    margin: 1em 5% 0;
+    text-align: left;
+}
+.title {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size: x-large;
+}
+.text {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: small;
+	text-align: right;
+}
+.droplist {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: x-small;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #666;
+	border-right-color: #666;
+	border-bottom-color: #666;
+	border-left-color: #666;
+}
+.centered {
+	width: 50%;
+	left: 25%;
+}
+.text #errorMsg {
+	color: #900;
+	font-weight: bolder;
+}
+
+
+
+ .jwiz-container{
+      width:690px;
+      height: 400px;
+      left: 5%;
+      right:5%;
+      top:1em;
+      margin:1px;
+      background:#F8F8F8;
+      overflow:hidden;
+      position:relative;
+      border:#E0E0E0 solid 1px;
+      padding:0;   /*12px 0px 2px 5px;*/    
+      color:#0464BB;
+      text-align:left;
+      -moz-border-radius:8px;
+      -webkit-border-radius: 8px;
+      z-index:100;
+  }
+  .jwiz-container ul{
+    list-style: none; 
+    position: relative; 
+    padding: 3px ; 
+    background:#F8F8F8;
+    height:400px;
+    margin:2px;
+    border-right: 1px solid #E0E0E0; 
+    width:115px;
+    float: left;
+  }
+  .jwiz-container ul li{ 
+    position: relative; 
+    float: left; 
+    border-bottom-width: 0 !important; 
+    margin: 0; 
+    margin-top: 2px;
+    margin-right: 2px;
+    padding: 0; 
+  }
+  .jwiz-container ul li a { 
+    display:block;
+    text-decoration: none;
+    padding-left: 3px;
+    height:50px;
+    width:110px;
+    color:#0464BB;
+  }
+  .jwiz-container ul li a:hover {   
+    color:#0464BB; 
+  }
+
+  .jwiz-body{
+    display:block; 
+    position: relative;    
+    top:3px;
+    background:transparent; 
+    border-bottom: 0px solid #E0E0E0; 
+    width:490px;
+    height:400px;
+    float: left;
+  }
+  .jwiz-body div.wiz-content {
+    display:block; 
+    position: relative;
+    top:0px;
+    left:0px;
+    text-decoration: none; 
+    padding: 3px;
+    margin : 3px;
+    border-bottom: 0px solid #E0E0E0; 
+    width:auto;
+    height:350px;
+    overflow:auto;
+  }
+  .jwiz-nav {
+    display:block; 
+    position: absolute;
+    left:0px;
+    bottom:0px;
+    text-decoration: none; 
+    padding: 3px 5px 2px 5px;
+    background:#F8F8F8 ; 
+    height:25px;
+    width:99%;
+    margin : 0px 0px 0px 0px;
+    border: 0px solid #E0E0E0;
+    border-top: 1px solid #E0E0E0;
+  }
+  .jwiz-nav #next {
+    float:right;
+  }
+  .jwiz-nav #back{
+    float:left;
+  }
+
+.summary {
+	left: 5%;
+      right:5%;
+//	display:block;
+	float:left;
+	position:relative;
+}
+
+.summaryPanel {
+//	left: 5%;
+//	right:5%;
+	top:50px;
+	margin:1px;
+	background:#F8F8F8;
+	overflow:hidden;
+	position:relative;
+	border:#E0E0E0 solid 1px;
+	padding:5px;   /*12px 0px 2px 5px;*/
+	color:#999;
+	text-align:left;
+	-moz-border-radius:8px;
+	-webkit-border-radius: 8px;
+	z-index:100;
+	font-size: x-small;
+	font-style: italic;
+	font-weight: lighter;
+	font-family: Verdana, Geneva, sans-serif;
+}
+
+.loadingImage {
+	background-image:url(../data/theme/default/images/loading.gif);
+	width:16px;
+	height:16px;
+	float:left;
+//	margin:2px;
+//	display:inline;
+}
+
+.imageTrue {
+	background-image:url(../theme/default/images/icn_true.gif);
+	width:16px;
+	height:16px;
+	float:left;
+//	margin:2px;
+//	display:inline;
+}
+
+.imageFalse {
+	background-image:url(theme/default/images/icn_false.gif);
+	width:16px;
+	height:16px;
+	float:left;
+//	margin:2px;
+//	display:inline;
+}
+
+.example {
+	color:#999;
+	font-size: xx-small;
+}
+
+.hidden {
+	display:none;
+}
+
+.wiz-content input {
+	background-color: #09C;
+	border: 1px solid #0464BB;
+	color: #FFF;
+}
+.tableHeading {
+	font-weight: 400;
+	color: #FFF;
+	background-color: #0464BB;
+}
+.wiz-content select {
+	color: #FFF;
+	border: 1px solid #2A77C5;
+	background-color: #2CA9D4;
+}
+.wiz-content .error {
+	color: #FFF;
+	border: 1px solid #F00;
+	background-color: #900;
+}
+
+.wiz-content .errorText {
+	color: #900;
+}
+
+
+.wiz-nav #done {
+    float:right;
+  }
+  
+  
+div.language-icon-ru {
+    background: url("images/ru.png");
+}
+div.language-icon-zh {
+	background: url("images/cn.png");
+}
+div.language-icon-ko {
+	background: url("images/kr.png");
+}
+div.language-icon-es {
+	background: url("images/es.png");
+}
+div.language-icon-de {
+	background: url("images/de.png");
+}
+div.language-icon-it {
+	background: url("images/it.png");
+}
+div.language-icon-fr {
+	background: url("images/fr.png");
+}
+div.language-icon-en {
+    background: url("images/gb.png");
+}
+
+.double-list ul {
+    border: 1px solid #CADCF0;
+/*    margin: 0.2em;*/
+    max-height: 10em;
+    min-height: 7em;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0.3em;
+    vertical-align: middle;
+    width: 97%;
+    float: none;
+}
+
+.double-list .loading-indicator {
+    background: url("../../../data/theme/default/images/loading.gif") repeat scroll 0 0 transparent;
+    display: none;
+    height: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -3em;
+    padding: 0;
+    width: 16px;
+}
+.double-list ul li {
+    float: none;
+    margin: 2px 0;
+    padding: 1px;
+}
+
+.double-list li div.drag-icon {
+    background-color: grey;
+    cursor: move;
+    float: left;
+    height: 11px;
+    margin: 2px 0.5em 2px 2px;
+    width: 16px;
+}
+.double-list .ui-selected {
+    background-color: #1879DD;
+    color: white;
+}
+
+.double-list .selButton {
+
+    background: none repeat scroll 0 0 #F8F8F8; /* #EBEBEB; */
+    border: 1px solid #E0E0E0;
+    border-radius: 8px 8px 8px 8px;
+    color: #0464BB;
+    padding: 0px; 
+    margin-left: 2px; 
+    margin-right: 0px;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+}
+
+tr.row_emailMandrill {
+    display: none;
+}
+
+-->
+</style>
+<script type="text/javascript">
+<!--
+function form_submit(selObj){ 
+  var langCode = selObj.options[selObj.selectedIndex].value;
+  
+  document.getElementById('testMe').innerHTML = "langValue["+langCode+"]";
+  
+  // store the selected language value
+  document.forms[0].lan.value = langCode;
+  
+  // let the receiving cgi know NOT to process this (only update the display)
+  document.forms[0].processVal.value='0';
+  
+  // submit the values
+  document.forms[0].submit();
+}
+
+// we want this global:
+var values = {};
+
+var labels = { 
+	'dbType' : 'type',
+	'dbName' : 'name',
+	'dbPath' : 'path',
+	'dbUser' : 'username',
+	'dbPword'   : 'password',
+	'dbIncrementalUpdate' : 'incremental update',
+	'dbVersion' : 'DB version',
+	'dbCharset' : 'characterset',
+	'dbPathMySQL': 'MySQL',
+	'dbPathMySQLDump': 'MySQLDump',
+	'connectType' : 'connection type',
+    'dbPort'      : 'database port',
+    'dbSocketPath': 'database socket path',
+	'authType'  : 'type',
+	'casHost'   : 'host',
+	'casPort'   : 'port',
+	'casPath'   : 'path',
+	'casPgtCallback': 'PGT callback URL',
+	'casLdapHost'   : 'ldap host',
+	'casLdapPort'   : 'ldap port',
+	'casLdapBindDn'   : 'bind dn',
+	'casLdapBindPw'   : 'bind pw',
+	'casLdapUserContainer'   : 'container',
+    'emailHost'     : 'host',
+    'emailPort'     : 'port',
+    'emailDomain'   : 'domain',
+    'emailKey'      : 'key',
+	'langDefault'	: 'default',
+	'langList'      : 'list',
+	'siteURL'       : 'site URL',
+	'sitePort'      : 'site port',
+    'production'    : 'production',
+	'adminUserID'	: 'id',
+	'adminPWord'    : 'pword',
+	'adminLanguage' : 'lang'
+}
+
+$(document).ready(function() {
+					
+					
+					
+						   
+						   
+	////
+	//// DB Info Routines
+	////
+	
+	
+	//---------------------------------------------------------------------------
+	var dbTypeChange = function () {
+	// when the dbType value changes to 'mysql' we need to show the mysql path form.
+		
+		var type = $('#dbType');
+		var mysqlInfo = $('#dbPathsMysql');
+		
+		if (type.val() == 'mysql') {
+			
+			// The mysql path form should be shown
+			mysqlInfo.show();
+
+		} else {
+			
+			// the form should not be shown
+			mysqlInfo.hide();
+
+		}
+	}
+	
+	
+	
+	
+	//---------------------------------------------------------------------------
+	var dbFileCheck = function ( id ) {
+		
+		var input = $('#'+id);
+		
+		validateFile(   input.val(), 
+					 
+						function() {
+						
+							$('#'+id+'Status').html('<div class="imageTrue" ></div>&nbsp;');							
+						}, 
+											
+									
+						function() {
+							$('#'+id+'Status').html('<div class="imageFalse" ></div>');
+						});
+		
+	}
+	
+	
+	
+	//---------------------------------------------------------------------------
+	var dbValidation = function() {
+	// test the DB Form Entries:
+	
+	  var inputs2 = $('#wizard-1 :input');  //$('#dbTable :input');
+	  
+	  var isValid = allInputsGiven( inputs2 );	  
+	  
+	  if (isValid) {
+		  
+		  var dbSummary = $('#dbSummary');
+		  
+		  // update the DB summary display
+		  updateSummary(dbSummary, inputs2);
+		  dbSummary.removeClass('hidden');
+		  
+		  // now store these values in our values object
+		  inputs2.each( function () {
+								  
+			  if (this.id != 'next') {
+                 
+                 // Init to empty string first
+			     if (typeof values[this.name] == 'undefined') {
+			         values[this.name] = '';
+			     }
+
+			     var useValue = true;
+
+			     // Don't use values if radios or checkboxes are unchecked
+			     if ((this.type == 'radio') && !this.checked) {
+			         useValue = false;
+			     }
+			     else if ((this.type == 'checkbox') && !this.checked) {
+			         useValue = false;
+			     }
+			     if (useValue) {
+    				 values[ this.name ] = this.value;
+                 }
+			  }
+								  
+		  });
+	  }
+	  
+	  return isValid;
+	}
+	
+	
+	
+	////
+	//// Authorization Routines
+	////
+	
+	//---------------------------------------------------------------------------
+	var authValidation = function() {
+	// make sure the authroization values are valid
+	
+	  var inputs = $('#authTable :input');
+	  
+	  var isValid = allInputsGiven( inputs );
+	  
+	  if (isValid) {
+		  
+		  // check to see what the Type is?
+		  var type = $('#authType');
+		  
+		  // if type == CAS, verify all cas info is given
+		  if (type.val() == 'CAS') {
+			  
+			var casInputs =  $('#authTableCAS :input');
+			
+			isValid = allInputsGiven( casInputs);
+			
+			
+			  
+		  }
+		  
+		  
+		  if (isValid) {
+		  
+			var authSummary = $('#authSummary');
+			
+			var allAuthInputs = $('#allAuthValues :input');
+			var authInputs = null;
+			
+			// if type == CAS then we use all the auth values
+			if (type.val() == 'CAS') {
+				authInputs = allAuthInputs;
+			} else {
+				
+				// just use the type one
+				authInputs = inputs;
+				
+			}
+			
+			// update the DB summary display
+			updateSummary(authSummary, authInputs);
+			authSummary.removeClass('hidden');
+			
+			// now store these values in our values object
+			allAuthInputs.each( function () {
+									
+				values[ this.name ] = this.value;
+									
+			});
+		  
+		  }
+	  }
+	  
+	  return isValid;
+	}
+	
+	
+	//---------------------------------------------------------------------------
+	var authTypeChange = function () {
+	// if they choose CAS authorization, show the CAS info form
+		
+		var type = $('#authType');
+		var casInfo = $('#authCasSettings');
+		
+		if (type.val() == 'CAS') {
+			// The CAS form should be shown
+			
+			// if casInfo is hidden, then show it
+			if (casInfo.hasClass('hidden') ) {
+			
+				casInfo.removeClass('hidden');
+			}
+			
+			
+			
+		} else {
+			
+			// the form should not be shown
+			
+			if (!casInfo.hasClass('hidden')) {
+				
+				casInfo.addClass('hidden');	
+			}
+			
+			
+			
+		}
+	}
+	
+	
+	
+	////
+	//// Email  Routines
+	////
+	
+	//---------------------------------------------------------------------------
+	var emailValidation = function() {
+	// validate the email data
+
+      var inputs;
+	  var inputsSMTP = $('#emailTable .row_emailSMTP :input');
+	  var inputsMandrill = $('#emailTable .row_emailMandrill :input');
+	  
+	  if ($("#emailTable input[name='emailMethod']:checked").val() == 'smtp') {
+	      values['emailMethod'] = 'smtp';
+    	  inputs = inputsSMTP;
+      } else {
+	      values['emailMethod'] = 'mandrill';
+          inputs = inputsMandrill;
+      }
+	  
+      var isValid = allInputsGiven( inputs );
+	  if (isValid) {
+		  
+		  var emailSummary = $('#emailSummary');
+		  
+		  // update the DB summary display
+		  updateSummary(emailSummary, inputs);
+		  emailSummary.removeClass('hidden');
+		  
+		  // now store these values in our values object
+		  inputs.each( function () {
+								  
+			  values[ this.name ] = this.value;
+								  
+		  });
+	  }
+	  
+	  return isValid;
+	}
+	
+	// Hide/show email fields depending on the method
+	$("#emailTable input[name='emailMethod']").click(function() {
+	   if (this.checked) {
+	       if (this.value == 'smtp') {
+	           $('#emailTable .row_emailSMTP').show();
+	           $('#emailTable .row_emailMandrill').hide();
+	       } else {
+	           $('#emailTable .row_emailSMTP').hide();
+	           $('#emailTable .row_emailMandrill').show();
+	       }
+	   }
+	});
+	
+	
+	////
+	//// Language  Routines
+	////
+	
+	//---------------------------------------------------------------------------
+	var langValidation = function() {
+	// validate the language data
+
+	  var inputs = $('#langTable :input');
+	  
+	  var isValid = allInputsGiven( inputs );
+	  
+	  if (isValid) {
+		  
+		  var langSummary = $('#langSummary');
+		  
+		  // update the DB summary display
+		  updateSummary(langSummary, inputs);
+		  langSummary.removeClass('hidden');
+		  
+		  // now store these values in our values object
+		  inputs.each( function () {
+								  
+			  values[ this.name ] = this.value;
+								  
+		  });
+	  }
+	  
+	  return isValid;
+	}
+	
+	
+	
+	
+	////
+	//// Admin  Routines
+	////
+	
+	//---------------------------------------------------------------------------
+	var adminValidation = function() {
+	// validate the admin account info
+
+	  var inputs = $('#adminTable :input');
+	  
+	  var isValid = allInputsGiven( inputs );
+	  
+	  if (isValid) {
+		  
+		  var adminSummary = $('#adminSummary');
+		  
+		  // update the DB summary display
+		  updateSummary(adminSummary, inputs);
+		  adminSummary.removeClass('hidden');
+		  
+		  // now store these values in our values object
+		  inputs.each( function () {
+								  
+			  values[ this.name ] = this.value;
+								  
+		  });
+	  }
+	  
+	  return isValid;
+	}
+	
+	
+	
+	////
+	////  Our Final onDone handler.  
+	////
+	
+	//---------------------------------------------------------------------------
+	var onDone = function () {
+	//  when the [done] button is pressed, then submit all our data and respond to the result.
+		
+		
+		// mark that we are busy :
+		
+		$('#ajaxResponse #info').html( '<div><div class="loadingImage" ></div>&nbsp;'+$labels['label_committing']+'</div>' );
+		$('#ajaxResponse').removeClass('hidden');
+		
+		// OK, so send our collected values to our commit.php script.
+		// onSuccess:  
+		$.ajax({
+                url: '/install/commit',
+                type: 'POST',
+                data: values,
+                dataType: 'json',
+                success: function(response){
+                
+						// ok, everything seemed to run fine, so redirect the browser to 
+						// the url as returned by the script.
+						
+						// (((comment out the following line when testing:  )))
+						if (response.data && response.data.url) {
+						    // Wait 8.5 seconds to allow the new appDev server to launch
+						    setTimeout(function() {
+        						window.location = response.data.url;
+        				    }, 8500);
+    				    }
+    				    else {
+    				        var errorMessage = "Error<br/>" + response.errorMSG;
+    				        $('#ajaxResponse #info').html('errorMessage');
+    				    }
+                    
+						// in the mean time, let's see the returned response data:
+						//$('#ajaxResponse #info').html( response.data.info );
+
+						
+                
+                    },
+                error: function(data) {
+                
+                        // something went wrong so report an error message						
+						$('#ajaxResponse #info').html( data.responseText );
+                
+                    },
+                cache: false
+            });
+		
+	}
+	
+	
+	
+	////
+	////   Shared Helper Routines
+	////
+	
+	
+	//---------------------------------------------------------------------------
+	var validateFile = function ( path, existsCallback, notThereCallback) {
+	//  when the [done] button is pressed, then submit all our data and respond to the result.
+		
+		
+		// mark that we are busy :
+		
+		var pathValues = {};
+		pathValues['pathToVerify'] = path;
+		
+		// OK, so send our collected values to our commit.php script.
+		// onSuccess:  
+		$.ajax({
+                url: 'install/validateFile',
+                type: 'POST',
+                data: pathValues,
+                dataType: 'json',
+//                context: thisService,
+                success: function(response){
+                
+						// ok, we got a response, so let's see if it exists:
+						if (response.success) {
+							
+							existsCallback();
+							
+						} else {
+							
+							notThereCallback();
+							
+						}
+                
+                    },
+                error: function(data) {
+                
+                        // something went wrong so report an error message
+//						alert('error message');
+						
+						$('#ajaxResponse #info').html( data.responseText );
+						$('#ajaxResponse').show();
+                
+                    },
+                cache: false
+            });
+		
+	}
+	
+	
+	
+  
+  
+	//---------------------------------------------------------------------------
+	var updateSummary = function( summaryBlock, values ) {
+	  // this function takes a given summaryBlock, and inserts into the given values in table
+	  // format.
+		
+	    // Remove elements with an empty name attribute
+	    values = values.filter('[name!=""]');
+	  
+		// 
+		var infoBlock = summaryBlock.find('#info');
+		if (infoBlock) {
+			
+			var newInfo = '<table width="100%" border="0" cellspacing="0" cellpadding="0">';
+			
+			values.each( function () {
+			
+				if (this.id != 'next') {
+					
+					newInfo = newInfo + '<tr><td align="right"><i>'+ labels[this.name] +'<i></td><td>:</td><td><b>'+ this.value +'</b></td></tr>';
+				
+				}
+								   
+								  
+			});
+			
+			newInfo += '</table>';
+			
+			
+			infoBlock.html( newInfo );
+			
+			
+		}
+	}
+  
+  
+  
+  //---------------------------------------------------------------------------
+  var allInputsGiven = function( inputs ) {
+  // this function scans the given list of inputs and makes sure each value is not "" or "-"
+  
+  
+	var isValid = true;
+  
+	// for each input selection, make sure it is entered
+	inputs.each(function () {
+	
+	
+		// I'm learning jQuery note:  
+		//	- this is an object corresponding to each of the input elements in our dbTable 
+		//    it doesn't have all the jQuery functions available to it: .hasClass(), .addClass(), etc..
+		//  - to add that functionality, I current=$(this); which returns another jQuery object with those
+		//	  methods.
+		var current = $(this);
+		
+		var isOptional = current.hasClass('optional');
+		var isEmpty = ((current.val() == '-') || (current.val() == ''));
+		
+		if (isEmpty && !isOptional) {
+			
+			// values not set, so mark error notice
+			if (!current.hasClass('error') ) {
+				current.addClass('error');
+				$('<span class="errorText" id="'+this.name+'_error"> * '+ $labels['error_required']+' *</span>').appendTo(current.parent());
+				
+				//current.wrap('<span class="errorText"><span></span> required</span>');
+			}
+			isValid = false;
+		
+		} else {
+		
+			// remove error notice if value is given
+			if (current.hasClass('error')) {
+				current.removeClass('error');
+				//current.unwrap();  //<-- supposed to be here, but not.  Why?
+				
+				// remove the '* required *' text
+				current.next().remove();
+				
+			}
+		
+		}
+		
+
+						   
+	});
+	  
+
+	// if isValid, then 
+	  
+	return isValid;
+  }
+  
+  
+  //---------------------------------------------------------------------------
+  var testValidation = function( indx ) {
+  // called by SmartWizard on each [next] button press.  
+  // if true is returned, the form progresses.
+  // if false returned, the form does not progress.
+  
+	
+	// would be nice if there was a :
+	// foreach panel
+	//    if indx == panel.indx
+	//		panel.validate();
+	// next
+	
+	if (indx == 0)  return dbValidation();
+	if (indx == 1)  return authValidation();
+	if (indx == 2)  return emailValidation();
+	if (indx == 3)  return langValidation();
+	if (indx == 4)  return adminValidation();
+	
+  }
+  
+    $('.appLabel').each(function () {
+        
+        var $this = $(this);
+        var key = $this.attr('key');
+        $this.html( $labels[key]);
+    });
+    
+    $('.valI').each(function () {
+        
+        var $this = $(this);
+        var key = $this.attr('vkey');
+        $this.val( $labels[key]);
+    });
+    
+    $('.btn').each(function () {
+        
+        var $this = $(this);
+        var key = $this.attr('key');
+        $this.val( $labels[key]);
+    });
+    
+    
+    
+    // grab all Input boxes & see if they match any stored values in our 
+    // default values variable.
+    $('input').each(function() {
+    
+        var $this = $(this);
+        var key = $this.attr('id');
+        if (typeof Values[key] != 'undefined') {
+            $this.val(Values[key]);
+        }
+        var isHere = true;
+    
+    });
+    
+
+  
+  
+	// Setup the SmartWizard.
+   $('#smartwizard').smartWizard(
+								{
+									validatorFunc: 	testValidation
+								}
+								);
+   
+   // setup the onChange() event for the DB type select
+   $('#dbType').change(dbTypeChange);
+   $('#dbPathMySQL').change( function() { dbFileCheck('dbPathMySQL') } );
+   $('#dbPathMySQLDump').change( function () {dbFileCheck('dbPathMySQLDump')} );
+   
+    // make that MYSQL paths clickable
+    $('[key="label_db_path_mysql_ex2"]').click(function() {
+    
+        var $this = $(this);
+        var path = $this.html();
+        var input = $('#dbPathMySQL');
+        $('#dbPathMySQL').val(path).change();
+        $('#dbPathMySQLDump').val(path+'dump').change();
+    });
+   
+   
+   // setup the onChange() event for the authorization Type select
+   $('#authType').change(authTypeChange);
+   
+   
+   // now grab [Done] button and setup our onDone() routine.
+   $('#done').click( onDone ).addClass('next');
+   
+   
+   // update the URL & Socket connection buttons to adjust the optional settings
+   // on their input boxes:
+   var makeRequired = function ($obj) {
+        if ($obj.hasClass('optional')) {
+            $obj.removeClass('optional');
+        }
+   }
+   
+  var makeOptional = function ($obj) {
+        if (!$obj.hasClass('optional')) {
+            $obj.addClass('optional');
+        }
+    }
+   
+   
+   
+   var updateConnection = function () {
+        var $path = $('#dbPath');
+        var $port = $('#dbPort');
+        var $socket = $('#dbSocketPath');
+        
+        if ($url.attr('checked') == 'checked') {
+        
+            // checked, so remove optional settings from Path & Port
+            makeRequired($path);
+            makeRequired($port);
+            makeOptional($socket);
+        
+        } else {
+
+            makeOptional($path);
+            makeOptional($port);
+            makeRequired($socket);        
+        }
+
+   }
+   
+   var $url = $('#connectURL');
+   $url.change(updateConnection);
+   
+   
+   var $socket = $('#connectSocket');
+   $socket.change(updateConnection);
+   
+   
+ /*
+ 
+ 
+      if (isValid) {
+        
+            // now verify the proper fields are filled in under the selected
+            // Connection Type:
+            
+            var $url = $('#connectURL');
+            if (($url.attr("checked") != 'undefined') && ($url.attr('checked') == 'checked')) {
+                
+                // if either pathToDB is empty or Port is empty, isValid = false
+                $dbPath = $('#dbPath');
+                $dbPort = $('#dbPort');
+                
+                if (($dbPath.val() == '') || ($dbPort.val() == '')) {
+                
+                    isValid = false;
+                }
+            
+            }
+        }
+
+ 
+ */  
+   
+   var updateList = function () {
+        // get list of selected items
+        var $selectedElements = languageOption.getColumn2Elements();
+        var encodedString = "";
+        $selectedElements.each(function (index) {
+        	encodedString += (index === 0 ? "" : ",") + $(this).attr('key') + ":" + $(this).attr('label');
+        });
+        $('input.hidden#lang-encoded').attr("value", encodedString);
+
+        // store encoded list into hidden field
+
+       var defaultLangSelect = $('#langDefault').val();
+       var adminLangSelect = $('#adminLanguage').val();
+
+       $('#langDefault').empty();
+       $('#adminLanguage').empty();
+
+       $('#langDefault').append('<option value="-">-</option>');
+       $('#adminLanguage').append('<option value="-">-</option>');
+
+       var _$widget = $('#listLanguageOptions');
+
+       _$widget.find('.col2 li').each(function() {
+
+           var defaultIf = ($(this).attr('key') == defaultLangSelect) ? '" selected>' : '">' ;
+           var adminIf = ($(this).attr('key') == adminLangSelect) ? '" selected>' : '">' ;
+
+			$('#langDefault').append('<option value="'+$(this).attr('key')+defaultIf+$(this).attr('label')+'</option>');
+			$('#adminLanguage').append('<option value="'+$(this).attr('key')+adminIf+$(this).attr('label')+'</option>');
+
+       });
+   }
+
+   
+    var languageOption = new OptionTwoColumn({
+        divID:'listLanguageOptions',
+        onChange:updateList,
+        col1Title:'Available Languages',
+        col2Title:'Chosen Languages'
+    });
+    updateList();
+   
+   // now run the initial filechecks on the initial data:
+   dbFileCheck('dbPathMySQL');
+   dbFileCheck('dbPathMySQLDump');
+  
+});
+
+
+//-->
+</script>
+</head>
+
+<body class="text">
+<h1 id="logo">AppDev Installer</h1>
+
+<div>
+	
+    <div style="width=690px;" >
+    <div id="smartwizard" class="jwiz-container">
+        <ul id="wizard-anchor">
+          <li><a href="#wizard-1"><h2 class="appLabel" key="label_Step1"></h2>
+            <small class="appLabel" key="title_DB"></small></a></li>   
+          <li><a href="#wizard-2"><h2 class="appLabel" key="label_Step2"></h2>
+            <small class="appLabel" key="title_AuthType"></small></a></li>
+          <li><a href="#wizard-3"><h2 class="appLabel" key="label_Step3"></h2>
+            <small class="appLabel" key="title_EmailType"></small></a></li>
+          <li><a href="#wizard-4"><h2 class="appLabel" key="label_Step4"></h2>
+            <small class="appLabel" key="title_LanguageInfo"></small></a></li>
+          <li><a href="#wizard-5"><h2 class="appLabel" key="label_Step5"></h2>
+            <small class="appLabel" key="title_AdminAccount"></small></a></li>
+          <li><a href="#wizard-6"><h2 class="appLabel" key="label_Step6"></h2>
+            <small class="appLabel" key="title_Review"></small></a></li>
+        </ul>
+         
+        <div id="wizard-body" class="jwiz-body">
+          <div id="wizard-1" >
+              <div class="wiz-content">
+                <H2 class="appLabel" key="title_DB"></H2>
+                <p  class="appLabel" key="text_DB"></p>
+                <hr />
+				<br />
+				<span class="appLabel" key="label_dbType"></span>&nbsp;<select name="dbType" id="dbType">
+                            <option value="-" >-</option>
+                            <option value="mysql" selected="selected">mysql</option>
+                        </select>
+                <table width="100%" border="0" cellspacing="1" cellpadding="2">
+                <tr>
+                    <td width="50%" valign="top">
+                        <table id="dbTable" width="100%" border="0" cellspacing="1" cellpadding="2">
+                            <tr>
+                                <td class="appLabel" key="label_dbName"></td>
+                                <td><input name="dbName" type="text" id="dbName" value="appdev"/></td>
+                            </tr>
+                            <tr>
+                                <td class="appLabel" key="label_dbUser"></td>
+                                <td><input type="text" name="dbUser" id="dbUser" value="root"/></td>
+                            </tr>
+                            <tr>
+                                <td class="appLabel" key="label_dbPword"></td>
+                                <td><input type="text" name="dbPword" id="dbPword" value="root"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"> &nbsp; </td>
+                            </tr>
+                            
+                            <tr>
+                                <td class="appLabel" key="label_dbCharset"></td>
+                                <td><select name="dbCharset" id="dbCharset">
+                                    <option value="-" >-</option>
+                                    <option value="utf8" selected="selected">utf8</option>
+                                    <option value="latin1">latin1</option>
+                                </select></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"> &nbsp; </td>
+                            </tr>
+     
+                            <tr>
+                                <td colspan="2" class="tableHeading" class="appLabel" key="label_db_path">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td valign="top" class="appLabel" key="label_db_path_mysql"></td>
+                                <td><input type="text" name="dbPathMySQL" id="dbPathMySQL" value="/Applications/MAMP/Library/bin/mysql" /><div class="example appLabel" key="label_db_path_mysql_ex"></div><div class="example appLabel" key="label_db_path_mysql_ex2"></div></td>
+                                <td valign="top"><div id="dbPathMySQLStatus"></div></td>
+                            </tr>
+                            <tr>
+                                <td valign="top"  class="appLabel" key="label_db_path_mysqldump"></td>
+                                <td><input type="text" name="dbPathMySQLDump" id="dbPathMySQLDump" value="/Applications/MAMP/Library/bin/mysqldump" /><div class="example appLabel" key="label_db_path_mysqldump_ex"></div></td>
+                                <td valign="top"><div id="dbPathMySQLDumpStatus"></div></td>
+                            </tr>
+                                 
+                        </table>
+                    </td>
+                    <td width="50%" valign="top">
+                    
+                        <table id="dbTable" width="100%" border="0" cellspacing="1" cellpadding="2" style="margin-left: 15px;">
+                             <tr>
+                                <td colspan="2" class="appLabel" key="label_connectUsing">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                <input id="connectURL" type="radio" name="connectType" value="url" checked="checked">&nbsp;<span  class="appLabel" key="label_urlPort"></span>
+                                </td>
+                            <tr>
+                            <tr>
+                                <td colspan="2" style="padding-left: 25px;">
+                                    <span class="appLabel" key="label_dbPath"></span><br><input class="optional" type="text" name="dbPath" id="dbPath" value="localhost"/><br>
+                                    <div class="example appLabel" key="label_dbPath_ex"></div>
+                                    <span class="appLabel" key="label_dbPort"></span><br><input class="optional" type="text" name="dbPort" id="dbPort" value="3306"/>
+                                    <div class="example appLabel" key="label_dbPort_ex"></div>
+                                </td>
+                            <tr>
+                            
+                            
+                            <tr>
+                                <td colspan="2">
+                                    <input id="connectSocket" type="radio" name="connectType" value="socket">&nbsp;<span  class="appLabel" key="label_socket"></span>
+                                </td>
+                            <tr>
+                            <tr>
+                                <td colspan="2" style="padding-left: 25px;">
+                                    <span class="appLabel" key="label_dbSocketPath"></span><input class="optional" type="text" name="dbSocketPath" id="dbSocketPath" />
+                                    <div class="example appLabel" key="label_dbSocketPath_ex"></div>
+                                </td>
+                            <tr>
+
+                        </table>
+                    
+                    </td>
+                </tr>
+                </table>
+                <br />
+                
+        
+            </div>       
+            <div class="wiz-nav">
+                <input class="next btn" id="next" type="button" key="label_btn_next" value="" />
+            </div>         
+          </div>
+          <div id="wizard-2">
+            <div class="wiz-content">
+                <div id='allAuthValues'>
+                  <H2 class="appLabel" key="title_AuthType"></H2>
+                  <p class="appLabel" key="text_AuthType"></p>
+                  <p class="appLabel" key="text_AuthType2"></p>
+                  <HR />
+                  <br />
+                  <table id="authTable" width="100%" border="0" cellspacing="1" cellpadding="2">
+                      <tr>
+                          <td valign="top"  width="25" class="appLabel" key="label_authType"></td>
+                          <td>:</td>
+                          <td valign="top"><select name="authType" id="authType">
+                              <option value="-" >-</option>
+                              <option value="local" class="appLabel" key="label_authType_local" selected="selected"></option>
+                              <option value="CAS">CAS</option>
+                          </select></td>
+                      </tr>
+                  </table>
+                  
+                  <div id="authCasSettings" class="hidden" >
+                    <br /><br />
+                    <table id="authTableCAS" width="100%" border="0" cellspacing="1" cellpadding="2">
+                        <tr>
+                          <td colspan="3" class="tableHeading appLabel" key="title_CasInfo" >&nbsp;</td>
+                      </tr>
+                	  <tr valign="top">
+                          <td class="appLabel" key="label_casHost"></td>
+                          <td>:</td>
+                          <td><input type="text" name="casHost" id="casHost" /><br /><span class="example appLabel" key="label_casHost_ex"></span></td>
+                      </tr>
+                      <tr valign="top">
+                          <td class="appLabel" key="label_casPort"></td>
+                          <td>:</td>
+                          <td><input type="text" name="casPort" id="casPort" /><br /><span class="example appLabel" key="label_casPort_ex"></span></td>
+                      </tr>
+                      <tr valign="top">
+                          <td class="appLabel" key="label_casPath"></td>
+                          <td>:</td>
+                          <td><input type="text" name="casPath" id="casPath" /><br /><span class="example appLabel" key="label_casPath_ex"></span></td>
+                      </tr>
+
+                      <tr valign="top">
+                          <td class="appLabel" key="label_casPgtCallback"></td>
+                          <td>:</td>
+                          <td><input type="text" name="casPgtCallback" id="casPgtCallback" class="optional" /><br /><span class="example appLabel" key="label_casPgtCallback_ex"></span></td>
+                      </tr>
+
+                      <tr valign="top">
+                          <td class="appLabel" key="label_casSubmodule"></td>
+                          <td>:</td>
+                          <td><input type="text" name="casSubmodule" id="casSubmodule" class="optional" /><br /><span class="example appLabel" key="label_casSubmodule_ex"></span></td>
+                      </tr>
+                      
+                    </table>
+                  </div>
+                </div>
+                
+            </div> 
+            <div class="wiz-nav">
+                <input class="back btn" id="back" type="button" key="label_btn_back"  value="" />
+                <input class="next btn" id="next" type="button" key="label_btn_next"  value="" />
+            </div>                       
+          </div>
+          <div id="wizard-3">
+            <div class="wiz-content">
+                <div id='allEmailValues'>
+                  <H2 class="appLabel" key="title_EmailType"></H2>
+                  <p class="appLabel" key="text_EmailType"></p>
+                  <HR />
+                  <br />
+                  
+                  <div id="EmailSettings" >
+                    <table id="emailTable" width="100%" border="0" cellspacing="1" cellpadding="2">
+                        
+                      <tr valign="top">
+                          <td class="appLabel" key="label_emailMethod"></td>
+                          <td>:</td>
+                          <td>
+                            <input type="radio" name="emailMethod" id="emailMethod_smtp" value="smtp" checked="1" />
+                            <label for="emailMethod_smtp"><span class="appLabel" key="label_emailMethod_smtp"></span></label>
+
+                            <input type="radio" name="emailMethod" id="emailMethod_mandrill" value="mandrill" />
+                            <label for="emailMethod_mandrill"><span class="appLabel" key="label_emailMethod_mandrill"></span></label>
+                            
+                          </td>
+                      </tr>  
+                        
+                	  <tr valign="top" class="row_emailMandrill">
+                          <td class="appLabel" key="label_emailKey"></td>
+                          <td>:</td>
+                          <td><input type="text" name="emailKey" id="emailKey" value="" /></td>
+                      </tr>
+                        
+                	  <tr valign="top" class="row_emailSMTP">
+                          <td class="appLabel" key="label_emailHost"></td>
+                          <td>:</td>
+                          <td><input type="text" name="emailHost" id="emailHost" value="" /><br /><span class="example appLabel" key="label_emailHost_ex"></span></td>
+                      </tr>
+                      <tr valign="top" class="row_emailSMTP">
+                          <td class="appLabel" key="label_emailPort"></td>
+                          <td>:</td>
+                          <td><input type="text" name="emailPort" id="emailPort" value="25"/><br /><span class="example appLabel" key="label_emailPort_ex"></span></td>
+                      </tr>
+                      <tr valign="top" class="row_emailSMTP">
+                          <td class="appLabel" key="label_emailDomain"></td>
+                          <td>:</td>
+                          <td><input type="text" name="emailDomain" id="emailDomain" value="localhost"/><br /><span class="example appLabel" key="label_emailDomain_ex"></span></td>
+                      </tr>
+
+                      
+                    </table>
+                  </div>
+                </div>
+                
+            </div> 
+            <div class="wiz-nav">
+                <input class="back btn" id="back" type="button" key="label_btn_back"  value="" />
+                <input class="next btn" id="next" type="button" key="label_btn_next"  value="" />
+            </div>                       
+          </div>
+            <div id="wizard-4">
+              <div class="wiz-content">
+                <H2 class="appLabel" key="title_LanguageInfo"></H2>
+                <p class="appLabel" key="text_LanguageInfo"></p>
+                <hr />
+				<br />
+                <table id="langTable" width="100%" border="0" cellspacing="1" cellpadding="2">
+                <!-- New -->
+                <tr>
+                    <td colspan="2">
+                    
+                        <div class="double-list x-panel" id="listLanguageOptions">
+                            
+                            <div class="table-holder x-panel-body">
+                            <table width="100%" border=0>
+                              <tr>
+                                <th width="49%" class='col1Title' >Col 1 Title</th>
+                                <th>&nbsp;</th>
+                                <th width="49%" class='col2Title' >Col 2 Title</th>
+                              </tr>
+                              <tr>
+                                <td class="col1">
+                                  <ul >
+                                  
+                                    <li key="ko" label="Korean">
+                                      <div class="drag-icon language-icon-ko"></div>
+                                     	 Korean
+                                    </li>
+                                    <li key="de" label="German">
+                                      <div class="drag-icon language-icon-de"></div>
+                                      German
+                                    </li>
+                                    <li key="ru" label="Russian">
+                                      <div class="drag-icon language-icon-ru"></div>
+                                      Russian
+                                    </li>
+                                    <li key="es" label="Spanish">
+                                      <div class="drag-icon language-icon-es"></div>
+                                      Spanish
+                                    </li>
+                                    <li key="fr" label="French">
+                                      <div class="drag-icon language-icon-fr"></div>
+                                      French
+                                    </li>
+                                    <li key="it" label="Italian">
+                                      <div class="drag-icon language-icon-it"></div>
+                                      Italian
+                                    </li>
+
+                                  
+                                  </ul>
+                                  <button class="add-button x-btn-text icon-plus selButton optional">>></button>
+                                  <div class="clear"></div>
+                                </td>
+                                <td class="controls">
+                                  <div class="loading-indicator">&nbsp;</div>
+                                  
+                                  
+                                  <div class="clear"></div>
+                                </td>
+                                <td class="col2">
+                                  <ul>
+                                    <li key="en" label="English">
+                                    <div class="drag-icon language-icon-en"></div>
+                                    English
+                                    </li>
+                                    <li key="zh-hans" label="中文">
+                                      <div class="drag-icon language-icon-zh"></div>
+                                      中文
+                                    </li>
+                                  </ul>
+                                  <button class="delete-button x-btn-text icon-minus selButton optional">&lt;&lt;</button>
+                                </td>
+                              </tr>
+                            </table>
+                            <input type="hidden" class="hidden" id="lang-encoded" name="langList"></input>
+                            </div>
+                            
+                            <div class="message"></div>
+                            <div class="clear"></div>
+                            </div>
+                    
+                    </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">&nbsp;</td>
+                    </tr>
+                
+                    <tr>
+                        <td valign="top" class="appLabel" key="label_langDefault"></td>
+                        <td valign="top"><select name="langDefault" id="langDefault">
+                            <option value="-" >-</option>
+                            <option value="en" selected="selected">English</option>
+                            <option value="zh-hans">中文</option>
+                        </select></td>
+                    </tr>
+                </table>  
+            </div>          
+            <div class="wiz-nav">
+                <input class="back btn" id="back" type="button"  key="label_btn_back" value="" />
+                <input class="next btn" id="next" type="button"  key="label_btn_next" value="" />
+            </div>            
+          </div>
+          
+          
+          <div id="wizard-5" >
+              <div class="wiz-content">
+                <H2 class="appLabel" key="title_AdminAccount"></H2>
+                <p class="appLabel" key="text_AdminAccount"></p>
+                <hr />
+				<br />
+                <table id="adminTable" width="100%" border="0" cellspacing="1" cellpadding="2">
+                	<tr>
+                        <td class="appLabel" key="label_siteURL"></td>
+                        <td><input type="text" name="siteURL" id="siteURL" value="localhost"/></td>
+                    </tr>
+                    <tr>
+                        <td class="appLabel" key="label_sitePort"></td>
+                        <td><input type="text" name="sitePort" id="sitePort" value="8088"/></td>
+                    </tr>
+                    <tr>
+                        <td class="appLabel" key="label_production"></td>
+                        <td><select name="production" id="production">
+                            <option value="false" selected="selected">Development</option>
+                            <option value="true">Production</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td >&nbsp;</td>
+                    </tr>
+                    <tr>    
+                        <td >---</td>
+               		</tr>
+                    <tr>    
+                        <td >&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="appLabel" key="label_adminUserID"></td>
+                        <td><input type="text" name="adminUserID" id="adminUserID" value="root"/></td>
+                    </tr>
+                    <tr>
+                        <td class="appLabel" key="label_adminPWord"></td>
+                        <td><input type="text" name="adminPWord" id="adminPWord" value="root"/></td>
+                    </tr>
+                    <tr>
+                        <td valign="top" class="appLabel" key="label_adminLanguage"></td>
+                        <td valign="top"><select name="adminLanguage" id="adminLanguage">
+                            <option value="-" >-</option>
+                            <option value="en" selected="selected">English</option>
+                            <option value="zh-hans">中文</option>
+                        </select></td>
+                    </tr>
+                </table>
+        
+            </div>       
+            <div class="wiz-nav">
+            	<input class="back btn" id="back" type="button" key="label_btn_back" value="" />
+                <input class="next btn" id="next" type="button" key="label_btn_next" value="" />
+            </div>         
+          </div>
+          
+          
+          
+          <div id="wizard-6" >
+              <div class="wiz-content">
+                <H2 class="appLabel" key="title_Review"></H2>
+                <p class="appLabel" key="text_Review1"></p> 
+                <hr />
+                <p class="appLabel" key="text_Review2"></p> <br />
+                <p class="appLabel" key="text_Review3"></p>
+              
+        
+            </div>       
+            <div class="wiz-nav">
+            	<input class="back btn" id="back" type="button" key="label_btn_back" value="" />
+                <input class="btn" id="done" type="button" key="label_btn_done" value="" />
+            </div>         
+          </div>
+          
+          
+          
+          
+        </div>
+    </div> 
+    </div>
+    
+    
+    <div id="summary" class="summary">
+        <div style="display:block">
+        <table>
+        <tr>
+        
+        
+        
+        	<td valign="top">
+            <div class="summaryPanel hidden" id="dbSummary">
+                <h3 class="appLabel" key="title_DB_Summary"></h3>
+                <hr />
+                <div id="info">
+                
+                </div>
+            </div>
+            </td>
+            
+            
+            
+            <td valign="top">
+            <div class="summaryPanel hidden" id="authSummary">
+                <h3 class="appLabel" key="title_Auth_Summary"></h3>
+                <hr />
+                <div id="info">
+               
+                </div>
+            </div>
+            </td>
+            
+            
+            <td valign="top">
+            <div class="summaryPanel hidden" id="emailSummary">
+                <h3 class="appLabel" key="title_Email_Summary"></h3>
+                <hr />
+                <div id="info">
+               
+                </div>
+            </div>
+            </td>
+            
+            
+            <td valign="top">
+              <div class="summaryPanel hidden" id="langSummary">
+                <h3 class="appLabel" key="title_Lang_Summary"></h3>
+                <hr />
+                <div id="info">
+                
+                </div>
+            </div>
+            </td>
+            
+            
+            
+            <td valign="top">
+              <div class="summaryPanel hidden" id="adminSummary">
+                <h3 class="appLabel" key="title_Admin_Summary"></h3>
+                <hr />
+                <div id="info">
+                
+                </div>
+            </div>
+            </td>
+            
+            
+            <td valign="top">
+              <div class="summaryPanel hidden" id="ajaxResponse">
+                <h3 class="appLabel" key="title_Response_Summary"></h3>
+                <hr />
+                <div id="info">
+                	
+                </div>
+            </div>
+            </td>
+        </tr>
+        </table>
+            
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

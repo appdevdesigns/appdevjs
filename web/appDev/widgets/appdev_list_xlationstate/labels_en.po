@@ -1,0 +1,26 @@
+
+#. #########################################
+#. Labels for widget: appdev_list_xlationstate
+#. Source language: en
+#. Target language: en
+#. #########################################
+
+
+
+#. path: /widgets/list/xlationstate
+#. code: en
+#. key: [list.xlationstate.none]
+msgid "Translation:None"
+msgstr "Translation:None"
+
+#. path: /widgets/list/xlationstate
+#. code: en
+#. key: [list.xlationstate.missing]
+msgid "Translation:Missing"
+msgstr "Translation:Missing"
+
+#. path: /widgets/list/xlationstate
+#. code: en
+#. key: [list.xlationstate.all]
+msgid "Translation:All"
+msgstr "Translation:All"

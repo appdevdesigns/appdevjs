@@ -1,0 +1,346 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8"
+"Content-Transfer-Encoding: 8bit"
+
+#. #########################################
+#. Labels for module: site
+#. Source language: en
+#. Target language: en
+#. #########################################
+
+
+
+#. path: /page/site/login
+#. code: en
+#. key: [site.login.userID]
+msgid "Username"
+msgstr "Username"
+
+#. path: /page/site/login
+#. code: en
+#. key: [site.login.pWord]
+msgid "Password"
+msgstr "Password"
+
+#. path: /page/site/login
+#. code: en
+#. key: [site.login.login]
+msgid "Login"
+msgstr "Login"
+
+#. path: /page/site/login
+#. code: en
+#. key: [site.login.submit]
+msgid "Submit"
+msgstr "Submit"
+
+#. path: /page/site/autherrors
+#. code: en
+#. key: [site.autherrors.Reauthenticate]
+msgid "Reauthenticate"
+msgstr "Reauthenticate"
+
+#. path: /page/site/autherrors
+#. code: en
+#. key: [site.autherrors.InvalidUP]
+msgid "Invalid User ID / Password"
+msgstr "Invalid User ID / Password"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Create New]
+msgid "Create New"
+msgstr "Create New"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Approve]
+msgid "Approve"
+msgstr "Approve"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.View List]
+msgid "View List"
+msgstr "View List"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Authorization]
+msgid "Authorization"
+msgstr "Authorization"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Account Information]
+msgid "Account Information"
+msgstr "Account Information"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Roles]
+msgid "Roles"
+msgstr "Roles"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.User ID:]
+msgid "User ID:"
+msgstr "User ID:"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Password:]
+msgid "Password:"
+msgstr "Password:"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Confirm Password:]
+msgid "Confirm Password:"
+msgstr "Confirm Password:"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Default Language:]
+msgid "Default Language:"
+msgstr "Default Language:"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Add]
+msgid "Add"
+msgstr "Add"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Cancel]
+msgid "Cancel"
+msgstr "Cancel"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Import]
+msgid "Import"
+msgstr "Import"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.CSV Import]
+msgid "CSV Import"
+msgstr "CSV Import"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Pending Account Requests]
+msgid "Pending Account Requests"
+msgstr "Pending Account Requests"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Confirm]
+msgid "Confirm"
+msgstr "Confirm"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Deny]
+msgid "Deny"
+msgstr "Deny"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Accounts List]
+msgid "Accounts List"
+msgstr "Accounts List"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.List Filter]
+msgid "List Filter"
+msgstr "List Filter"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.IDs:]
+msgid "IDs:"
+msgstr "IDs:"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Roles:]
+msgid "Roles:"
+msgstr "Roles:"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Language:]
+msgid "Language:"
+msgstr "Language:"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Status:]
+msgid "Status:"
+msgstr "Status:"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Show accounts that have:]
+msgid "Show accounts that have:"
+msgstr "Show accounts that have:"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.UserID]
+msgid "UserID"
+msgstr "UserID"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Language]
+msgid "Language"
+msgstr "Language"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Status]
+msgid "Status"
+msgstr "Status"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Authorization Options]
+msgid "Authorization Options"
+msgstr "Authorization Options"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Account Approval Options]
+msgid "Account Approval Options"
+msgstr "Account Approval Options"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Only admins can create accounts]
+msgid "Only admins can create accounts"
+msgstr "Only admins can create accounts"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Visitors can create accounts]
+msgid "Visitors can create accounts"
+msgstr "Visitors can create accounts"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Visitors can create accounts with admin approval]
+msgid "Visitors can create accounts with admin approval"
+msgstr "Visitors can create accounts with admin approval"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Default values]
+msgid "Default values"
+msgstr "Default values"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Default Role for Pending Accounts:]
+msgid "Default Role for Pending Accounts:"
+msgstr "Default Role for Pending Accounts:"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Default Role for New Approved Accounts:]
+msgid "Default Role for New Approved Accounts:"
+msgstr "Default Role for New Approved Accounts:"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Default Page for Pending Accounts:]
+msgid "Default Page for Pending Accounts:"
+msgstr "Default Page for Pending Accounts:"
+
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: [accounts.Default Page for New Approved Accounts:]
+msgid "Default Page for New Approved Accounts:"
+msgstr "Default Page for New Approved Accounts:"
+
+
+#. path: /site/common
+#. code: en
+#. key: [site.button.Cancel]
+msgid "Cancel"
+msgstr "Cancel"
+
+#. path: /site/common
+#. code: en
+#. key: [site.button.Submit]
+msgid "Submit"
+msgstr "Submit"
+
+#. path: /site/common
+#. code: en
+#. key: [site.button.Add]
+msgid "Add"
+msgstr "Add"
+
+#. path: /site/common
+#. code: en
+#. key: [site.button.Delete]
+msgid "Delete"
+msgstr "Delete"
+
+#. path: /site/common
+#. code: en
+#. key: [site.button.Done]
+msgid "Done"
+msgstr "Done"
+
+#. path: /site/common
+#. code: en
+#. key: [site.button.Edit]
+msgid "Edit"
+msgstr "Edit"
+
+

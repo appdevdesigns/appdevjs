@@ -1,0 +1,77 @@
+<%
+    // CLONE the listJavascripts array so that modifications will not affect the original array
+    var listScripts = listJavascripts.slice(0);
+    if (typeof listFrameworkScripts !== 'undefined') {
+        // Prepend listFrameworkScripts
+        listScripts = listFrameworkScripts.concat(listScripts);
+    }
+    listScripts.unshift('<snippet>appDev_authMethod = \''+AD.Defaults.authMethod+'\';');
+    if (typeof pathLabels !== 'undefined') {
+        // Load the page's labels
+        listScripts.push('<not-packaged>/'+pathLabels);
+    }
+    if (typeof nameSetupFunction !== 'undefined') {
+        // All dependencies for the Page should now be loaded\n\
+        // Now call the RAD generated Setup function()\n\
+        listScripts.push('<then>');
+        listScripts.push('<snippet>OpenAjax.hub.publish(\''+nameSetupFunction+'\', {});');
+    }
+    listScripts.push('<end>');
+    
+    // Build the script groups
+    var groups = [];
+    var currentGroup = [];
+    listScripts.forEach(function(path, index) {
+        if (AD.jQuery.isFunction(path)) {
+            // Execute the "script" function to get the code snippet
+            path = '<snippet>'+path(ejsData);
+        }
+        var matches = /^<(.+)>(.*)$/.exec(path);
+        var tag = matches ? matches[1] : null;
+        var script = matches ? matches[2] : path;
+        if (tag === 'then' || tag === 'end') {
+            // This is the end of a group
+            groups.push(currentGroup);
+            currentGroup = [];
+            return;
+        }
+        else if (tag === 'snippet') {
+            // This snippet of javascript that should be enclosed in an anonymous function
+            script = 'function() { '+script+' }';
+        }
+        else if (tag === 'not-packaged') {
+            // This file should not be packaged
+            script = "{src: '"+script+"', packaged: false}";
+        }
+        else {
+            script = "'"+script+"'";
+        }
+        currentGroup.push(script);
+    });
+    
+    // Convert each of the groups to a string representation of the scripts it contains
+    /**
+     * Example:
+     * 
+     * Before: 
+     * groups: [['00.js', '01.js', '02.js'], ['10.js'], ['20.js', '21.js']]
+     * 
+     * After:
+     * groups: ["steal('00.js', '01.js', '02.js')", "then('10.js')", "then('20.js', '21.js')"]
+     */
+    groups = groups.map(function(group, index) {
+        // Convert the array to a string, each script seperated by a comma and a newline
+        var scripts = '\n    '+group.join(',\n    ');
+         // The first group is loaded using steal(...) and the other groups are loaded using then(...)
+        var func = index === 0 ? 'steal' : 'then';
+        return func+'('+scripts+')';
+    });
+    
+    /**
+     * Example:
+     * 
+     * groups: ["steal('00.js', '01.js', '02.js')", "then('10.js')", "then('20.js', '21.js')"]
+     * content: "steal('00.js', '01.js', '02.js').then('10.js').then('20.js', '21.js');"
+     */
+    var content = groups.join('\n.')+';';
+%><%- content %>

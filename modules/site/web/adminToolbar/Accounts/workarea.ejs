@@ -1,0 +1,549 @@
+<% /*
+
+    This is the template for the Accounts tool's WorkArea
+
+*/ %>
+
+<div id="accounts-workarea">
+
+    <!-- tabs -->
+    <ul class="nav nav-tabs" id="accounts-tab-selector">
+        <li class="active"><a href="#accounts-createnew" data-toggle="tab">
+            <%- labels.getLabel('[accounts.Create New]') %>
+        </a></li>
+        <li><a href="#accounts-import" data-toggle="tab">
+            <%- labels.getLabel('[accounts.Import]') %>
+        </a></li>
+        <li><a href="#accounts-approve" data-toggle="tab">
+            <%- labels.getLabel('[accounts.Approve]') %>
+        </a></li>
+        <li><a href="#accounts-view" data-toggle="tab">
+            <%- labels.getLabel('[accounts.View List]') %>
+        </a></li>
+        <li><a href="#accounts-authorization" data-toggle="tab">
+            <%- labels.getLabel('[accounts.Authorization]') %>
+        </a></li>
+    </ul>
+
+    <div class="tab-content">
+        
+        <!-- CREATE NEW -->
+        <div class="tab-pane active" id="accounts-createnew">
+            <h3><%- labels.getLabel('[accounts.Account Information]') %></h3>
+            
+            <div class="ui-helper-clearfix">
+                <div class="account-roles">
+                    <h4><%- labels.getLabel('[accounts.Roles]') %></h4>
+                    <select id="account-roles-selector">
+                        <option value="">--select--</option>
+                        <% for (var roleID in roles) { %>
+                        <option value="<%- roleID %>"><%- roles[roleID] %></option>
+                        <% } %>
+                    </select>
+                    <div class="template-row account-role-row rounded-box">
+                        <span></span>
+                        <i class="icon-remove-circle"></i>
+                    </div>
+                </div>
+                
+                <div class="account-form ui-helper-clearfix">
+                    <label for="accounts-createnew-userid">
+                        <%- labels.getLabel('[accounts.User ID:]') %>
+                    </label>
+                    <input type="text" id="accounts-createnew-userid" />
+                    
+                    <label for="accounts-createnew-password">
+                        <%- labels.getLabel('[accounts.Password:]') %>
+                    </label>
+                    <input type="password" id="accounts-createnew-password" />
+    
+                    <label for="accounts-createnew-password2">
+                        <%- labels.getLabel('[accounts.Confirm Password:]') %>
+                    </label>
+                    <input type="password" id="accounts-createnew-password2" />
+    
+                    <label for="accounts-createnew-language">
+                        <%- labels.getLabel('[accounts.Default Language:]') %>
+                    </label>
+                    <select id="accounts-createnew-language">
+                        <option value="">--select--</option>
+                        <% for (var langKey in languages) { %>
+                        <option value="<%- langKey %>"><%- languages[langKey] %></option>
+                        <% } %>
+                    </select>
+                </div>
+                
+                <div class="account-form-errors">
+                </div>
+            </div>
+            
+            <div class="accounts-createnew-buttons">
+                <button id="accounts-createnew-add-button" class="btn">
+                    <%- labels.getLabel('[accounts.Add]') %>
+                </button>
+                <button id="accounts-createnew-cancel-button" class="btn">
+                    <%- labels.getLabel('[accounts.Cancel]') %>
+                </button>
+            </div>
+
+        </div>
+
+        
+        
+        <!-- IMPORT -->
+        <div class="tab-pane" id="accounts-import">
+            <h3><%- labels.getLabel('[accounts.CSV Import]') %></h3>
+            <div class="row-fuid">
+
+                <div id="accounts-import-nav" class="well span3">
+                    <ul class="nav nav-list">
+                        
+                        <li class="active"><a href="#accounts-import-load" data-toggle="tab">
+                            1 Load File
+                        </a></li>
+                        <li class="hidden"><a href="#accounts-import-review" data-toggle="tab">
+                            2 Review Data
+                        </a></li>
+                        <li class="hidden"><a href="#accounts-import-configure" data-toggle="tab">
+                            3 Configure
+                        </a></li>
+                        <li class="hidden"><a href="#accounts-import-roles" data-toggle="tab">
+                            4 Roles
+                        </a></li>
+                        <li class="hidden"><a href="#accounts-import-verify" data-toggle="tab">
+                            5 Verify Import
+                        </a></li>
+                        <li class="hidden"><a href="#accounts-import-import" data-toggle="tab">
+                            6 Import
+                        </a></li>
+                        
+                    </ul>
+                </div>
+                
+                <div id="accounts-import-main" class="well span10">
+                    <div class="tab-content">
+
+                        <div id="accounts-import-load" class="tab-pane active">
+                            <h4>Load File</h4>
+                            <p>
+                                This account import tool allows you to add 
+                                accounts that were exported from another site
+                                in the CSV format. 
+                                Begin by loading the file below.
+                            </p>
+                            <form>
+                                <input type="file" />
+                            </form>
+                            <div class="button-pane">
+                                <button class="next btn need-valid" disabled="1">Next</button>
+                            </div>
+                        </div>
+    
+                        <div id="accounts-import-review" class="tab-pane">
+                            <h4>Review Data</h4>
+                            <p>
+                                Check that the data is correct. Make sure the 
+                                first row contains the column names.
+                            </p>
+                            <p>
+                                You can make changes directly in the textbox
+                                below. Or press <i>Previous</i> to go back and 
+                                upload a different file.
+                            </p>
+                            <textarea id="accounts-import-data"></textarea>
+                            <div class="button-pane">
+                                <button class="prev btn">Previous</button>
+                                <button class="next btn">Next</button>
+                            </div>
+                        </div>
+    
+                        <div id="accounts-import-configure" class="tab-pane">
+                            <h4>Configure Options</h4>
+                            
+                            <form class="form-horizontal">
+                                <p>Choose which columns link to the following fields:</p>
+                                <div class="control-group">
+                                    <label class="control-label" for="accounts-import-config-userid">
+                                    UserID
+                                    </label>
+                                    <div class="controls">
+                                        <select id="accounts-import-config-userid">
+                                            <option value="">-</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="accounts-import-config-password">
+                                    Password
+                                    </label>
+                                    <div class="controls">
+                                        <select id="accounts-import-config-password">
+                                            <option value="">-</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="accounts-import-config-language">
+                                    Language
+                                    </label>
+                                    <div class="controls">
+                                        <select id="accounts-import-config-language">
+                                            <option value="">-</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                                
+                            <form>
+                                <label for="accounts-import-auto-approve" class="checkbox">
+                                    <input type="checkbox" id="accounts-import-auto-approve" />
+                                    Automatically approve all imported accounts
+                                </label>
+                            </form>
+                            
+                            <div class="button-pane">
+                                <button class="prev btn">Previous</button>
+                                <button class="next btn need-valid" disabled="1">Next</button>
+                            </div>
+                        </div>
+    
+                        <div id="accounts-import-roles" class="tab-pane">
+                            <h4>Roles</h4>
+                            <p>
+                                You may assign user roles for the imported 
+                                accounts here. Further adjustments can be
+                                made later in the <b>View List</b> tab.
+                            </p>
+                            <div class="account-roles">
+                                <select>
+                                    <option value="">--select--</option>
+                                    <% for (var roleID in roles) { %>
+                                    <option value="<%- roleID %>"><%- roles[roleID] %></option>
+                                    <% } %>
+                                </select>
+                                <div class="template-row rounded-box">
+                                    <span></span>
+                                    <i class="icon-remove-circle"></i>
+                                </div>
+                            </div>
+                            <div class="button-pane">
+                                <button class="prev btn">Previous</button>
+                                <button class="next btn">Next</button>
+                            </div>
+                        </div>
+                        
+                        <div id="accounts-import-verify" class="tab-pane">
+                            <h4>Verify</h4>
+                            <p>
+                                New accounts will be created as shown. Return 
+                                to previous steps to make corrections if needed.
+                            </p>
+                            <div class="table-container row-fluid">
+                                <table class="span8">
+                                    <thead>
+                                        <tr>
+                                            <th>UserID</th>
+                                            <th>Password</th>
+                                            <th>Language</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="template-row">
+                                            <td class="viewer_userID"><!-- placeholder --></td>
+                                            <td class="viewer_passWord"><!-- placeholder --></td>
+                                            <td class="language_key"><!-- placeholder --></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="account-roles span3">
+                                    <h4>Roles</h4>
+                                    <div class="template-row rounded-box">
+                                        <span><!-- placeholder --></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="messages">
+                                <div id="accounts-import-verify-approved-msg" class="alert alert-info">
+                                    Accounts will automatically be <b>approved</b> after importing.
+                                </div>
+                                <div id="accounts-import-verify-pending-msg" class="alert alert-info">
+                                    Accounts will be <b>pending</b> further admin approval after importing.
+                                </div>
+                            </div>
+                            <div class="button-pane">
+                                <button class="prev btn">Previous</button>
+                                <button class="next btn">Confirm</button>
+                            </div>
+                        </div>
+    
+                        <div id="accounts-import-import" class="tab-pane">
+                            <h4>Import Accounts</h4>
+                            <h5>Progress</h5>
+                            <div class="progress progress-striped active">
+                                <div class="bar" style="width: 0"></div>
+                            </div>
+                            <h5>Importing:</h5>
+                            <div class="import-status">
+                                <div userid="" class="template-row rounded-box">
+                                    <span class="viewer_userID"><!-- placeholder --></span>,
+                                    <span class="language_key"><!-- placeholder --></span>
+                                </div>
+                            </div>
+                            <div class="button-pane">
+                                <!-- <button class="prev btn">Previous</button> -->
+                                <button class="next btn need-valid" disabled="1">Done</button>
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>
+                
+            </div>
+        </div>        
+        
+        
+        <!-- APPROVE -->
+        <div class="tab-pane" id="accounts-approve">
+            <h3><%- labels.getLabel('[accounts.Pending Account Requests]') %></h3>
+            <table class="pending-account-requests">
+                <tr class="template-row">
+                    <td class="username"> </td>
+                    <td class="lang"> </td>
+                    <td class="date"> </td>
+                    <td class="operations">
+                        <button class="btn btn-success" operation="confirm">
+                            <%- labels.getLabel('[accounts.Confirm]') %>
+                        </button>
+                        <button class="btn btn-danger" operation="deny">
+                            <%- labels.getLabel('[accounts.Deny]') %>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+        <!-- VIEW -->
+        <div class="tab-pane ui-helper-clearfix" id="accounts-view">
+            <h3><%- labels.getLabel('[accounts.Accounts List]') %></h3>
+            <div class="row-fluid">
+            
+                <!-- list filter -->
+                <div id="accounts-view-filter" class="span3 accounts-view-panel">
+                    <h4><%- labels.getLabel('[accounts.List Filter]') %></h4>
+                    <div class="ui-helper-clearfix">
+                        <label for="accounts-view-filter-IDs">
+                            <%- labels.getLabel('[accounts.IDs:]') %></label>
+                        <input type="text" id="accounts-view-filter-IDs" filter_field="viewer_userID" filter_op="like"/>
+
+                        <label for="accounts-view-filter-roles">
+                            <%- labels.getLabel('[accounts.Roles:]') %>
+                        </label>
+                        <select id="accounts-view-filter-roles" filter_field="role_label" filter_op="is">
+                            <option value="">--select--</option>
+                            <% for (var roleID in roles) { %>
+                            <option><%- roles[roleID] %></option>
+                            <% } %>
+                        </select>
+
+                        <label for="accounts-view-filter-lang">
+                            <%- labels.getLabel('[accounts.Language:]') %>
+                        </label>
+                        <select id="accounts-view-filter-lang" filter_field="language_key" filter_op="is">
+                            <option value="">--select--</option>
+                            <% for (var langKey in languages) { %>
+                            <option value="<%- langKey %>"><%- languages[langKey] %></option>
+                            <% } %>
+                        </select>
+
+                        <label for="accounts-view-filter-active">
+                            <%- labels.getLabel('[accounts.Status:]') %>
+                        </label>
+                        <select id="accounts-view-filter-active" filter_field="viewer_isActive" filter_op="is">
+                            <option value="">--select--</option>
+                            <option value="1">Active</option>
+                            <option value="0">Inactive</option>
+                        </select>
+                    </div>
+                    
+                    <h5><%- labels.getLabel('[accounts.Show accounts that have:]') %><h5>
+                    <div id="accounts-view-current-filters">
+                        <div class="template-row rounded-box">
+                            <span class="fieldname"> </span>
+                            <span class="operator"> </span>
+                            <span class="value"> </span>
+                            <i class="icon-remove-circle"></i>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <!-- actual list -->
+                <div id="accounts-view-list" class="span6 accounts-view-panel">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="accounts-view-list-select-all" /></th>
+                                <th><%- labels.getLabel('[accounts.UserID]') %></th>
+                                <th><%- labels.getLabel('[accounts.Language]') %></th>
+                                <th><%- labels.getLabel('[accounts.Status]') %></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="template-row">
+                                <td class="select-row"><input type="checkbox" /></td>
+                                <td class="userID"> </td>
+                                <td class="lang"> </td>
+                                <td class="status"><input type="checkbox" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- roles -->
+                <div id="accounts-view-roles" class="span1 accounts-view-panel">
+                    <h5><%- labels.getLabel('[accounts.Roles]') %></h5>
+                    <select id="account-view-roles-select" class="input-mini">
+                        <option value="">--select--</option>
+                        <% for (var roleID in roles) { %>
+                        <option value="<%- roleID %>"><%- roles[roleID] %></option>
+                        <% } %>
+                    </select>
+                    <div class="rounded-box small-box template-row">
+                        <span></span>
+                        <i class="icon-remove-circle"></i>
+                    </div>
+                </div>
+                
+                <!-- language -->
+                <div id="accounts-view-language" class="span1 accounts-view-panel">
+                    <h5><%- labels.getLabel('[accounts.Language]') %></h5>
+                    <select id="account-view-lang-select" class="input-mini">
+                        <option value="">--select--</option>
+                        <% for (var langKey in languages) { %>
+                        <option value="<%- langKey %>"><%- languages[langKey] %></option>
+                        <% } %>
+                    </select>
+                    <div class="rounded-box small-box template-row">
+                        <span></span>
+                        <!--<i class="icon-remove-circle"></i>-->
+                    </div>
+                </div>
+
+                <!-- status -->
+                <div id="accounts-view-status" class="span1 accounts-view-panel">
+                    <h5>Status</h5>
+                    <select id="account-view-status-select" class="input-mini">
+                        <option value="">--select--</option>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
+                    <div class="rounded-box small-box template-row">
+                        <span></span>
+                        <!--<i class="icon-remove-circle"></i>-->
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+
+        <!-- AUTHORIZATION -->
+        <div class="tab-pane" id="accounts-authorization">
+            <h3><%- labels.getLabel('[accounts.Authorization Options]') %></h3>
+            
+            <div id="account-approval-options" class="ui-helper-clearfix">
+                <h4><%- labels.getLabel('[accounts.Account Approval Options]') %></h4>
+                <input name="siteAuthorizationDefault-accountApproval" type="radio" value="admin-only" id="account-approval-admin-only" />
+                <label for="account-approval-admin-only">
+                    <%- labels.getLabel('[accounts.Only admins can create accounts]') %>
+                </label>
+                
+                <input name="siteAuthorizationDefault-accountApproval" type="radio" value="visitors" id="account-approval-visitors" />
+                <label for="account-approval-visitors">
+                    <%- labels.getLabel('[accounts.Visitors can create accounts]') %>
+                </label>
+                
+                <input name="siteAuthorizationDefault-accountApproval" type="radio" value="visitors-with-admin" id="account-approval-visitors-with-admin" />
+                <label for="account-approval-visitors-with-admin">
+                    <%- labels.getLabel('[accounts.Visitors can create accounts with admin approval]') %>
+                </label>
+            </div>
+            
+            
+            <div id="default-role-page-options" class="ui-helper-clearfix">
+                <h4><%- labels.getLabel('[accounts.Default values]') %></h4>
+                <label for="default-role-pending-account">
+                    <%- labels.getLabel('[accounts.Default Role for Pending Accounts:]') %>
+                </label>
+                <select id="default-role-pending-account" name="siteAuthorizationDefault-pendingUserRole">
+                    <option value="">--select--</option>
+                    <% for (var roleID in roles) { %>
+                    <option value="<%- roleID %>"><%- roles[roleID] %></option>
+                    <% } %>
+                </select>
+    
+                <label for="default-role-approved-account">
+                    <%- labels.getLabel('[accounts.Default Role for New Approved Accounts:]') %>
+                </label>
+                <select id="default-role-aproved-account" name="siteAuthorizationDefault-newUserRole">
+                    <option value="">--select--</option>
+                    <% for (var roleID in roles) { %>
+                    <option value="<%- roleID %>"><%- roles[roleID] %></option>
+                    <% } %>
+                </select>
+    
+                <label for="default-page-pending-account">
+                    <%- labels.getLabel('[accounts.Default Page for Pending Accounts:]') %>
+                </label>
+                <input id="default-page-pending-account" name="siteAuthorizationDefault-pendingUserPage" />
+    
+                <label for="default-page-approved-account">
+                    <%- labels.getLabel('[accounts.Default Page for New Approved Accounts:]') %>
+                </label>
+                <input id="default-page-approved-account" name="siteAuthorizationDefault-newUserPage" />
+            </div>
+            
+        </div>
+    
+    </div>
+
+</div>
+
+<!--
+<div class="missing-labels">
+    <pre>
+            INSERT INTO `site_multilingual_label`
+                (language_code, label_key, label_label, label_path, label_needs_translation)
+            VALUES
+    <%
+        for (var i=0; i<labels.missing.length; i++) {
+            var key = labels.missing[i];
+            var value = key.replace(/\[[^.]+\.(.+?)\]/, '$1'); 
+            %>
+                ('en', '<%- key %>', '<%- value %>', '/page/site/adminToolbar', 0),
+            <%
+        }
+    %>
+    
+    <%
+        for (var i=0; i<labels.missing.length; i++) {
+            var key = labels.missing[i];
+            var value = key.replace(/\[[^.]+\.(.+?)\]/, '$1'); 
+%>
+
+#. path: /page/site/adminToolbar
+#. code: en
+#. key: <%- key %>
+msgid "<%- value %>"
+msgstr "<%- value %>"
+<%
+        }
+    %>
+    </pre>
+</div>
+-->
+
+<script type="text/javascript">
+window._adminToolbar.accounts_dataLists = <%- dataLists %>;
+</script>

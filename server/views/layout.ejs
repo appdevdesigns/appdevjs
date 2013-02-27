@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         <title>AppDev</title>
+         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <% for(var di in listDefaultCSS) { %>
+         <link href="<%- listDefaultCSS[di] %>" rel="stylesheet" type="text/css">
+         <% } %>
+         <% for(var ci in listCSS) { %>
+         <link href="<%- siteURL %><%= listCSS[ci] %>" rel="stylesheet" type="text/css">
+         <% } %>
+         <% for(var ji in listJavascripts) { %>
+         <script src="<%= listJavascripts[ji] %>" type="text/javascript"></script>
+         <% } %>
+    </head>
+    <body>
+         <% if (typeof adminToolbar != 'undefined') { %>
+         <%- adminToolbar %>
+         <% } %>
+
+         <div id="content"><%- body %></div>
+         <% if (typeof pathSteal !== 'undefined') {
+                var stealFile = 'steal.js';
+                var initPath = pathSteal;
+                if (production) {
+                    stealFile = 'steal.production.js';
+                    var matches = /^\/init\/(\w*\/\w*)$/.exec(initPath);
+                    // Format: /production/<interface>/production.js
+                    initPath = '/production/'+matches[1]+'/production.js';
+                }
+                var stealPath = siteURL+'/scripts/steal/'+stealFile;
+         %>
+             <script type='text/javascript' src='<%= stealPath+'?'+initPath %>'></script>
+         <% } %>
+    </body>
+</html>

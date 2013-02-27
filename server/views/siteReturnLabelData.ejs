@@ -1,0 +1,34 @@
+
+// setup the default language_code for the existing labels on the page
+AD.Lang.Labels.setCurrLangKey("<%- lang.language_code %>");
+
+AD.Lang.Labels.initialInterfaceLoadQueue = [];
+<% 
+for (var indx=0; indx<listLabelPaths.length; indx++) {
+
+    var path = listLabelPaths[indx]; %>
+AD.Lang.Labels.initialInterfaceLoadQueue.push('<%- path %>');<% 
+}
+
+%>
+
+var arryLabels = [<% 
+
+var initialLabels = labels.labels[labels.langKey];
+
+//console.log('::: in siteReturnLabelData.ejs :::');
+//console.log( initialLabels );
+
+for (var key in initialLabels) {
+
+    var label = initialLabels[key].label; 
+    
+    %>
+{ key:'<%- key %>', text:"<%-label %>" },<%
+}
+
+%>
+];
+for (var i=0; i<arryLabels.length; i++) {
+	AD.Lang.Labels.addLabel( arryLabels[i] );
+}

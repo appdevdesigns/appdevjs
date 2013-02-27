@@ -1,0 +1,57 @@
+
+.appdev-option-twocolumn ul {
+    border: 1px solid #B0B0B0;
+/*    margin: 0.2em;*/
+    max-height: 10em;
+    min-height: 7em;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0.3em;
+    vertical-align: middle;
+    width: 97% !important;
+    margin-left:0px;
+    float: none;
+}
+
+.appdev-option-twocolumn .loading-indicator {
+    background: url("/data/theme/default/images/loading.gif") repeat scroll 0 0 transparent;
+    display: none;
+    height: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -3em;
+    padding: 0;
+    width: 16px;
+}
+.appdev-option-twocolumn ul li {
+    float: none;
+    margin: 2px 0;
+    padding: 1px;
+}
+
+.appdev-option-twocolumn li div.drag-icon {
+    background-color: grey;
+    cursor: move;
+    float: left;
+    height: 11px;
+    margin: 2px 0.5em 2px 2px;
+    width: 16px;
+}
+.appdev-option-twocolumn .ui-selected {
+    background-color: #1879DD;
+    color: white;
+}
+
+.appdev-option-twocolumn .selButton {
+
+    background: none repeat scroll 0 0 #F8F8F8; /* #EBEBEB; */
+    border: 1px solid #E0E0E0;
+    border-radius: 8px 8px 8px 8px;
+    color: #0464BB;
+    padding: 0px; 
+    margin-left: 2px; 
+    margin-right: 0px;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+}

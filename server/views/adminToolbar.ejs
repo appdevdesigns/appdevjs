@@ -1,0 +1,63 @@
+<!-- Beginning AdminToolBar view definition -->
+
+<script type="text/javascript">
+// Used for passing information from server to client during page render time.
+window._adminToolbar = {};
+</script>
+
+<div id="admin-toolbar" class="minimized">
+    <ul>
+        <li class="gear empty">
+            <img src="<%= gearImage %>" />
+            <div class="notification"></div>
+        </li>
+    
+        <% for (var i=0; i<toolbar.length; i++) { %>
+        <li class="toolbar-item toolbar-item-<%= toolbar[i].name %> empty" tool_name="<%= toolbar[i].name %>">
+            <img src="<%= toolbar[i].image %>" />
+            <div class="notification"></div>
+        </li>
+        <% } %>
+    </ul>
+    <div class="clear"></div>
+</div>
+
+<div class="admin-overlay" id="admin-overlay-bg">
+</div>
+<div class="admin-overlay" id="admin-overlay">
+    <% for (var i=0; i<toolbar.length; i++) { %>
+    <div class="work-area work-area-<%= toolbar[i].name %>" tool_name="<%= toolbar[i].name %>">
+        <div class="work-area-dismiss">
+            <i class="icon-remove"></i>
+        </div>
+        <div class="work-area-inner">
+            <h2>
+                <img src="<%= toolbar[i].image %>" class="work-area-icon" />
+                <%= toolbar[i].name %>
+            </h2>
+            <div>
+            <%- toolbar[i].workAreaHTML %>
+            </div>
+        </div>
+    </div>
+    <% } %>
+</div>
+
+<div id="admin-quick-menu">
+    <% for (var i=0; i<toolbar.length; i++) { %>
+    <div class="quick-menu quick-menu-<%= toolbar[i].name %>" tool_name="<%= toolbar[i].name %>">
+        <div class="quick-menu-top">
+            <span class="ui-icon ui-icon-triangle-1-n"></span>
+        </div>
+        <div class="quick-menu-inner">
+            <h3>
+                <img src="<%= toolbar[i].image %>" class="quick-menu-icon" />
+                <%= toolbar[i].name %>
+            </h3>
+            <div>
+            <%- toolbar[i].quickMenuHTML %>
+            </div>
+        </div>
+    </div>
+    <% } %>
+</div>

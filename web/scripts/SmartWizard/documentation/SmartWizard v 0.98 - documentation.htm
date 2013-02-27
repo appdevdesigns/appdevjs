@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SmartWizard</title>
+</head>
+<body>
+<strong>Overview:</strong><br />
+    Smart Wizard is a flexible jQuery(a JavaScript library) plugin that gives wizard like interface. Wizards are generally used to give step by step contents into users, it gives better and clean user interface and saves space. An example of wizard can see when we install a software in our windows machine. Some websites also uses this approach on their user registration or etc. 
+<br />I was looking for a good wizard control for  my web project and I don’t find a good control that suits my need. So I decided to develop it myself.<br />
+Current Version : 0.98<br />
+<strong> Demo:</strong><br />
+1. Basic Wizard <a href="http://fivelist.summerhost.info/labs/SmartWizard/index.htm" target="_new">view demo</a><br />
+  2. Vertical Style Wizard <a href="http://fivelist.summerhost.info/labs/SmartWizard/wizard-vertical.htm" target="_new">view demo</a>
+<br /><strong>Download:</strong><br />
+  Version - 0.95 <a href="http://fivelist.summerhost.info/labs/downloads/download.php?f=SmartWizard%20-%200.95.zip" target="_new">SmartWizard - 0.95.zip</a>
+  <br /><strong>Features:</strong>
+  <ul>
+    <li>Easy to implement, Minimal HTML required.</li>
+    <li>Easy Navigation – Step titles are act as anchors.</li>
+    <li>Validation for each step.</li>
+    <li>Option for specifying first selected step.</li>
+    <li>Option for making all steps enabled.</li>
+    <li>Both Vertical and Horizontal Navigation.</li>
+  </ul>
+  <br /><strong>Getting Started:</strong>  <br />
+  Basic Usage:<br />
+<blockquote><pre>$('#smartwizard').smartWizard();</pre></blockquote>
+Using with option parametrs:
+  <blockquote><pre>
+$('#smartwizard').smartWizard(
+ {
+  selectedStep: 0,  // Selected Step, 0 = first step
+  errorSteps:[],    // Array Steps with errors
+  enableAll:false,  // Enable All Steps, true/false
+  animation:true,   // Animation Effect on navigation, true/false         
+  validatorFunc:validateTabs // Step validation function, Step index will be passed
+ }
+); </pre></blockquote>
+<strong>Installing Smart Wizard:</strong><br />
+  <strong>Step 1:</strong> Get the latest version of jQuery(www.jquery.com)<br />
+  <strong>Step 2:</strong> Download the Smart Wizard (http://tech-laboratory.blogspot.com) <br />
+<strong>Step 3:</strong> Include following lines to head section of your html file. Make sure that the path to the files are correct.
+<blockquote><pre>&lt;link href="style_wizard.css" rel="stylesheet" type="text/css"&gt;
+  &lt;script type="text/javascript" src="jquery-1.3.2.min.js"&gt;&lt;/script&gt;
+  &lt;script type="text/javascript" src="SmartWizard.js"&gt;&lt;/script&gt;</pre>
+</blockquote>
+<strong>Step 4:</strong> also copy the below lines to your head section
+<blockquote><pre>&lt;script type="text/javascript"&gt;
+    $().ready(function() {
+        $('#smartwizard).smartWizard();
+    }); 
+  &lt;/script&gt;</pre></blockquote> 
+<strong>Step 5:</strong> Copy the below html to your file’s body section and open the file on browser. That’s all!
+<blockquote><pre>&lt;div id="smartwizard" class="wiz-container"&gt;
+		&lt;ul id="wizard-anchor"&gt;
+			&lt;li&gt;&lt;a href="#wizard-1"&gt;&lt;h2&gt;Step 1&lt;/h2&gt;
+          &lt;small&gt;Description for step 1&lt;/small&gt;&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#wizard-2"&gt;&lt;h2&gt;Step 2&lt;/h2&gt;
+          &lt;small&gt;Description for step 2&lt;/small&gt;&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href="#wizard-3"&gt;&lt;h2&gt;Step 3&lt;/h2&gt;
+          &lt;small&gt;Description for step 3&lt;/small&gt;&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;div id="wizard-body" class="wiz-body"&gt;
+  			&lt;div id="wizard-1" &gt;
+  			   &lt;div class="wiz-content"&gt;
+                Content for Step 1  
+            &lt;/div&gt;        
+            &lt;div class="wiz-nav"&gt;
+              &lt;input class="next btn" id="next" type="button" value="Next &gt;" /&gt;
+            &lt;/div&gt;          
+        &lt;/div&gt;
+  			&lt;div id="wizard-2"&gt;
+  			   &lt;div class="wiz-content"&gt;
+                Content for Step 2    
+            &lt;/div&gt;  
+            &lt;div class="wiz-nav"&gt;
+              &lt;input class="back btn" id="back" type="button" value="&lt; Back" /&gt;
+              &lt;input class="next btn" id="next" type="button" value="Next &gt;" /&gt;
+            &lt;/div&gt;                        
+        &lt;/div&gt;
+  			&lt;div id="wizard-3"&gt;
+  			   &lt;div class="wiz-content"&gt;
+            Content for Step 3   
+            &lt;/div&gt;           
+            &lt;div class="wiz-nav"&gt;
+              &lt;input class="back btn" id="back" type="button" value="&lt; Back" /&gt;
+              &lt;input class="btn" id="next" type="button" value="Done" /&gt;
+            &lt;/div&gt;             
+        &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;</pre></blockquote>
+</body>
+</html>

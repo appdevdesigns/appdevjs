@@ -1,0 +1,60 @@
+<div style="text-align:center; margin:0 auto; width:800px; height:800px;" >
+
+            
+            
+    <div id="loginForm" class="ui-dialog ui-widget ui-widget-content ui-corner-all" style="position:relative; width:400px; margin:0 auto;">
+
+        <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" unselectable="on">
+            <span class="ui-dialog-title" style="float:left"><%- data.labels.getLabel('[site.login.login]') %></span>
+            <div class="busy"></div>
+    
+                
+            <a tabindex="0" href="#langListContents" class="fg-button fg-button-icon-right" id="langList" style="font-size:x-small; float:right;">English</a>
+            <div class="hidden" id="langListContents">
+                <ul>
+                <% for(var indx=0; indx< data.listLanguages.length; indx++) { %>
+                    <li ><a href="#" code="<%- data.listLanguages[indx].language_code %>" ><%- data.listLanguages[indx].language_label %></a></li>
+            <% } %>
+                </ul>
+            </div>
+            
+            <div id="xlationState" style="float:right;margin-right:10px;" ></div>
+        </div>
+
+        <div class="ui-dialog-content ui-widget-content">
+            <form >
+              <table width="100%">
+                <tr>
+                  <th><%- data.labels.getLabel('[site.login.userID]') %></th>
+                  <td><input name="userID" type="text" /></td>
+                </tr>
+                <tr>
+                  <th><%- data.labels.getLabel('[site.login.pWord]') %></th>
+                  <td><input name="pWord" type="password" /></td>
+                </tr>
+              </table>
+            </form>
+        </div>
+      
+        <div class="ui-resizable-handle ui-resizable-n"></div>
+        <div class="ui-resizable-handle ui-resizable-e"></div>
+        <div class="ui-resizable-handle ui-resizable-s"></div>
+        <div class="ui-resizable-handle ui-resizable-w"></div>
+        <div class="ui-resizable-handle ui-resizable-se"></div>
+        <div class="ui-resizable-handle ui-resizable-sw"></div>
+        <div class="ui-resizable-handle ui-resizable-ne"></div>
+        <div class="ui-resizable-handle ui-resizable-nw"></div>
+      
+        <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+            <button style="float:right;" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only submit" type="button" role="button">
+              <span class="ui-button-text"><%- data.labels.getLabel('[site.login.submit]') %></span>
+            </button>
+        </div>
+
+    </div>
+
+    <div id="error-message" class="message ui-state-error ui-corner-all" style="display:none; position:relative;">
+    </div>
+  </div> 
+ 
+    

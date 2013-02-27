@@ -1,0 +1,51 @@
+<!-- Beginning ComponentManager view definition -->
+
+<style type="text/css">
+.component-manager {}
+
+.component-manager h2 {
+    margin-left: 1em;
+    margin-top: 1em;
+}
+
+.component-manager td.installed {
+    text-align: center;
+}
+
+.component-manager button {
+    margin-top: 1em;
+}
+
+</style>
+
+
+<div class="component-manager">
+
+<h1><%= data.title %></h1>
+
+<% for (var system in data.systems) { %>
+
+    <h2><%= system %></h2></th>
+    <table system="<%= system %>">
+        <tr>
+            <th>Installed</th>
+            <th>Name</th>
+            <th>Path</th>
+        </tr>
+        <% for (var i=0; i<data.systems[system].length; i++) { %>
+        <tr class="component-row">
+            <td class="installed">
+                <input type="checkbox" <%= (data.systems[system][i]['installed'] ? 'checked="1" ' : '') %> value="1" name="<%= data.systems[system][i]['name'] %>" <% if (data.systems[system][i]['readonly']) { %>disabled="1"<% } %> />
+            </td>
+            <td class="name"><%= data.systems[system][i]['name'] %></td>
+            <td class="path"><%= data.systems[system][i]['path'] %></td>
+        </tr>
+        <% } %>
+    </table>
+
+<% } %>
+
+
+<button class="submit btn">Apply</button>
+
+</div>

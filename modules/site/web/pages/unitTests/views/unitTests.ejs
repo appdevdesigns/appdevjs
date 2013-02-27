@@ -1,0 +1,42 @@
+<div id="unitTests">
+<div class="menuBar">
+<ul class="nav nav-pills">
+   <li class="dropdown">
+       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+           Modules
+           <b class="caret"></b>
+       </a>
+       <ul class="dropdown-menu">
+             <li class="template-row hidden"><a href="#" id="moduleName">ModuleName</a></li>   
+       </ul>
+   </li>
+</ul>
+<h2>Unit Testing</h2>
+</div>
+<div id="listTests" class="hidden">
+<h2 id="displayModuleName"></h2>
+<div id="initCalls"></div>
+ <table>
+ 	<tr>
+		<td><input type="checkbox" id="runAll" checked /></td>
+        <td class="name">Run all unit tests</td>
+    </tr>
+ </table>
+<table id="tableRunUnitTests">
+   <tr id="titleTable">
+    <th>Run Unit Test</th>
+    <th>Name</th>
+   </tr>
+   <tr class="hidden tt-row">
+     <td><input type="checkbox" id="fileName" /></td>
+     <td id="displayScript" class="name"></td>
+   </tr>
+</table>
+
+<button id="applyButton" class="submit btn">Submit</button>
+</div>
+
+<div id="listResults">
+</div>
+
+</div>

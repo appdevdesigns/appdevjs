@@ -1,0 +1,158 @@
+/* base font */
+body {
+  font-family: helvetica,tahoma,verdana,sans-serif;
+  font-size: 10pt;
+}
+
+.pageTitle {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 26px;
+	font-weight: lighter;
+	color: #FFFFFF;
+}
+.text {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	color: #000000;
+}
+.smallText {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:8pt;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	color: #000000;
+}
+.bold {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+	color: #000000;
+}
+.example {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	font-style: italic;
+	font-variant: normal;
+	color: #666666;
+
+}
+.heading {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 26px;
+	font-weight: lighter;
+	color: #000000;
+}
+.heading2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 22px;
+	font-weight: lighter;
+	color: #000000;
+	font-style: normal;
+
+}
+.heading3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+//	text-decoration: underline;
+}
+
+
+.message {
+  padding: 1em;
+  margin: .5em;
+}
+img {
+  border: 0 none;
+}
+
+.hidden {
+	display:none;	
+}
+
+
+.busy-icon {
+  width:16px;
+  height:16px;
+  background: url(../images/loading.gif) no-repeat top left;
+}
+
+
+
+
+.error {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	color: #FF0000;
+	font-weight: bold;
+
+}
+
+input.error {
+	color: #FFF;
+	border: 1px solid #F00;
+	background-color: #900;
+}
+
+/*
+ * Pop Up Xlation CSS
+ */
+.puxLabel {
+  color: red;
+  cursor: pointer;
+  text-decoration: none !important;
+}
+ 
+.puxActivator {
+  color: red;
+  cursor: pointer;
+  text-decoration: none !important;
+}
+
+a.pux:link,a.pux:visited {
+            font: bold 11px "Verdana", Arial, Helvetica, sans-serif;
+            color: #00f;
+            text-decoration: underline;
+}
+a.pux:hover {
+            color: #f00;
+}
+
+/* Pop Up Xlation (translation) Form */
+#puxForm {
+            position: absolute; 
+            top: 0px;
+            left: 0px;
+            background: #ffc;
+            padding: 3px 10px 10px 10px;
+            border: 1px solid #000;
+            z-index: 1000;
+            display: none;
+            font: bold 9px "Verdana", Arial, Helvetica, sans-serif;
+            color: #000;
+}
+#puxForm .busy-icon {
+  height: 16px;
+  width: 16px;
+  background: none;
+}
+#puxForm.pux-busy .busy-icon {
+  background: url(../images/loading.gif) no-repeat top left;
+}
+#puxForm table {
+  margin-bottom: 1em;
+}
+#puxForm th {
+  text-align: right;
+  vertical-align: top;
+  padding: .2em 1em;
+}
+#puxForm td {
+  text-align: left;
+  padding: .2em;
+}
+#puxForm textarea {
+  font-size: 10px;
+}
+

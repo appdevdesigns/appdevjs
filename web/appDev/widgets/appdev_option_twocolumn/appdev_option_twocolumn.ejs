@@ -1,0 +1,69 @@
+<!-- Beginning option_twoColumn view definition -->
+<%
+///// NOTE:  on the server, EJS uses < %- to return unescaped strings
+/////        on the client  EJS uses < %== 
+// This is CLIENT SIDE, so let's make displaying labels easier:
+// use: < %==  L('[labelKey]') % >   // note there is no ';' at the end!
+var L = function(key) { return AD.Lang.Labels.getLabelHTML(key); };
+
+//// Alternativly you can add these attributes:
+//   appdTitleKey="[label.key]"  for elements that have a title and you want 
+//                               the contents to be multilingual
+//   appLabelKey="[label.key]"   for elements whose contents (el.html()) 
+//                               should be the multilingual info
+%>
+<div class="appdev-option-twocolumn x-panel" >                       
+    <div class="table-holder x-panel-body">
+        <div class="span6">
+        <span class="ad-title-col1"> Col 1 Title</span>
+        <ul class="ad-items-all" style="margin-bottom: 0px;" >
+                  
+            <li key="ko" label="Korean">
+              <div class="drag-icon language-icon-ko"></div>
+                 Korean
+            </li>
+            <li key="de" label="German">
+              <div class="drag-icon language-icon-de"></div>
+              German
+            </li>
+            <li key="ru" label="Russian">
+              <div class="drag-icon language-icon-ru"></div>
+              Russian
+            </li>
+            <li key="es" label="Spanish">
+              <div class="drag-icon language-icon-es"></div>
+              Spanish
+            </li>
+            <li key="fr" label="French">
+              <div class="drag-icon language-icon-fr"></div>
+              French
+            </li>
+            <li key="it" label="Italian">
+              <div class="drag-icon language-icon-it"></div>
+              Italian
+            </li>
+                
+                  
+         </ul>
+         <button class="add-button x-btn-text  selButton ">&gt;&gt;</button>
+        </div>
+        <div class="span6">
+            <span class="ad-title-col2" > Col 2 Title</span>
+            <ul class="ad-items-selected"  style="margin-bottom: 0px;">
+                <li key="en" label="English">
+                <div class="drag-icon language-icon-en"></div>
+                English
+                </li>
+                <li key="zh-hans" label="中文">
+                  <div class="drag-icon language-icon-zh"></div>
+                  中文
+                </li>
+            </ul>
+            <button class="delete-button x-btn-text selButton ">&lt;&lt;</button>                                      
+        </div>
+        <input type="hidden" class="hidden" id="lang-encoded" name="langList"></input>
+    </div>
+    
+    <div class="message"></div>
+    <div class="clear"></div>
+</div>

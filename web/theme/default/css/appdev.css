@@ -1,0 +1,275 @@
+/*
+ * appdev-list-searchable
+ */
+.appdev-list-searchable {
+    position: relative;
+}
+
+
+.ui-selected {
+    background-color: #1879DD;
+    color: white;
+}
+
+/* Title Field */
+.appdev-list-searchable-title { 
+	float: left;
+    margin: 0.5em 1em;
+}
+
+/* Button Bar */
+.appdev-list-searchable-button-bar { 
+	float: right;
+    padding: 3px;
+}
+
+.appdev-list-searchable .clear {
+    clear: both;
+    float: none;
+    height: 1px;
+}
+
+
+
+.appdev-list-searchable .loading-anim {
+    background: none repeat scroll 0 0 transparent;
+    float: left;
+    height: 16px;
+    margin: 5px 0;
+    width: 16px;
+}
+.appdev-list-searchable-busy .loading-anim {
+    background: url("../images/loading.gif") repeat scroll 0 0 transparent;
+}
+
+
+/* Search Bar */
+.appdev-list-searchable .search-container {
+    margin: 5px 0 5px 5px;
+}
+
+.appdev-list-searchable .search-container .searchbox {
+    border: thin inset;
+    float: left;
+}
+
+.appdev-list-searchable .search-container .ui-icon-search {
+    float: left;
+}
+
+.appdev-list-searchable .search-container input.autocomplete {
+    border: 0 none;
+    outline: 0 none;
+    width: 174px;
+}
+
+.appdev-list-searchable .search-container .clear-search {
+    cursor: pointer;
+    float: left;
+    margin: 0;
+}
+
+.appdev-list-searchable .del-list-container {
+    background: none repeat scroll 0 0 white;
+    border: 1px solid #CCCCCC;
+    margin: 5px;
+    max-height: 350px;
+    overflow: auto;
+    position: relative;
+}
+
+.appdev-list-searchable .list-container {
+    background: none repeat scroll 0 0 white;
+    border: 1px solid #CCCCCC;
+    margin: 5px;
+    max-height: 350px;
+    overflow: auto;
+    position: relative;
+}
+
+.appdev-list-searchable .list-container .template-row {
+    display: none;
+}
+
+.appdev-list-searchable .list-container .list-item {
+    cursor: default;
+    padding: 0.25em;
+}
+
+
+.appdev-list-searchable .list-container .list-item-selected {
+    background: none repeat scroll 0 0 #2B77DA;
+    color: white;
+}
+
+
+.appdev-list-searchable .list-container .list-item span {
+}
+
+
+
+.appdev-list-searchable .delete-conf  {
+    background: none repeat scroll 0 0 rgba(F, F, F, 0.4);
+    color: #000000;
+    font-family: Tahoma,Geneva,sans-serif;
+/*    font-size: x-small; */
+    font-style: normal;
+    font-weight: normal;
+    width: 95%;
+    overflow: auto;
+    z-index: 10000;
+}
+
+
+
+.appdev-list-searchable .delete-conf  .Title {
+
+    font-style: bold;
+    font-weight: bold;
+
+}
+
+
+
+.appdev-list-searchable .delete-conf  .delete-item {
+
+    background: none repeat scroll 0 0 white;
+    border: 1px solid #CCCCCC;
+    margin: 0px 13px 5px; 
+    padding: 3px;
+
+    overflow: auto;
+    position: relative;
+
+}
+
+
+.appdev-list-searchable .delete-conf  .delete-conf-row {
+
+    position: relative;
+
+    margin: 5px 13px 5px; 
+}
+
+
+.appdev-list-searchable .delete-conf  .delete-text {
+
+    float: left;
+/*    margin: 0.5em 1em; */
+}
+
+.appdev-list-searchable .delete-conf  button {
+
+    float: right;
+    margin-left: 5px;
+    padding: 3px;
+}
+
+.appdev-list-searchable ul {
+	margin: 0;
+}
+
+
+
+.appdev-list-searchable .edit-form  {
+
+    background: none repeat scroll 0 0 white;
+    border: 1px solid #CCCCCC;
+    margin: 5px;
+    max-height: 350px;
+    overflow: auto;
+    position: relative;
+	padding: 3px;
+    z-index: 10000;
+}
+
+
+
+
+
+
+/*
+ * appdev-codemirror
+ */
+.appdev-codemirror {
+    position: relative;
+}
+
+
+
+/* Title Field */
+.appdev-codemirror-title { 
+    float: left;
+    margin: 0.5em 1em;
+}
+
+/* Button Bar */
+.appdev-codemirror-button-bar { 
+    float: right;
+    padding: 3px;
+}
+
+.appdev-codemirror .clear {
+    clear: both;
+    float: none;
+    height: 1px;
+}
+.appdev-codemirror .code {
+  font-family: courier, monospace;
+  font-size: 80%;
+  color: #418A8A;
+}
+
+.appdev-codemirror .loading-anim {
+    background: none repeat scroll 0 0 transparent;
+    float: left;
+    height: 16px;
+    margin: 5px 0;
+    width: 16px;
+}
+.appdev-codemirror-busy .loading-anim {
+    background: url("../images/loading.gif") repeat scroll 0 0 transparent;
+}
+
+.CodeMirror { border: 1px solid #B0B0B0; }
+
+
+
+/*
+ * appdev-list-select
+ */
+.appdev-list-select {
+    position: relative;
+}
+
+.appdev-list-select select{
+    float:left;
+}
+
+
+/* Title Field */
+.appdev-list-select-title { 
+    float: left;
+    margin: 0.5em 1em;
+}
+
+.appdev-list-select .clear {
+    clear: both;
+    float: none;
+    height: 1px;
+}
+
+
+
+.appdev-list-select .loading-anim {
+    background: none repeat scroll 0 0 transparent;
+    float: left;
+    height: 16px;
+    margin: 5px 0;
+    width: 16px;
+}
+.appdev-list-select-busy .loading-anim {
+    background: url("../images/loading.gif") repeat scroll 0 0 transparent;
+}
+
+
