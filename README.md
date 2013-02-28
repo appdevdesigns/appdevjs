@@ -9,7 +9,7 @@ Before installing appDev, set up your environment. You will need to [install Nod
     node -v
     npm -v
     
-You will also need to [install MAMP](http://www.mamp.info/en/index.html) (on Mac) or [install XAMPP](http://www.apachefriends.org/en/xampp-windows.html) (on Windows. Use the "Installer" version). Take note of the port of the mysql server (default values are typically 3306 or 8889). Also take note of the path you installed it. When installing appDev, you will need to give the path to `mysql` and `mysqldump`. On Windows this is:
+You will also need to [install MAMP](http://www.mamp.info/en/index.html) (on Mac) or [install XAMPP](http://www.apachefriends.org/en/xampp-windows.html) (on Windows. Use the "Installer" version). Take note of the mysql server port (default values are typically 3306 or 8889). Also take note of the path to the mysql executable. When installing appDev, you will need to give the path to `mysql` and `mysqldump`. On Windows this is:
 
     C:\xampp\mysql\bin\mysql.exe
     C:\xampp\mysql\bin\mysqldump.exe
