@@ -15,321 +15,321 @@ msgstr ""
 #. code: ko
 #. key: [site.login.userID]
 msgid "Username"
-msgstr "[ko] Username"
+msgstr "[ko]Username"
 
 #. path: /page/site/login
 #. code: ko
 #. key: [site.login.pWord]
 msgid "Password"
-msgstr "[ko] Password"
+msgstr "[ko]Password"
 
 #. path: /page/site/login
 #. code: ko
 #. key: [site.login.login]
 msgid "Login"
-msgstr "[ko] Login"
+msgstr "[ko]Login"
 
 #. path: /page/site/login
 #. code: ko
 #. key: [site.login.submit]
 msgid "Submit"
-msgstr "[ko] Submit"
+msgstr "[ko]Submit"
 
 #. path: /page/site/autherrors
 #. code: ko
 #. key: [site.autherrors.Reauthenticate]
 msgid "Reauthenticate"
-msgstr "[ko] Reauthenticate"
+msgstr "[ko]Reauthenticate"
 
 #. path: /page/site/autherrors
 #. code: ko
 #. key: [site.autherrors.InvalidUP]
 msgid "Invalid User ID / Password"
-msgstr "[ko] Invalid User ID / Password"
+msgstr "[ko]Invalid User ID / Password"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Create New]
 msgid "Create New"
-msgstr "[ko] Create New"
+msgstr "[ko]Create New"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Approve]
 msgid "Approve"
-msgstr "[ko] Approve"
+msgstr "[ko]Approve"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.View List]
 msgid "View List"
-msgstr "[ko] View List"
+msgstr "[ko]View List"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Authorization]
 msgid "Authorization"
-msgstr "[ko] Authorization"
+msgstr "[ko]Authorization"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Account Information]
 msgid "Account Information"
-msgstr "[ko] Account Information"
+msgstr "[ko]Account Information"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Roles]
 msgid "Roles"
-msgstr "[ko] Roles"
+msgstr "[ko]Roles"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.User ID:]
 msgid "User ID:"
-msgstr "[ko] User ID:"
+msgstr "[ko]User ID:"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Password:]
 msgid "Password:"
-msgstr "[ko] Password:"
+msgstr "[ko]Password:"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Confirm Password:]
 msgid "Confirm Password:"
-msgstr "[ko] Confirm Password:"
+msgstr "[ko]Confirm Password:"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Default Language:]
 msgid "Default Language:"
-msgstr "[ko] Default Language:"
+msgstr "[ko]Default Language:"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Add]
 msgid "Add"
-msgstr "[ko] Add"
+msgstr "[ko]Add"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Cancel]
 msgid "Cancel"
-msgstr "[ko] Cancel"
+msgstr "[ko]Cancel"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Import]
 msgid "Import"
-msgstr "[ko] Import"
+msgstr "[ko]Import"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.CSV Import]
 msgid "CSV Import"
-msgstr "[ko] CSV Import"
+msgstr "[ko]CSV Import"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Pending Account Requests]
 msgid "Pending Account Requests"
-msgstr "[ko] Pending Account Requests"
+msgstr "[ko]Pending Account Requests"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Confirm]
 msgid "Confirm"
-msgstr "[ko] Confirm"
+msgstr "[ko]Confirm"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Deny]
 msgid "Deny"
-msgstr "[ko] Deny"
+msgstr "[ko]Deny"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Accounts List]
 msgid "Accounts List"
-msgstr "[ko] Accounts List"
+msgstr "[ko]Accounts List"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.List Filter]
 msgid "List Filter"
-msgstr "[ko] List Filter"
+msgstr "[ko]List Filter"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.IDs:]
 msgid "IDs:"
-msgstr "[ko] IDs:"
+msgstr "[ko]IDs:"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Roles:]
 msgid "Roles:"
-msgstr "[ko] Roles:"
+msgstr "[ko]Roles:"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Language:]
 msgid "Language:"
-msgstr "[ko] Language:"
+msgstr "[ko]Language:"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Status:]
 msgid "Status:"
-msgstr "[ko] Status:"
+msgstr "[ko]Status:"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Show accounts that have:]
 msgid "Show accounts that have:"
-msgstr "[ko] Show accounts that have:"
+msgstr "[ko]Show accounts that have:"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.UserID]
 msgid "UserID"
-msgstr "[ko] UserID"
+msgstr "[ko]UserID"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Language]
 msgid "Language"
-msgstr "[ko] Language"
+msgstr "[ko]Language"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Status]
 msgid "Status"
-msgstr "[ko] Status"
+msgstr "[ko]Status"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Authorization Options]
 msgid "Authorization Options"
-msgstr "[ko] Authorization Options"
+msgstr "[ko]Authorization Options"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Account Approval Options]
 msgid "Account Approval Options"
-msgstr "[ko] Account Approval Options"
+msgstr "[ko]Account Approval Options"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Only admins can create accounts]
 msgid "Only admins can create accounts"
-msgstr "[ko] Only admins can create accounts"
+msgstr "[ko]Only admins can create accounts"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Visitors can create accounts]
 msgid "Visitors can create accounts"
-msgstr "[ko] Visitors can create accounts"
+msgstr "[ko]Visitors can create accounts"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Visitors can create accounts with admin approval]
 msgid "Visitors can create accounts with admin approval"
-msgstr "[ko] Visitors can create accounts with admin approval"
+msgstr "[ko]Visitors can create accounts with admin approval"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Default values]
 msgid "Default values"
-msgstr "[ko] Default values"
+msgstr "[ko]Default values"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Default Role for Pending Accounts:]
 msgid "Default Role for Pending Accounts:"
-msgstr "[ko] Default Role for Pending Accounts:"
+msgstr "[ko]Default Role for Pending Accounts:"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Default Role for New Approved Accounts:]
 msgid "Default Role for New Approved Accounts:"
-msgstr "[ko] Default Role for New Approved Accounts:"
+msgstr "[ko]Default Role for New Approved Accounts:"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Default Page for Pending Accounts:]
 msgid "Default Page for Pending Accounts:"
-msgstr "[ko] Default Page for Pending Accounts:"
+msgstr "[ko]Default Page for Pending Accounts:"
 
 
 #. path: /page/site/adminToolbar
 #. code: ko
 #. key: [accounts.Default Page for New Approved Accounts:]
 msgid "Default Page for New Approved Accounts:"
-msgstr "[ko] Default Page for New Approved Accounts:"
+msgstr "[ko]Default Page for New Approved Accounts:"
 
 
 #. path: /site/common
 #. code: ko
 #. key: [site.button.Cancel]
 msgid "Cancel"
-msgstr "[ko] Cancel"
+msgstr "[ko]Cancel"
 
 #. path: /site/common
 #. code: ko
 #. key: [site.button.Submit]
 msgid "Submit"
-msgstr "[ko] Submit"
+msgstr "[ko]Submit"
 
 #. path: /site/common
 #. code: ko
 #. key: [site.button.Add]
 msgid "Add"
-msgstr "[ko] Add"
+msgstr "[ko]Add"
 
 #. path: /site/common
 #. code: ko
 #. key: [site.button.Delete]
 msgid "Delete"
-msgstr "[ko] Delete"
+msgstr "[ko]Delete"
 
 #. path: /site/common
 #. code: ko
@@ -343,4 +343,9 @@ msgstr "[ko]Done"
 msgid "Edit"
 msgstr "[ko]Edit"
 
+#. path: /site/common
+#. code: ko
+#. key: [site.error.Required]
+msgid "Required"
+msgstr "[ko]Required"
 

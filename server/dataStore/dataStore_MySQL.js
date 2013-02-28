@@ -1,12 +1,10 @@
-////
-//// dataStore_MySQL
-////
-//// Implements a DataStore that is backedup by a MySQL db.
-////
-//// DataStore's implement the common CRUD interface to their respective 
-//// backend target.
-////    
-
+  
+/* @class AD_Server.Model.Datastore.Datastore_MySQL
+ * @parent AD_Server.Model.Datastore
+ * 
+ * Implements a DataStore that is backedup by a MySQL db. 
+ */
+var __doc;
 
 // reuse the shared DB of our site:
 var myDB = require(__appdevPath+'/server/database.js').sharedDB();
