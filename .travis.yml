@@ -2,4 +2,5 @@ language: node_js
 node_js:
 - 0.8
 
-script: cd install && ./install.sh
+script: ./server/test/test.sh
+# script: cd install && ./install.sh
