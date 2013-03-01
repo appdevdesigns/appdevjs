@@ -565,7 +565,7 @@ Page.prototype.loadLabels = function()
 
 
 /**
- * @functions loadServices
+ * @function loadServices
  * Scans the defined `pathSevices` directory to see if there are any services
  * for this interface to load.
  *

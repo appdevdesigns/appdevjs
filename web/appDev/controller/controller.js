@@ -1,14 +1,29 @@
-/*
+/**
  * @class AD_Client.Controller
  * @parent AD_Client
  * 
  * ###AppDev Controller Object
  * 
  * The JavascriptMVC framework wants to look in predefined locations for views
- * that don't always agree with our design layout.  So we override their view()
- * method to actually use the url we send it.
+ * that don't always agree with our AppDevJS layout.  So we override their view()
+ * method to actually use the url we send it. 
  * 
- * In addition this object provides several convienience methods to manage 
+ * So when creating a client side Controller object, do this:
+ * @codestart
+ *      //// Setup Widget:
+ *       AD.Controller.extend('t1000', {
+ *          
+ *           init: function (el, options) {
+ *               //// Setup your targets here:
+ *               
+ *           },
+ *           query:function() {
+ *              return 'Are you Sarah Connor?';
+ *           }
+ *       });
+ * @codeend
+ * 
+ * In addition this object provides several convenience methods to manage 
  * keyboard input, and loading ListIterators to manage data.
  * 
  */
@@ -47,14 +62,14 @@ $.Controller.extend("ADController",
      * this.dataReady( objList, onSuccess, onError);
      * @codeend
      *
-     * @param {object} ListIterator
+     * @param {object} listIterator
      *      the ListIterator that we are working with
      * @param {fn} onSuccess
      *      a callback fn to call once the list is ready
      * @param {fn} onError
      *      a callback fn to call if an error happened with the 
      *      ListIterator.loaded() operation.
-     * @return {object} a deferred managing the 
+     * @return {object} a deferred indicating status of the listIterator's loading. 
      */
     dataReady: function(listIterator, onSuccess, onError) {
 
@@ -82,7 +97,9 @@ $.Controller.extend("ADController",
     /**
      * @function onKeyDown
      *
-     * default handler for keyDown events.
+     * default handler for Keydown events. This needs to be 
+     * overridden by child objects to manage what happens on keydown 
+     * events.
      * 
      *
      * @param {object} el
@@ -278,6 +295,7 @@ AD.Controller = ADController;
  * 
  * ##AD.Controller Widgets
  * 
- * AD.Controller Widgets
+ * The AppDevJS client side libraries provide several generic Widgets for use on 
+ * web displays.  
  * 
  */

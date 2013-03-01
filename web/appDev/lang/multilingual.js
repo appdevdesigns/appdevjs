@@ -6,32 +6,115 @@
  */    
 
 
-    if (typeof AD.Lang == "undefined") {
-        AD.Lang = {};
+if (typeof AD.Lang == "undefined") {
+    AD.Lang = {};
+}
+
+AD.Lang.Key = {};
+AD.Lang.Key.LANGUAGE_SWITCH = 'site.multilingual.lang.set';
+    
+
+
+AD.Lang.List = null;
+var listCallbackQueue = [];
+var listLookupDFD = $.Deferred();
+/**
+ * 
+ * @function getList
+ * @parent AD_Client.Lang
+ *
+ * Return a list of the languages installed on this server.
+ * 
+ * This is an Async operation, so there are several ways to use call it:
+ * 
+ * ### Option 1: provide a callback:
+ *  @codestart
+ *      AD.Lang.getList(function(list) {
+ *          for(var i=0; i < list.length; i++) {
+ *              // do something with the list item
+ *          }
+ *      });
+ *  @codeend
+ *  
+ * ### Option 2: wait for the returned Deferred to be resolved:
+ * @codestart
+ *      var listReady = AD.Lang.getList();
+ *      $.when(listReady).then(function(list) {
+ *          for(var i=0; i < list.length; i++) {
+ *              // do something with the list item
+ *          }
+ *      });
+ *  @codeend
+ *
+ *  The processed list of languages will be an array of json objects:
+ *  @codestart
+ *      [
+ *          { language_code:'en', language_label:'english'},
+ *          { language_code:'ko', language_label:'korean'},
+ *          { language_code:'zh-hans', language_label:'mandarin' },
+ *          ...
+ *      ]
+ *  @codeend
+ *  
+ *  @param {fn} callback  the callback function to call once the list of 
+ *              languages has been loaded.
+ *  @return {deferred}    A deferred representing the completion of the list lookup.
+ */
+AD.Lang.getList = function ( callback ) {
+    
+    // make sure callback is a fn()
+    if ((callback == null) || (callback === undefined)) { callback = function() {} };
+    
+    
+    if (AD.Lang.List != null) {
+    
+            callback(AD.Lang.List);
+            listLookupDFD.resolve(AD.Lang.List);
+            
+    } else {
+        
+    
+        // AD.Lang.List is null so queue this callback up and make a call to load the language List
+        listCallbackQueue.push(callback);
+        
+        // only make this call one time (listCallbackQueue.length == 1) on 1st time through
+        if (listCallbackQueue.length == 1) {
+        
+            site.Language.findAll({}, function(list) {
+                AD.Lang.List = list;
+                for (var i=0; i<listCallbackQueue.length; i++) {
+                    listCallbackQueue[i](AD.Lang.List);
+                }
+                listCallbackQueue = [];
+                listLookupDFD.resolve(AD.Lang.List);
+            });
+        
+        }
+    
     }
     
-    AD.Lang.Key = {};
-    AD.Lang.Key.LANGUAGE_SWITCH = 'site.multilingual.lang.set';
+    return listLookupDFD;
     
+}
+
+
 steal('/site/models/Labels.js', '/site/models/Language.js').then(function($) {
     
     
     
-   /*
+   /**
     * 
-    * @class AD.Lang.Multilingual
+    * @class AD_Client.Lang.Labels
     * @parent AD_Client.Lang
     *
     * This is a generic Class for handling Multilingual label data for our
     * pages. 
     * 
     * This object is responsible for :
-    *      - Providing a communication mechanism to update/display
-    *        multilingual values on the page (think labels).
-    *      - Responding to Global Notifications related to switching the
-    *        current multilingual language
-    *      - Responding to on screen widgets wanting to construct their disply
-    *        which includes a multilingual label
+    * 
+    * * Providing a communication mechanism to update/display multilingual values on the page (think labels).
+    * * Responding to Global Notifications related to switching the current multilingual language
+    * * Responding to on screen widgets wanting to construct their display which includes a multilingual label
     *
     */
     AD.Lang.Multilingual = Base.extend({
@@ -725,80 +808,6 @@ OpenAjax.hub.subscribe(AD.Lang.Key.LANGUAGE_SWITCH, function(topic, data) { AD.L
 
 
 
-AD.Lang.List = null;
-var listCallbackQueue = [];
-var listLookupDFD = $.Deferred();
-/*
- * 
- * @function getList
- *
- * Return a list of the languages installed on this server.
- * 
- * This is an Async operation, so you pass it a callback:
- *  @codestart
- *      AD.Lang.getList(function(list) {
- *      	for(var i=0; i < list.length; i++) {
- *      		// do something with the list item
- *      	}
- *      });
- *  @codeend
- *  
- * or wait for the Deferred to be resolved:
- * @codestart
- *      var listReady = AD.Lang.getList();
- *      $.when(listReady).then(function(list) {
- *      	for(var i=0; i < list.length; i++) {
- *      		// do something with the list item
- *      	}
- *      });
- *  @codeend
- *
- *  The processed list of languages will be an array of json objects:
- *  @codestart
- *      [
- *      	{ language_code:'en', language_label:'english'},
- *      	{ language_code:'ko', language_label:'korean'},
- *      	...
- *      ]
- *  @codeend
- *  
- */
-AD.Lang.getList = function ( callback ) {
-	
-	// make sure callback is a fn()
-	if ((callback == null) || (callback === undefined)) { callback = function() {} };
-	
-	
-	if (AD.Lang.List != null) {
-	
-			callback(AD.Lang.List);
-			listLookupDFD.resolve(AD.Lang.List);
-			
-	} else {
-		
-	
-		// AD.Lang.List is null so queue this callback up and make a call to load the language List
-		listCallbackQueue.push(callback);
-		
-		// only make this call one time (listCallbackQueue.length == 1) on 1st time through
-		if (listCallbackQueue.length == 1) {
-		
-			site.Language.findAll({}, function(list) {
-				AD.Lang.List = list;
-				for (var i=0; i<listCallbackQueue.length; i++) {
-					listCallbackQueue[i](AD.Lang.List);
-				}
-				listCallbackQueue = [];
-				listLookupDFD.resolve(AD.Lang.List);
-			});
-		
-		}
-	
-	}
-	
-	return listLookupDFD;
-	
-}
 
 
 }); // end steal 

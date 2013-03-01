@@ -503,16 +503,14 @@ AD.Defaults = require('./defaults.js');
 //required to separate comment blocks for documentjs, please do not remove
 var __filler;
 
-/* @class AD_Server.Model.Datastore
- * @parent AD_Server.Model
- * 
- * the implementation of the model datastore
- */
-AD.Model.Datastore = {};
-if (AD.Defaults.dataStoreMethod == AD.Defaults.DATASTORE_MYSQL) { 
-    AD.Model.Datastore = require('./dataStore/dataStore_MySQL');
-}
 
+/* class AD_Server.Model.Datastore
+ * parent AD_Server.Model
+ * 
+ * A datastore is an abstract storage object that provides a common interface
+ * for our AD.Model objects to interact with.
+ */
+AD.Model.Datastore = require('./datastore/datastore.js');
 
 
 /*
@@ -615,11 +613,13 @@ AD.Model.List = {};
 /* @class AD_Server.Model.extend 
  * @parent AD_Server.Model
  * @function extend
- * @param {object} name
- * @param {object} definition
- * @param {object} instanceMethods 
  * 
  * method to create a Model object.
+ * 
+ * @param {string} name
+ * @param {object} definition
+ * @param {object} instanceMethods 
+ * @return {object} a new model object (Class Definition)
  */ 
 AD.Model.extend = function (name, definition, instanceMethods ) {
 	var properties = definition;
@@ -664,12 +664,17 @@ AD.Model.extend = function (name, definition, instanceMethods ) {
 	return newModel;
 }
 
+
+
 /* @class AD_Server.Model.ModelSQL
  * @parent AD_Server.Model
  * 
  * the definition of an SQL based Model
  */
 AD.Model.ModelSQL = require('./model_SQL.js');
+
+
+
 /* @class AD_Server.Model.ModelSQLMultilingual
  * @parent AD_Server.Model
  * 
@@ -678,7 +683,7 @@ AD.Model.ModelSQL = require('./model_SQL.js');
 AD.Model.ModelSQLMultilingual = require('./model_SQLMultilingual.js');
 
 
-AD.Defaults.refresh(); // because of dependencies, keep this after Model Loading
+AD.Defaults.refresh(); // <-- because of dependencies, keep this after Model Loading
 
 
 /*
