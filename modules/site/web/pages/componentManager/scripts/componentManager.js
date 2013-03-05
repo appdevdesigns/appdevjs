@@ -21,7 +21,7 @@ var siteComponentManagerSetup = function (topic, data) {
 
 
     //// Setup Your Page Data/ Operation Here
-
+    $('table[system="modules"]').module_visit();
     $('.component-manager button.submit').apply_button();
     $('.component-manager tr.component-row').component_row();
 
