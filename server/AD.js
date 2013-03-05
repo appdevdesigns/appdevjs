@@ -84,7 +84,7 @@ AD.Util.FS={};
  * Return the files from a given path. (Asynchronously)
  * 
  * @param {string} path  the fs path of the files to return
- * @param {string} opt   options :
+ * @param {object} opt   options :
  * @param {function} cb  a callback to use when files are finished
  * @return {deferred} a deferred indicating the list is complete
  */
@@ -143,8 +143,6 @@ var _walk = function(dir, options, done, dbg) {
 
 AD.Util.FS.files = function(path, opt,  cb) {
     
-    var listFiles = [];
-    
     // options (opt) are optional so if not given, readjust params:
     if (typeof opt == 'function') {
         cb = opt;
@@ -188,7 +186,7 @@ AD.Util.FS.files = function(path, opt,  cb) {
                 results = newResults;
             }
             
-            if (cb) cb(results);
+            if (cb) cb(undefined, results);
             dfd.resolve(results);
         }
     });
@@ -197,24 +195,43 @@ AD.Util.FS.files = function(path, opt,  cb) {
     
 }
 
-
+/**
+ * @function directories
+ * 
+ * Return the directories from a given path (asyncronously)
+ *
+ * @param {string} path  the fs path of the directories to return
+ * @param {object} opt   options
+ * @param {function} cb  a callback to use when finished
+ * @return {deferred} a deferred indicating the list is complete
+ */
+AD.Util.FS.directories = function(path, opt, cb) {
+    if ('function' == typeof opt) {
+        cb = opt;
+        opt = {};
+    }
+    if ('undefined' == typeof opt) {
+        opt = {};
+    }
+    opt.skipDir = false;
+    opt.skipFile = true;
+    return AD.Util.FS.files(path, opt, cb);
+}
 
 /**
  * @function filesSync
  * 
  * Return the files from a given path. (Synchronously)
  * @param {string} path  the fs path of the files to return
- * @param {string} opt   options :
- * @param {function} cb  a callback to use when files are finished
+ * @param {object} opt   options :
  */
 
-AD.Util.FS.filesSync = function(path, opt,  cb) {
+AD.Util.FS.filesSync = function(path, opt) {
 	
 	var listFiles = [];
 	
 	// options (opt) are optional so if not given, readjust params:
-	if (typeof opt == 'function') {
-		cb = opt;
+	if (typeof opt == 'undefined') {
 		opt = {};
 	}
 	
@@ -310,16 +327,15 @@ AD.Util.FS.filesSync = function(path, opt,  cb) {
  * 
  * Return the directories from a given path. (Synchronously)
  * @param {string} path  the fs path of the files to return
- * @param {string} opt   options :
- * @param {function} cb  a callback to use when files are finished
+ * @param {object} opt   options :
  */
-AD.Util.FS.directoriesSync = function(path, opt,  cb) {
+AD.Util.FS.directoriesSync = function(path, opt) {
 	
 	if ('undefined' == typeof opt) opt = {};
 	opt.skipDir = false;
 	opt.skipFile = true;
 	
-	return AD.Util.FS.filesSync(path, opt, cb);
+	return AD.Util.FS.filesSync(path, opt);
 }
 
 
