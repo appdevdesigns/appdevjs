@@ -588,7 +588,7 @@ app.all('/install/commit', installStack, function(req, res, next) {
     
     // Redirect Page to site login
     //var appdevDefaults = require('defaults.js');
-    var loginPage = 'http://' + req.headers.host + '/page/site/componentManager'; //appdevDefaults.siteURL
+    var loginPage = 'http://' + req.headers.host + '/page/site/welcome'; //appdevDefaults.siteURL
     res.contentType('application/json');
     res.send('{ "data": { "url": "'+loginPage+'" } }');
 

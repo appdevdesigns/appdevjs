@@ -1,0 +1,21 @@
+<!-- Beginning Welcome view definition -->
+<%
+var $ = AD.jQuery;
+
+// This is SERVER side, so let's make displaying labels easier:
+// use:  < %- L('[labelKey]') % >
+var L = function(key) { return data.labels.getLabel(key); };
+var pL = function(prependText, key) {
+    // prepend the given text to the result of the label
+    var label = $(L(key)).prepend(prependText);
+    return $('<div>').append(label).html();
+};
+%>
+<h1>Welcome to the AppDevJS framework.</h1>
+
+<p>Here is a list of modules you have already installed:</p>
+<div id="moduleListContainer"></div>
+
+<p>To install a module, copy the source code into the <tt>modules</tt> folder, then go to the <a href="/page/site/componentManager">component manager</a> to enable it.</p>
+
+<p>To administer users, use the admin toolbar. Currently this is the small gear icon in the upper right hand corner of the page.</p>
