@@ -510,7 +510,7 @@ var __filler;
  * A datastore is an abstract storage object that provides a common interface
  * for our AD.Model objects to interact with.
  */
-AD.Model.Datastore = require('./datastore/datastore.js');
+AD.Model.Datastore = require('./dataStore/dataStore.js');
 
 
 /*
