@@ -1,0 +1,25 @@
+_Store
+*.swp
+
+# nodemon ?
+.monitor
+
+# eclipse project files
+.project
+.settings
+
+# ignore the documentation contents
+documentation/*
+!documentation/.gitignore
+
+# generated files
+index.html
+server/defaults.js
+modules/site/install/data/appDev_setup_*.sql
+
+
+# ignore all installed modules (except our site/ module)
+modules/*
+!modules/site
+# ignore the nodeJS libraries that we install via NPM
+server/node_modules/*

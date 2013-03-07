@@ -110,15 +110,13 @@ exports.authenticateService = function(req, res, next)
 var authenticate = function(req, res, next, doRequestLogin) 
 {
 //  make sure current viewer of the page has authenticated.
-//  if not, then create an unauthenticed viewer object
+//  if not, then create an unauthenticated viewer object
 
     var msg = '   - authentication.authenticate() ';
     var currentViewer = AD.Viewer.trueViewer(req);
     var path = url.parse(req.url);
-    
-    // if a viewer object has been added to session already, 
-    // keep on.
-    if (req.session.viewer) {
+
+    if (req.session.viewer && req.session.viewer.isAuthenticated) {
         
         log(req,msg + ' -> but session has a viewer:');
         log(req,req.session.viewer);

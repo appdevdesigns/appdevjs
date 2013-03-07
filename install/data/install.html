@@ -360,6 +360,7 @@ var labels = {
     'dbPort'      : 'database port',
     'dbSocketPath': 'database socket path',
 	'authType'  : 'type',
+    'sessionSecret' : 'password',
 	'casHost'   : 'host',
 	'casPort'   : 'port',
 	'casPath'   : 'path',
@@ -987,9 +988,13 @@ $(document).ready(function() {
     
         var $this = $(this);
         var path = $this.html();
-        var input = $('#dbPathMySQL');
         $('#dbPathMySQL').val(path).change();
         $('#dbPathMySQLDump').val(path+'dump').change();
+    });
+    $('#windowsPath-mysql').click(function() {
+        var path = $(this).html();
+        $('#dbPathMySQL').val(path).change();
+        $('#dbPathMySQLDump').val($('#windowsPath-mysqlDump').html()).change();
     });
    
    
@@ -1161,7 +1166,7 @@ $(document).ready(function() {
                 <table width="100%" border="0" cellspacing="1" cellpadding="2">
                 <tr>
                     <td width="50%" valign="top">
-                        <table id="dbTable" width="100%" border="0" cellspacing="1" cellpadding="2">
+                        <table id="dbTable" border="0" cellspacing="1" cellpadding="2">
                             <tr>
                                 <td class="appLabel" key="label_dbName"></td>
                                 <td><input name="dbName" type="text" id="dbName" value="appdev"/></td>
@@ -1195,12 +1200,12 @@ $(document).ready(function() {
                             </tr>
                             <tr>
                                 <td valign="top" class="appLabel" key="label_db_path_mysql"></td>
-                                <td><input type="text" name="dbPathMySQL" id="dbPathMySQL" value="/Applications/MAMP/Library/bin/mysql" /><div class="example appLabel" key="label_db_path_mysql_ex"></div><div class="example appLabel" key="label_db_path_mysql_ex2"></div></td>
+                                <td><input type="text" name="dbPathMySQL" id="dbPathMySQL" value="/Applications/MAMP/Library/bin/mysql" /><div class="example appLabel" key="label_db_path_mysql_ex"></div><div class="example appLabel" key="label_db_path_mysql_ex2"></div><div class="example" id="windowsPath-mysql">C:\xampp\mysql\bin\mysql.exe</div></td>
                                 <td valign="top"><div id="dbPathMySQLStatus"></div></td>
                             </tr>
                             <tr>
                                 <td valign="top"  class="appLabel" key="label_db_path_mysqldump"></td>
-                                <td><input type="text" name="dbPathMySQLDump" id="dbPathMySQLDump" value="/Applications/MAMP/Library/bin/mysqldump" /><div class="example appLabel" key="label_db_path_mysqldump_ex"></div></td>
+                                <td><input type="text" name="dbPathMySQLDump" id="dbPathMySQLDump" value="/Applications/MAMP/Library/bin/mysqldump" /><div class="example appLabel" key="label_db_path_mysqldump_ex"></div><div class="example" id="windowsPath-mysqlDump">C:\xampp\mysql\bin\mysqldump.exe</div></td>
                                 <td valign="top"><div id="dbPathMySQLDumpStatus"></div></td>
                             </tr>
                                  
@@ -1208,7 +1213,7 @@ $(document).ready(function() {
                     </td>
                     <td width="50%" valign="top">
                     
-                        <table id="dbTable" width="100%" border="0" cellspacing="1" cellpadding="2" style="margin-left: 15px;">
+                        <table id="dbTable" width="100%" border="0" cellspacing="1" cellpadding="2" style="padding-left: 15px;">
                              <tr>
                                 <td colspan="2" class="appLabel" key="label_connectUsing">
                                 </td>
@@ -1263,13 +1268,18 @@ $(document).ready(function() {
                   <br />
                   <table id="authTable" width="100%" border="0" cellspacing="1" cellpadding="2">
                       <tr>
-                          <td valign="top"  width="25" class="appLabel" key="label_authType"></td>
+                          <td valign="top"  class="appLabel" key="label_authType"></td>
                           <td>:</td>
                           <td valign="top"><select name="authType" id="authType">
                               <option value="-" >-</option>
                               <option value="local" class="appLabel" key="label_authType_local" selected="selected"></option>
                               <option value="CAS">CAS</option>
                           </select></td>
+                      </tr>
+                      <tr>
+                          <td valign="top"  class="appLabel" key="label_secret"></td>
+                          <td valign="top">:</td>
+                          <td valign="top"><input type="text" name="sessionSecret" id="sessionSecret" /><br /><span class="appLabel" key="label_secret_instructions"></span></td>
                       </tr>
                   </table>
                   
