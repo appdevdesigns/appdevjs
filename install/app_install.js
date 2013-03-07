@@ -309,9 +309,6 @@ var pullValues = function (req, res, next) {
         console.log(Values['langList']);
     }
 
-    // Sessions Secret Key:
-    Values['sessionSecret'] = 'th3re is n0 sPo0n';
-    
     console.log('Values:');
     console.log(Values);
     
@@ -588,7 +585,7 @@ app.all('/install/commit', installStack, function(req, res, next) {
     
     // Redirect Page to site login
     //var appdevDefaults = require('defaults.js');
-    var loginPage = 'http://' + req.headers.host + '/page/site/componentManager'; //appdevDefaults.siteURL
+    var loginPage = 'http://' + req.headers.host + '/page/site/welcome'; //appdevDefaults.siteURL
     res.contentType('application/json');
     res.send('{ "data": { "url": "'+loginPage+'" } }');
 

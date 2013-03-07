@@ -94,6 +94,8 @@ $labels[ 'text_AuthType' ] = 'Choose the Type of Authentication Method: local DB
 $labels[ 'text_AuthType2' ] = 'If CAS is chosen, fill in the additional information below.';
 $labels[ 'label_authType' ] = 'Type';
 $labels[ 'label_authType_local' ] = 'local';  // local db lookup option
+$labels[ 'label_secret' ] = 'Session secret';
+$labels[ 'label_secret_instructions' ] = 'On production servers, this should be set to your own key, which you keep secret.';
 
 
 ////Email Type Related 

@@ -32,6 +32,7 @@ $values = {
     
     // Site Authentication Values
     authType:'-',
+    sessionSecret:'th3re is n0 sPo0n',
     
     
     // CAS settings

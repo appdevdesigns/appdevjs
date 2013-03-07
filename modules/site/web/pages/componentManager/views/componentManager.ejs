@@ -21,13 +21,15 @@
 
 <div class="component-manager">
 
-<h1><%= data.title %></h1>
+<h1>Component Manager</h1>
+
+<p>To install a module, check the box and click <strong>Apply</strong>. (The button is at the bottom of the page.)</p>
 
 <% for (var system in data.systems) { %>
 
     <h2><%= system %></h2></th>
     <table system="<%= system %>">
-        <tr>
+        <tr class="header-row">
             <th>Installed</th>
             <th>Name</th>
             <th>Path</th>
