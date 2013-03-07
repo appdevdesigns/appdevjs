@@ -309,9 +309,6 @@ var pullValues = function (req, res, next) {
         console.log(Values['langList']);
     }
 
-    // Sessions Secret Key:
-    Values['sessionSecret'] = 'th3re is n0 sPo0n';
-    
     console.log('Values:');
     console.log(Values);
     
