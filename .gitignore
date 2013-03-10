@@ -11,6 +11,8 @@ _Store
 # ignore the documentation contents
 documentation/*
 !documentation/.gitignore
+!documentation/instdocs.sh
+!documentation/instdocs.bat
 
 # generated files
 index.html
