@@ -63,6 +63,9 @@ if (casOptions.external_pgt_url) {
             // PGT callback URL failed. Don't use CAS proxy.
             console.log(' -- CAS PGT callback URL was specified in defaults.js but the callback server is down --');
             delete casOptions['external_pgt_url'];
+        } else {
+            // PGT callback URL seems okay.
+            console.log(' -- Using CAS PGT callback URL [' + authCAS.pgtCallbackURL + '] --');
         }
         cas = new CAS(casOptions);
     });
