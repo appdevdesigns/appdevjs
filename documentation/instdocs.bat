@@ -1,6 +1,13 @@
 @echo off
 
 
+::Before running we need to see if the user has Java in their path.
+:: Instructions here
+:: http://introcs.cs.princeton.edu/java/15inout/windows-cmd.html
+:: Ignore the part about the JDK. The JRE will be fine for our purposes
+:: Note, on 64-bit Windows, my path was:
+:: C:\Program Files (x86)\Java\jre7\bin
+
 
 :: relative path to this script
 
