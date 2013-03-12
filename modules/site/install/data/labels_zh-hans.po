@@ -21,31 +21,31 @@ msgstr "用户名"
 #. code: zh-hans
 #. key: [site.login.pWord]
 msgid "Password"
-msgstr "[zh-hans] Password"
+msgstr "[zh-hans]Password"
 
 #. path: /page/site/login
 #. code: zh-hans
 #. key: [site.login.login]
 msgid "Login"
-msgstr "[zh-hans] Login"
+msgstr "[zh-hans]Login"
 
 #. path: /page/site/login
 #. code: zh-hans
 #. key: [site.login.submit]
 msgid "Submit"
-msgstr "[zh-hans] Submit"
+msgstr "[zh-hans]Submit"
 
 #. path: /page/site/autherrors
 #. code: zh-hans
 #. key: [site.autherrors.Reauthenticate]
 msgid "Reauthenticate"
-msgstr "[zh-hans] Reauthenticate"
+msgstr "[zh-hans]Reauthenticate"
 
 #. path: /page/site/autherrors
 #. code: zh-hans
 #. key: [site.autherrors.InvalidUP]
 msgid "Invalid User ID / Password"
-msgstr "[zh-hans] Invalid User ID / Password"
+msgstr "[zh-hans]Invalid User ID / Password"
 
 
 
@@ -53,284 +53,284 @@ msgstr "[zh-hans] Invalid User ID / Password"
 #. code: zh-hans
 #. key: [accounts.Create New]
 msgid "Create New"
-msgstr "[zh-hans] Create New"
+msgstr "[zh-hans]Create New"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Approve]
 msgid "Approve"
-msgstr "[zh-hans] Approve"
+msgstr "[zh-hans]Approve"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.View List]
 msgid "View List"
-msgstr "[zh-hans] View List"
+msgstr "[zh-hans]View List"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Authorization]
 msgid "Authorization"
-msgstr "[zh-hans] Authorization"
+msgstr "[zh-hans]Authorization"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Account Information]
 msgid "Account Information"
-msgstr "[zh-hans] Account Information"
+msgstr "[zh-hans]Account Information"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Roles]
 msgid "Roles"
-msgstr "[zh-hans] Roles"
+msgstr "[zh-hans]Roles"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.User ID:]
 msgid "User ID:"
-msgstr "[zh-hans] User ID:"
+msgstr "[zh-hans]User ID:"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Password:]
 msgid "Password:"
-msgstr "[zh-hans] Password:"
+msgstr "[zh-hans]Password:"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Confirm Password:]
 msgid "Confirm Password:"
-msgstr "[zh-hans] Confirm Password:"
+msgstr "[zh-hans]Confirm Password:"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Default Language:]
 msgid "Default Language:"
-msgstr "[zh-hans] Default Language:"
+msgstr "[zh-hans]Default Language:"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Add]
 msgid "Add"
-msgstr "[zh-hans] Add"
+msgstr "[zh-hans]Add"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Cancel]
 msgid "Cancel"
-msgstr "[zh-hans] Cancel"
+msgstr "[zh-hans]Cancel"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Import]
 msgid "Import"
-msgstr "[zh-hans] Import"
+msgstr "[zh-hans]Import"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.CSV Import]
 msgid "CSV Import"
-msgstr "[zh-hans] CSV Import"
+msgstr "[zh-hans]CSV Import"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Pending Account Requests]
 msgid "Pending Account Requests"
-msgstr "[zh-hans] Pending Account Requests"
+msgstr "[zh-hans]Pending Account Requests"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Confirm]
 msgid "Confirm"
-msgstr "[zh-hans] Confirm"
+msgstr "[zh-hans]Confirm"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Deny]
 msgid "Deny"
-msgstr "[zh-hans] Deny"
+msgstr "[zh-hans]Deny"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Accounts List]
 msgid "Accounts List"
-msgstr "[zh-hans] Accounts List"
+msgstr "[zh-hans]Accounts List"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.List Filter]
 msgid "List Filter"
-msgstr "[zh-hans] List Filter"
+msgstr "[zh-hans]List Filter"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.IDs:]
 msgid "IDs:"
-msgstr "[zh-hans] IDs:"
+msgstr "[zh-hans]IDs:"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Roles:]
 msgid "Roles:"
-msgstr "[zh-hans] Roles:"
+msgstr "[zh-hans]Roles:"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Language:]
 msgid "Language:"
-msgstr "[zh-hans] Language:"
+msgstr "[zh-hans]Language:"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Status:]
 msgid "Status:"
-msgstr "[zh-hans] Status:"
+msgstr "[zh-hans]Status:"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Show accounts that have:]
 msgid "Show accounts that have:"
-msgstr "[zh-hans] Show accounts that have:"
+msgstr "[zh-hans]Show accounts that have:"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.UserID]
 msgid "UserID"
-msgstr "[zh-hans] UserID"
+msgstr "[zh-hans]UserID"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Language]
 msgid "Language"
-msgstr "[zh-hans] Language"
+msgstr "[zh-hans]Language"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Status]
 msgid "Status"
-msgstr "[zh-hans] Status"
+msgstr "[zh-hans]Status"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Authorization Options]
 msgid "Authorization Options"
-msgstr "[zh-hans] Authorization Options"
+msgstr "[zh-hans]Authorization Options"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Account Approval Options]
 msgid "Account Approval Options"
-msgstr "[zh-hans] Account Approval Options"
+msgstr "[zh-hans]Account Approval Options"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Only admins can create accounts]
 msgid "Only admins can create accounts"
-msgstr "[zh-hans] Only admins can create accounts"
+msgstr "[zh-hans]Only admins can create accounts"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Visitors can create accounts]
 msgid "Visitors can create accounts"
-msgstr "[zh-hans] Visitors can create accounts"
+msgstr "[zh-hans]Visitors can create accounts"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Visitors can create accounts with admin approval]
 msgid "Visitors can create accounts with admin approval"
-msgstr "[zh-hans] Visitors can create accounts with admin approval"
+msgstr "[zh-hans]Visitors can create accounts with admin approval"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Default values]
 msgid "Default values"
-msgstr "[zh-hans] Default values"
+msgstr "[zh-hans]Default values"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Default Role for Pending Accounts:]
 msgid "Default Role for Pending Accounts:"
-msgstr "[zh-hans] Default Role for Pending Accounts:"
+msgstr "[zh-hans]Default Role for Pending Accounts:"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Default Role for New Approved Accounts:]
 msgid "Default Role for New Approved Accounts:"
-msgstr "[zh-hans] Default Role for New Approved Accounts:"
+msgstr "[zh-hans]Default Role for New Approved Accounts:"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Default Page for Pending Accounts:]
 msgid "Default Page for Pending Accounts:"
-msgstr "[zh-hans] Default Page for Pending Accounts:"
+msgstr "[zh-hans]Default Page for Pending Accounts:"
 
 
 #. path: /page/site/adminToolbar
 #. code: zh-hans
 #. key: [accounts.Default Page for New Approved Accounts:]
 msgid "Default Page for New Approved Accounts:"
-msgstr "[zh-hans] Default Page for New Approved Accounts:"
+msgstr "[zh-hans]Default Page for New Approved Accounts:"
 
 
 #. path: /site/common
 #. code: zh-hans
 #. key: [site.button.Cancel]
 msgid "Cancel"
-msgstr "[zh-hans] Cancel"
+msgstr "[zh-hans]Cancel"
 
 #. path: /site/common
 #. code: zh-hans
 #. key: [site.button.Submit]
 msgid "Submit"
-msgstr "[zh-hans] Submit"
+msgstr "[zh-hans]Submit"
 
 #. path: /site/common
 #. code: zh-hans
 #. key: [site.button.Add]
 msgid "Add"
-msgstr "[zh-hans] Add"
+msgstr "[zh-hans]Add"
 
 #. path: /site/common
 #. code: zh-hans
 #. key: [site.button.Delete]
 msgid "Delete"
-msgstr "[zh-hans] Delete"
+msgstr "[zh-hans]Delete"
 
 #. path: /site/common
 #. code: zh-hans
@@ -343,4 +343,10 @@ msgstr "[zh-hans]Done"
 #. key: [site.button.Edit]
 msgid "Edit"
 msgstr "[zh-hans]Edit"
+
+#. path: /site/common
+#. code: zh-hans
+#. key: [site.error.Required]
+msgid "Required"
+msgstr "[zh-hans]Required"
 

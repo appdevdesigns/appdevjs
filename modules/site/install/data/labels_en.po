@@ -343,4 +343,9 @@ msgstr "Done"
 msgid "Edit"
 msgstr "Edit"
 
+#. path: /site/common
+#. code: en
+#. key: [site.error.Required]
+msgid "Required"
+msgstr "Required"
 

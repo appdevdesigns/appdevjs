@@ -4,6 +4,8 @@
  * 
  * Implements a DataStore that is backedup by a MySQL db. 
  */
+var __doc;
+
 // reuse the shared DB of our site:
 var myDB = require(__appdevPath+'/server/database.js').sharedDB();
 exports.DB = myDB;

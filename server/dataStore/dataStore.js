@@ -1,4 +1,4 @@
-/* @class AD_Server.Model.Datastore
+/* @class  AD_Server.Model.Datastore
  * @parent AD_Server.Model
  * 
  * A datastore is an abstract storage object that provides a common interface
@@ -6,7 +6,8 @@
  * 
  * Datastores provide the following CRUD methods: create, update, read, destroy 
  */
-var __temp;  // for documentjs to work?
+var __doc;  // for documentjs to work?
+
 
 /**
  * @function create
@@ -23,6 +24,7 @@ var create = function (dataMgr, callback) {
     
 }
 //exports.create = create;
+
 
 
 /**
@@ -61,7 +63,6 @@ var update = function (dataMgr, callback) {
 
 
 
-
 /**
  * @function destroy
  * 
@@ -77,6 +78,16 @@ var destroy = function(dataMgr, callback) {
 }
 //exports.destroy = destroy;
 
+
+
+/**
+ * @class  AD_Server.Model.Datastore.DB
+ * @parent AD_Server.Model.Datastore
+ * 
+ * The Datastore can expose the underlying DB interface for access to more complex SQL operations.
+ * 
+ */
+var DB;
 
 ////
 //// The Installation Routine will define which datastore type is used.
