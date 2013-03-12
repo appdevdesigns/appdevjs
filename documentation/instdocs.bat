@@ -1,4 +1,4 @@
-@echo off
+
 
 
 ::Before running we need to see if the user has Java in their path.
@@ -11,10 +11,8 @@
 
 :: relative path to this script
 
-set BASE=%~dps0
-
-set CMD=%0
-
+set _=%CD%
+set ROOT=appdevjs_johnny
 
 :: set path to script path
 
@@ -26,15 +24,15 @@ echo setup...
 
 rd /Q/S ..\..\documentjs > nul
 rd /Q/S ..\..\steal > nul
-rd /Q/S ..\..\ad_back > nul
+rd /Q/S ..\..\%ROOT%_back > nul
 
 xcopy /Q/S/I ..\web\scripts\documentjs ..\..\documentjs
 xcopy /Q/S/I ..\web\scripts\steal ..\..\steal
 xcopy /Q/S/I summary.ejs ..\
 
-md ..\..\ad_back
-move /Y ..\server\node_modules ..\..\ad_back\
-move /Y ..\server\test ..\..\ad_back\
+md ..\..\%ROOT%_back
+move /Y ..\server\node_modules ..\..\%ROOT%_back\
+move /Y ..\server\test ..\..\%ROOT%_back\
 
 
 del /Q docs.html > nul
@@ -44,7 +42,7 @@ rd /Q/S docs > nul
 cd ..\..\
 
 echo rendering docs...
-call documentjs\doc.bat appdev > %~dps0\docs_output.txt
+call documentjs\doc.bat %ROOT% > %~dps0\docs_output.txt
 
 
 ::path correction in docs
@@ -57,9 +55,12 @@ move %~dps0\..\docs %~dps0\docs
 ::cleanup
 
 echo cleanup...
-move /Y ad_back\node_modules appdev\server\
-move /Y ad_back\test appdev\server\
-rd /Q/S ad_back
+move /Y %ROOT%_back\node_modules %ROOT%\server\
+move /Y %ROOT%_back\test %ROOT%\server\
+rd /Q/S %ROOT%_back
 rd /Q/S documentjs
 rd /Q/S steal
-del /Q appdev\summary.ejs > nul
+del /Q %ROOT%\summary.ejs > nul
+del /Q %ROOT%\docs.html
+:: Return to starting directory
+cd  %_%
