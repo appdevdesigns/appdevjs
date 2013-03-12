@@ -23,7 +23,6 @@ var viewerModel = require(__appdevPath+'/modules/site/models/Viewer.js');
 
 
 
-
 /**
  * @function trueViewer
  *
@@ -77,6 +76,7 @@ exports.currentViewer = function(req)
     return viewer;
 
 }
+
 
 
 /**
@@ -200,7 +200,6 @@ exports.viewerFromLogin = function(userID, pWord, callBack)
 
 
 
-
 /**
  * @function viewerFromUserID
  *
@@ -247,6 +246,7 @@ exports.resetPermissionsCache = function()
 {
     cachePermissions = {};
 }
+
 
 
 /**
@@ -379,6 +379,7 @@ var ViewerLocal = function(properties) {
 };
 
 
+
 /**
  * @function loadData
  *
@@ -391,6 +392,7 @@ ViewerLocal.prototype.loadData = function(data)
         this[field] = data[field];
     }
 }
+
 
 
 /**
@@ -412,6 +414,7 @@ ViewerLocal.prototype.hasRole = function(key)
     key = key.toLowerCase();
     return (typeof this.permissions.roles[key] != 'undefined');
 }
+
 
 
 /**
@@ -450,4 +453,18 @@ ViewerLocal.prototype.hasTask = function(key, strictChecking)
     }
     
     return result;
+}
+
+
+
+/**
+ * @function guid
+ *
+ * Return the current viewer's Global User ID (guid).
+ *
+ * @return {string}
+ */
+ViewerLocal.prototype.guid = function() 
+{
+    return this['viewer_globalUserID'];
 }
