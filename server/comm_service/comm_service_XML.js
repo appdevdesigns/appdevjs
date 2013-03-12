@@ -45,13 +45,17 @@ exports.send = function (req, res, data, code) {
  * 		A String
  * @return {string} response
  */
-var objectToXML = function (rootName, data) {
+var objectToXML = function (rootName, data, parentName) {
 
 
 //console.log("");
 //console.log('comm_service(): ['+typeof data+'] data:');
 //console.log(data);
+    if (undefined === parentName) { parentName = 'o'; };
     
+    if (AD.Util.String.isNumeric(rootName)) {
+        rootName = parentName+'.'+rootName;
+    }
     var response = '<'+rootName+'>\n';
 
     if ( typeof data == 'string') {
@@ -80,7 +84,7 @@ var objectToXML = function (rootName, data) {
                 
             } else if (typeof data[di] == 'object') {
     
-                response += objectToXML( di, data[di] ) + "\n";
+                response += objectToXML( di, data[di], rootName ) + "\n";
                 
             } else {
             
