@@ -128,7 +128,10 @@
                     
                     // Display error message if needed
                     if (showErrors == 'ON') {
-                        var errorMSG = data.error;
+                        var errorMSG = data.error 
+                            || data.errorMSG 
+                            || data.errorMessage
+                            || data.message;
                         if (!errorMSG) { errorMSG = "Error"; }
                         AppDev.displayMessage(
                             errorMSG,
