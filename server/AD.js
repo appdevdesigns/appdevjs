@@ -333,6 +333,7 @@ AD.Util.FS.directoriesSync = function(path, opt,  cb) {
 AD.Util.Temp = require(__appdevPathNode + 'temp');
 
 
+
 /**
  * @class  AD_Server.Util.String
  * @parent AD_Server.Util
@@ -341,10 +342,83 @@ AD.Util.Temp = require(__appdevPathNode + 'temp');
  */
 // after trying to find a good global string replace, yet again:
 AD.Util.String = {};
+
+
+
+/**
+ * @function isNumeric
+ * 
+ * Tests whether or not the provided string represents a valid numeric value.
+ * 
+ * NOTE: place holders will be the obj properties with a '[' & ']' around it.
+ * @codestart
+ * var value = '1';
+ * if (AD.Util.String.isNumeric( value)) {
+ *      console.log('value was numeric!');
+ * } else {
+ *      console.log('nope ... move along');
+ * }
+ * @codeend
+ * 
+ * @param {string} value the string to check
+ * @return {bool} 
+ */
+AD.Util.String.isNumeric = function(value) {
+    
+    return AD.jQuery.isNumeric(value);
+    
+}
+
+
+
+/**
+ * @function replaceAll
+ * 
+ * Replace all occurrences of replaceThis with withThis  inside the provided origString.
+ * 
+ * NOTE: this returns a copy of the string.  origString is left as is.
+ * 
+ * @codestart
+ * var origString = 'Hello [name]. What is the Matrix, [name]?';
+ * var replaceThis = '[name]';
+ * withThis = 'Neo';
+ * 
+ * var newString = AD.Util.String.replaceAll(origString, replaceThis, withThis);
+ * 
+ * console.log(origString);  // Hello [name]. What is the Matrix, [name]?
+ * console.log(newString);  // Hello Neo. What is the Matrix, Neo?
+ * @codeend
+ * 
+ * @param {string} origString the string to check
+ * @return {bool} 
+ */
 AD.Util.String.replaceAll = function (origString, replaceThis, withThis) {
     var re = new RegExp(RegExpQuote(replaceThis),"g"); 
     return origString.replace(re, withThis);
 };
+
+
+
+/**
+ * @function normalizePath
+ * 
+ * Attempts to take provided path and make it cross platform friendly.
+ * 
+ * In general, our framework functions expect a unix style path.  So for
+ * windows environments we need to make sure the '\' become '/'.
+ * 
+ * Note: this returns a new string.  The provided path remains unchanged.
+ * 
+ * @codestart
+ * var Path = 'c:\temp\my\dir';
+ * var newPath = AD.Util.String.normalizePath(Path);
+ * 
+ * console.log(newPath);  // 'C:/temp/my/dir'
+ * @codeend
+ * 
+ * @param {string} path 
+ * @return {string} 
+ */
 // Convert backslashes to slashes for cross-platform compatability
 AD.Util.String.normalizePath = function(path) {
     if (/^\w\:/.test(path)) {
@@ -395,6 +469,7 @@ AD.Util.String.render = function(template, obj, tagOpen, tagClose) {
 RegExpQuote = function(str) {
      return str.replace(/([.?*+^$[\]\\(){}-])/g, "\\$1");
 };
+
 
 
 /**
@@ -594,14 +669,7 @@ AD.Const.Notifications = {};
 AD.Const.Notifications.SITE_API_NEWLINK = 'ad.site.api.newlink';
 
 
-/*
- * @class AD_Server.Lang
- * @parent AD_Server
- * 
- * Shared resources related to Language.
- * 
- * AD.Lang : our multilingual tools.
- */
+
 //// NOTE: (needs to come after AD.Model.Datastore and AD.Comm.Notification)
 AD.Lang = require('./multilingual.js');
 
