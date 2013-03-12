@@ -48,6 +48,8 @@ exports.dbUser = '[dbUser]';
 exports.dbPword = '[dbPword]';
 exports.dbPath = [dbPath];  // '127.0.0.1'
 exports.dbPort = '[dbPort]'; // 3306
+exports.dbPathMySQL = '[dbPathMySQL]';
+exports.dbPathMySQLDump = '[dbPathMySQLDump]';
 
 
 
