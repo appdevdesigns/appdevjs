@@ -15,6 +15,7 @@ var create = function (dataMgr, callback) {
 // return a new instance of our DB.
 
     var dbTable = dataMgr.dbTable;
+    var dbName = dataMgr.dbName || AD.Defaults.dbName;
     
     var columns = '';
     var values = [];
@@ -31,15 +32,17 @@ var create = function (dataMgr, callback) {
         valuesText += '?';
     }
     
-    var sql = 'INSERT INTO '+dataMgr.dbName+'.'+dbTable+' ('+ columns + ') VALUES ('+valuesText + ')';
-    
+//    var sql = 'INSERT INTO '+dbName+'.'+dbTable+' ('+ columns + ') VALUES ('+valuesText + ')';
+    var sql = ['INSERT INTO ',dbName,'.',dbTable,' (', columns , ') VALUES (',valuesText , ')'].join('');
+ 
     myDB.query(sql, values, function( err, info) {
         
         if (err) console.log(err);
         
+        //// on a create operation, we return the new ID of the object:
         var insertID = -1;
-        if (typeof info != 'undefined') {
-            if (typeof info.insertId != 'undefined') {
+        if (undefined !== info) {
+            if (undefined !== info.insertId) {
                 insertID = info.insertId;
             }
         }
@@ -295,8 +298,12 @@ exports.runSQL = runSQL;
 var update = function (dataMgr, callback) {
 
     var dbTable = dataMgr.dbTable;
+    var dbName = dataMgr.dbName || AD.Defaults.dbName;
+    
 //console.log(dataMgr);    
-    var condition = dataMgr.cond || '';
+    var condition = [];
+    if((undefined !== dataMgr.cond) && (dataMgr.cond != '')) condition.push(dataMgr.cond);
+    
     var values = [];
     var fieldValues = '';
     
@@ -309,24 +316,28 @@ var update = function (dataMgr, callback) {
         
     }
     
-    if ((typeof dataMgr.id != 'undefined') 
+    if ((undefined !== dataMgr.id ) 
         && (dataMgr.id > -1)) {
         
-        if (condition != '') condition += ' AND ';
-        condition += dataMgr.primaryKey+'=?';
+        condition.push(dataMgr.primaryKey+'=?');
         values.push(dataMgr.id);
         
     }
     
-    var sql = 'UPDATE '+dataMgr.dbName+'.'+dbTable+' SET '+fieldValues;
-    if (condition != '') sql += ' WHERE '+condition;
+
+    var sql = ['UPDATE ',dbName,'.',dbTable,' SET ',fieldValues];
+    if (condition.length > 0) sql.push(' WHERE ',condition.join(' AND '));
     
-//console.log(' -- sql['+sql+'] ');
+//console.log(' -- sql['+sql.join('')+'] ');
 //console.log(values);
+//console.log(condition);
 //console.log('');
 
-    myDB.query(sql, values, function( err, results, fields) {
+    myDB.query(sql.join(''), values, function( err, results, fields) {
     
+if (err) {
+    console.log(sql.join(''));
+}
         callback( err, results );
     });
 
@@ -338,24 +349,26 @@ var destroy = function(dataMgr, callback) {
 
 
     var dbTable = dataMgr.dbTable;
+    var dbName = dataMgr.dbName || AD.Defaults.dbName;
     
-    var condition = '';
+    
+    var condition = [];
     var values = [];
     
     for (var key in dataMgr.model) {
     
-        if (condition != '') condition += ' AND ';
-        condition += key+'=?';
+//        if (condition != '') condition += ' AND ';
+        condition.push( key+'=?');
         
         values.push( dataMgr.model[key]);
         
     }
     
-    var sql = 'DELETE FROM '+dataMgr.dbName+'.'+dbTable;
-    if (condition != '') sql += ' WHERE '+condition;
+    var sql = ['DELETE FROM ',dbName,'.',dbTable];
+    if (condition.length > 0) sql.push(' WHERE ',condition.join(' AND '));
     
 
-    myDB.query(sql, values, function( err, results, fields) {
+    myDB.query(sql.join(''), values, function( err, results, fields) {
     
         callback( err, results );
     });

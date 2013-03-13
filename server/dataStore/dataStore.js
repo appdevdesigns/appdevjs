@@ -15,6 +15,10 @@ var __doc;  // for documentjs to work?
  * this method creates a new instance of the model in the storage 
  * mechanism.
  * 
+ * The provided callback will be passed 2 parameters:
+ * * err {obj}  an error object if any is returned from the db operation
+ * * id  {int}  the new primary key of the created row. 
+ * 
  * @param {object} dataMgr a dataMgr object that defines the data to be saved.
  * @param {fn} callback  the callback fn to call once the operation is complete.  The format 
  *                of the callback is callback(err, newID);
