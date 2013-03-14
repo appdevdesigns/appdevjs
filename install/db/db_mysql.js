@@ -47,8 +47,8 @@ var importSQL = function (req, res, next, paths, dbName) {
     var exec = require('child_process').exec;
     var children = {};
     var finishedCount = 0;
-    
-    var dbClientPath = Values['dbPathMySQL'];
+
+    var dbClientPath = fetchKey('dbPathMySQL');
     if (fs.existsSync(dbClientPath)) {
         
         // skip this if there is nothing to init
@@ -66,17 +66,17 @@ var importSQL = function (req, res, next, paths, dbName) {
             console.log('initializing sql [' + sqlFile + ']');
             
             var hostInfo = '';
-            if (Values['connectType'] == 'url') {
+            if (fetchKey('connectType') == 'url') {
                 hostInfo = 
-                    '-h' + Values['dbPathRaw'] + ' ' +
-                    '-P' + Values['dbPort'];
+                    '-h' + fetchKey('dbPathRaw') + ' ' +
+                    '-P' + fetchKey('dbPort');
             }
             
             var shellCommand = 
                 dbClientPath + ' ' +
                 hostInfo + ' ' +
-                '-u' + Values['dbUser'] + ' ' +
-                '-p' + Values['dbPword'] + ' ' +
+                '-u' + fetchKey('dbUser') + ' ' +
+                '-p' + fetchKey('dbPword') + ' ' +
                 (dbName + ' ' || '') + // optional DB name
                 '< ' + sqlFile;
             console.log('executing [' + shellCommand + ']');
@@ -118,6 +118,23 @@ exports.importSQL = importSQL;
 
 
 
+/**
+ * @function fetchKey
+ *
+ * Helper function for importSQL. Fetch a key. If the installer is being run, we fetch it
+ * from the Values array. If not, it should be defined in Ad.Defaults.
+ *
+ * @param {String} key
+ */
+var fetchKey = function(key) {
+    var value;
+    if (typeof Values == 'undefined') {
+        value = AD.Defaults[key];
+    } else {
+        value = Values[key];
+    }
+    return value;
+}
 
 
 /**

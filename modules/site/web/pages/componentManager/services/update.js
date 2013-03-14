@@ -182,9 +182,11 @@ var doInstall = function(req, res, next)
     async.forEach(req.aRAD.installGroup, function(sysObj, callback) {
         // Install new labels, but don't update existing labels
         installer.installLabels(sysObj.path, function() {
-            // Run the 'initModule.js' script if available
-            // and register the module in the DB.
-            installer.initSystem(sysObj, callback);
+            installer.installSQL(sysObj.path, function() {
+                // Run the 'initModule.js' script if available
+                // and register the module in the DB.
+                installer.initSystem(sysObj, callback);
+            });
         }, true);
     }, next);
     

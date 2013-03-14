@@ -101,13 +101,18 @@ var copyTemplate = function (req, res, next, path, destDir) {
             
         } else {
             
+            var backslash = new RegExp('\\\\', 'g'); // match a single backslash
             // foreach template tag
             for (var tagi in Values) {
             
                 // replace tag with value
                 // embedded tag is "[tagi]" 
-                var tag = new RegExp("\\["+tagi+"\\]", "g")
-                data = data.replace(tag, Values[tagi]);
+                var tag = new RegExp("\\["+tagi+"\\]", "g");
+                var val = Values[tagi];
+                if (val !== undefined) {
+                    val = val.replace(backslash,'\\\\'); // replace it with two backslashes
+                }
+                data = data.replace(tag, val);
                 
             } // next tag
             
