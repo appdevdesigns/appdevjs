@@ -11,14 +11,10 @@
     * This is a generic class for handling our translation requests. 
     * 
     * This object is responsible for :
-    *      - Providing a communication mechanism to update/display
-    *        multilingual 
-    *        values on the page (think labels).
-    *      - Responding to Global Notifications related to switching the
-    *        current
-    *        multilingual language
-    *      - Responding to on screen widgets wanting to construct their disply
-    *        which includes a multilingual label
+    * 
+    * * Providing a communication mechanism to update/display multilingual values on the page (think labels).
+    * * Responding to Global Notifications related to switching the current multilingual language
+    * * Responding to on screen widgets wanting to construct their display which includes a multilingual label
     *
     */
     
@@ -28,7 +24,7 @@
     $.Controller.extend("AppdevPuxLabel", 
     {
         // This Object creates a controller for each of the labels that act as 
-        // a pop up xlation (pux) label.  These labels will be responsilbe for
+        // a pop up xlation (pux) label.  These labels will be responsible for
         // alerting the PUXForm object that a label is being requested for editing.
         
         

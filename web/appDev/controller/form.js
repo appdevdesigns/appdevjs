@@ -23,7 +23,7 @@
  * For example:
  * 
  * @codestart
- * <input type="text" name="surname"  data-bind="ren_surname" >
+ * &lt;input type="text" name="surname"  data-bind="ren_surname" &gt;
  * @codeend
  *
  * will synchronize the value in :input.surname with dataManager.ren_surname.
@@ -154,7 +154,7 @@
  * 
  * @codestart
  * $('#myFormDiv').ad_form({
- *      fields: [
+ *      fields:[
  *          '#name-given',          //  id="name-given"
  *          '.surname',             //  class="surname"
  *          '[preferred='YES']'     //  attribute 
