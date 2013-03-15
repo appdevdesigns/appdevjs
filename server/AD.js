@@ -366,7 +366,6 @@ AD.Util.String = {};
  * 
  * Tests whether or not the provided string represents a valid numeric value.
  * 
- * NOTE: place holders will be the obj properties with a '[' & ']' around it.
  * @codestart
  * var value = '1';
  * if (AD.Util.String.isNumeric( value)) {

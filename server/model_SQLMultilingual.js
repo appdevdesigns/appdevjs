@@ -102,7 +102,7 @@ module.exports = AD.Model.ModelSQL('AD.Model.ModelSQLMultilingual', {
             }
             fields[primaryKey] = data;
             var curDataMgr = self.getCurrentDataMgr(fields, {tableName:self.tables.trans});
-            listUpdates.push( curDataMgr );
+ //           listUpdates.push( curDataMgr );
             
             
             // this was for the provided language code
@@ -136,7 +136,7 @@ module.exports = AD.Model.ModelSQL('AD.Model.ModelSQLMultilingual', {
                     }
                     
                     var newLangMgr = {
-                        dbTable: tableName,
+                        dbTable: self.tables.trans, //tableName,
                         model:newFields
                     };
                     
@@ -155,14 +155,17 @@ module.exports = AD.Model.ModelSQL('AD.Model.ModelSQLMultilingual', {
             //
             // even though they are Async, it is all still deterministic, so
             // use the following data structure to help us:
+            if (undefined === req.aRAD) req.aRAD = {};
             req.aRAD[self.tables.data] = { 
                 total:listUpdates.length, 
                 curr:0, 
                 hadError:false 
             };
 
-            
-            
+//console.log('------');
+//console.log('listUpdates:');            
+//console.log(listUpdates);
+
             for(var luI=0; luI<listUpdates.length; luI++) {
             
                 DataStore.create( listUpdates[luI], function( err, data) {
@@ -219,8 +222,10 @@ module.exports = AD.Model.ModelSQL('AD.Model.ModelSQLMultilingual', {
         });  // end create() for dataTable
     },
     
+    
+    
     updateFromReq: function (params) {
-        
+//console.log('model_SQLMultilingual.updateFromReq()');        
         var req = params.req;
         var id = params.id;
         var callback = params.callback;
@@ -231,42 +236,58 @@ module.exports = AD.Model.ModelSQL('AD.Model.ModelSQLMultilingual', {
         // gather any defined field values for this transaction:
         var currModel = this.loadFromReq(req);
 
+        var langCond = null;
+        var langValue = null;
         for(var fI in currModel) {
         
-            if (fieldValues != '') fieldValues += ', ';
-            
-            var tableID = 'd';
-            
-            // if field is in trans model switch to t.
-            if (typeof this.fields.trans[fI] != 'undefined') {
-                tableID = 't';
+            // language_code isn't somethign that is updated. 
+            if (fI != 'language_code') {
+                
+                if (fieldValues != '') fieldValues += ', ';
+                
+                var tableID = 'd';
+                
+                // if field is in trans model switch to t.
+                if (typeof this.fields.trans[fI] != 'undefined') {
+                    tableID = 't';
+                }
+                fieldValues += tableID+'.'+fI + '=?';
+                values.push( currModel[fI] );
+            } else {
+                
+                langCond = 'language_code=?';
+                langValue = currModel[fI];
             }
-            fieldValues += tableID+'.'+fI + '=?';
-            values.push( currModel[fI] );
         }
         
         
         //// compile Condition statement:
-        var condition = this.condFromReq(req);
-        if (id != '-1') {
+        var condition =  [ ];
+        var condReq =  this.condFromReq(req);
+        if (condReq != '') condition.push(condReq);
         
-            if (condition != '') {
-                condition += ' AND ';
-            }
-            condition += '( d.' + this.primaryKey+'='+id + ')';
+        if ((id != '-1') && (AD.Util.String.isNumeric(id))) {
+        
+
+            condition.push( '( d.' + this.primaryKey+'='+id + ')' );
         }
 
+        if (langCond) {
+            condition.push( langCond );
+            values.push(langValue)
+        }
         //// table name 
         var tableName = this.fromTable();
         
         
         var sql = 'UPDATE '+tableName + ' SET ' + fieldValues;
-        if (condition != '') {
-            sql += ' WHERE '+condition;
+        if (condition.length > 0) {
+            sql += ' WHERE '+condition.join(' AND ');
         }
 
-      
-    //log(req, '      sql:['+sql+']');
+//console.log('sql:'+sql);      
+//log(req, '      sql:['+sql+']');
+//log(req, values);
         var self = this;
         var returnObj = {};
         
@@ -365,7 +386,8 @@ module.exports = AD.Model.ModelSQL('AD.Model.ModelSQLMultilingual', {
         
         // Take care of language code, too
         var key = 'language_code';
-        var langCode = curDataMgr.model[key] || req.aRAD.viewer.languageKey;
+        var viewer = AD.Viewer.currentViewer(req);
+        var langCode = curDataMgr.model[key] || viewer.languageKey;
         joinedTable.condition = [{ tref: tref, key: key, value: langCode }];
         delete curDataMgr.model[key];
 

@@ -20,6 +20,7 @@ then
     npm install ansi-color
     npm install ejs
     npm install express@2.5.9
+    npm install express-params
     npm install socket.io@0.9.0
     npm install mysql@2.0.0-alpha3
 	npm install faye

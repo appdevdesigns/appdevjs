@@ -213,7 +213,8 @@ module.exports = $.Model('AD.Model.ModelSQL', {
     update: function (id, attr, onSuccess, onError ) {
         ////  mimic the create() behavior just like the Client Side code.
         ////
-        
+//console.log('model_SQL.update();');
+ 
         var dfd = $.Deferred();
         this.updateFromReq({
             id:id,
@@ -237,7 +238,7 @@ module.exports = $.Model('AD.Model.ModelSQL', {
     
     
     updateFromReq: function (params) {
-
+//console.log('model_SQL.updateFromReq()');
         if (typeof params.req == 'undefined') {
             console.log('invalid parameters provided:');
             console.log(params);
@@ -299,7 +300,7 @@ module.exports = $.Model('AD.Model.ModelSQL', {
                     if (typeof onError != 'undefined') onError( err ); 
                     dfd.reject(err);
                 }else {
-                    // must return { id: new ID value }
+                    
                     if (typeof onSuccess != 'undefined') onSuccess(data);
                     dfd.resolve(data);
                 }

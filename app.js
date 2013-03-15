@@ -34,7 +34,10 @@ var error = AD.Util.Error;
 
 //Express server
 express = require(__appdevPathNode + 'express');
+var params = require(__appdevPathNode + 'express-params');
 app = express.createServer();
+params.extend(app);
+
 
 //Session store
 AD.SessionStore = new express.session.MemoryStore;

@@ -34,10 +34,20 @@ var create = function (dataMgr, callback) {
     
 //    var sql = 'INSERT INTO '+dbName+'.'+dbTable+' ('+ columns + ') VALUES ('+valuesText + ')';
     var sql = ['INSERT INTO ',dbName,'.',dbTable,' (', columns , ') VALUES (',valuesText , ')'].join('');
- 
+
+//console.log('-------');
+//console.log('sql:'+sql); 
+//console.log('values:');
+//console.log(values);
+    
     myDB.query(sql, values, function( err, info) {
         
-        if (err) console.log(err);
+        if (err) { 
+            console.log(err);  
+            console.log('sql:'+sql); 
+            console.log('values:'); 
+            console.log(values); 
+        }
         
         //// on a create operation, we return the new ID of the object:
         var insertID = -1;
