@@ -180,6 +180,7 @@ var read = function (dataMgr, callback) {
         var fieldName = key;
         var op = '=';
         
+//console.log('typeof dataMgr.model[]:'+typeof dataMgr.model[key]);
         if ((typeof dataMgr.model[key] == 'object') && (value !== null)) {
             
             // this is not a simple key = value condition:
@@ -245,7 +246,8 @@ var read = function (dataMgr, callback) {
         
     }
     
-    var condition = conditions.join(' AND ');
+    var condition='';
+    if (conditions.length > 0) condition = conditions.join(' AND ');
     
     var sql = 'SELECT '+select+' FROM '+tableName;
     if (condition != '') sql += ' WHERE '+condition;
@@ -256,6 +258,13 @@ var read = function (dataMgr, callback) {
 
     myDB.query(sql, values, function( err, results, fields) {
 
+        if (err) {
+            console.log('datastore_MySQL.read(): error:');
+            console.log('sql: '+ sql);
+            console.log('values:');
+            console.log(values);
+            console.log();
+        }
         callback( err, results, fields );
     });
 }
