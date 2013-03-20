@@ -157,6 +157,9 @@ a.pux:hover {
 }
 
 /* Fix for the search box layout */
+#search-block-form {
+    margin: 0;
+}
 #block-search-form .form-actions {
     padding: 0;
     background-color: transparent;
