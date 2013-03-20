@@ -274,6 +274,8 @@ console.log(parts);
  */
 Module.prototype.initialize = function() 
 {
+    var self = this;
+    
     var dfd = $.Deferred();
     this.initDFD = dfd;
     
@@ -284,6 +286,10 @@ Module.prototype.initialize = function()
     var dCSS = this.loadModuleCSS();
     
     $.when(dI, dM, dMS, dS, dCSS).then(function (dataDI, dataDM, dataDMS, dataS, dataCSS) {
+        
+        // send notification to our resources/services that we are ready
+        // and by 'ready' I mean all our resources are loaded
+        self.hub.publish(AD.Const.Notifications.MODULE_READY,{});
         
         // all our sub resources have been loaded, so indicate we are ready!
         dfd.resolve({});

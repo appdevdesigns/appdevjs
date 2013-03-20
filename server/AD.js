@@ -679,7 +679,8 @@ AD.Const.HTTP.ERROR_SERVER = 500;  // Generic 'My Fault' error (Server Error)
 
 
 AD.Const.Notifications = {};
-AD.Const.Notifications.SITE_API_NEWLINK = 'ad.site.api.newlink';
+AD.Const.Notifications.SITE_API_NEWLINK = 'ad.site.api.newlink';  // posted every time a service updates a public link definition using AD.Util.Service.registerAPI()
+AD.Const.Notifications.MODULE_READY = 'module.ready';  // posted on a module's internal hub, indicating that the module's resources are loaded
 
 
 
