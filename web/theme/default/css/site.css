@@ -156,3 +156,16 @@ a.pux:hover {
   font-size: 10px;
 }
 
+/* Fix for the search box layout */
+#block-search-form .form-actions {
+    padding: 0;
+    background-color: transparent;
+}
+#block-search-form .form-text {
+    margin: 0;
+    outline: 0 none;
+    -moz-appearance: none;
+}
+#block-search-form input.form-submit {
+    padding: 6px 8px 6px;
+}
