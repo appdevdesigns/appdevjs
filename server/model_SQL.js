@@ -331,21 +331,26 @@ module.exports = $.Model('AD.Model.ModelSQL', {
         var returnObj = { };
         var _self = this;
 
-        DataStore.destroy( curDataMgr, function( err, data) {
+        this.findOne({id:id}, function(object) {
+          DataStore.destroy( curDataMgr, function( err, data) {
 
 
-            // if we have a notification hub defined:
-            if (_self.__hub != null) {
+              // if we have a notification hub defined:
+              if (_self.__hub != null) {
 
-                // Publish a .destroyed notification for this Model:
-                // published data:  { id: [newPrimaryKeyValue] }
-                var subscriptionKey = _self._notificationKey() + '.destroyed';
-                _self.__hub.publish(subscriptionKey, {id:id});
-            }
+                  // Publish a .destroyed notification for this Model:
+                  // published data:  { id: [newPrimaryKeyValue] }
+                  var subscriptionKey = _self._notificationKey() + '.destroyed';
+                  console.log(subscriptionKey)
+                  console.log(object)
+                  _self.__hub.publish(subscriptionKey, object);
+              }
 
-            callback(err, returnObj);
+              callback(err, returnObj);
 
+          });
         });
+
     },
 
 
