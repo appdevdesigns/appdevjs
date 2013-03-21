@@ -51,9 +51,10 @@ exports.sendError = function (req, res, options, code) {
     for (var x in options) {
         response[x] = options[x];
     }
-
+console.log('json.params:');
+console.log(req.params);
     var requestType = req.headers.accept;
-    var isJson = req.is('json') || req.is('*/json') || (requestType.indexOf('json') != -1);
+    var isJson = req.is('json') || req.is('*/json') || (requestType.indexOf('json') != -1) || ('undefined' != typeof req.param('json'));
     
     if (isJson) {
         
