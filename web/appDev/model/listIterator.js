@@ -6,20 +6,20 @@ steal('/appDev/lang/multilingual.js').then(function($) {
     * @class AD_Client.ListIterator
     * @parent AD_Client
     *
-    * the ListManager object provides an interface to manage a collection (0 or 
+    * the ListIterator object provides an interface to manage a collection (0 or 
     * more) of Model instances.  A single ListManager can be shared among several
     * widgets to provide them their data.
     * 
     * How to use:
     * -----------
     *
-    *  get a ListManager from a Model object:
+    *  get a ListIterator from a Model object:
     *  @codestart
-    *        var listViewers = Viewer.listManager({ viewer_isActive:1 });
+    *        var listViewers = Viewer.ListIterator({ viewer_isActive:1 });
     *              (the provided param object is used as param to findAll();)
     *  @codeend
     *
-    *  pass the ListManager to your widgets:
+    *  pass the ListIterator to your widgets:
     *  @codestart
     *        $('#someDiv').appDev_nifty_widget({
     *              dataManager:listViewer
@@ -31,7 +31,7 @@ steal('/appDev/lang/multilingual.js').then(function($) {
     *        listViewers.bind('change', function () {  // do stuff });
     *  @codeend
     *
-    *  To reload the data in the ListManager using bind/trigger
+    *  To reload the data in the ListIterator using bind/trigger
     *  @codestart
     *      listViewers.refresh();
     *      listViewers.findAll({ attrib:value });
@@ -39,7 +39,7 @@ steal('/appDev/lang/multilingual.js').then(function($) {
     *          (when these complete, listViewers.trigger('change') will fire)
     *
     *
-    *  To reload the data in the ListManager using deferreds:
+    *  To reload the data in the ListIterator using deferreds:
     *  @codestart
     *      var loaded = listViewers.refresh();
     *      var loaded = listViewers.findAll({ attrib:value });
@@ -58,7 +58,7 @@ steal('/appDev/lang/multilingual.js').then(function($) {
     *  lookup parameters.  In the example, lookup parameter filters the list
     *  of viewers to only provide active viewers:
     *  @codestart
-    *        var listViewers = Viewer.listManager({ viewer_isActive:1 });
+    *        var listViewers = Viewer.listIterator({ viewer_isActive:1 });
     *  @codeend
     *  
     *  The lookup parameters can be changed after creation using setLookupParams().

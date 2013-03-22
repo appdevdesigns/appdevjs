@@ -4,13 +4,13 @@
  *
  * ###Viewer
  *
- * This module provides an interface for discovering the `ViewerLocal` account 
- * object of the current user. It is primarily used by the authentication 
+ * This module provides an interface for discovering the `ViewerLocal` account
+ * object of the current user. It is primarily used by the authentication
  * system.
  *
  * This is not the actual viewer making the request, but a set of functions
  * that allow us to discover the current viewer.
- * 
+ *
  * The current viewer can differ on each request, so refer to `req.aRAD.viewer`
  * for that information within a request.
  */
@@ -33,16 +33,16 @@ var viewerModel = require(__appdevPath+'/modules/site/models/Viewer.js');
  *      An HTTP request object
  * @return {object}
  */
-exports.trueViewer = function(req) 
+exports.trueViewer = function(req)
 {
     if (req.session && req.session.viewer) {
-    
-        // Objects stored into the session lose their prototype methods. 
+
+        // Objects stored into the session lose their prototype methods.
         // So init a new ViewerLocal using the old stored object.
         var viewer = new ViewerLocal( req.session.viewer );
-    
+
     } else {
-    
+
         var viewer = new ViewerLocal();
     }
 
@@ -62,12 +62,12 @@ exports.trueViewer = function(req)
  *      An HTTP request object
  * @return {object}
  */
-exports.currentViewer = function(req) 
-{    
+exports.currentViewer = function(req)
+{
     if (req.aRAD && req.aRAD.viewer) {
-    
+
         var viewer = req.aRAD.viewer;
-    
+
     } else {
 
         var viewer = exports.trueViewer(req);
@@ -89,7 +89,7 @@ exports.currentViewer = function(req)
  * @param function callback
  *   Function to execute after the entry has been inserted.
  */
-exports.createViewer = function(params, callback) 
+exports.createViewer = function(params, callback)
 {
 	// make sure date is properly set:
 	if (typeof params.viewer_lastLogin != 'undefined') {
@@ -109,7 +109,7 @@ exports.createViewer = function(params, callback)
  * @function updateViewer
  *
  * Updates an existing viewer entry.
- * 
+ *
  * @param object params
  *      List of field:value pairs. `viewer_id` is required.
  * @param function callback
@@ -124,13 +124,13 @@ exports.updateViewer = function(params, callback) {
     } else {
         params['viewer_lastLogin'] = getDateNow();
     }
-    
+
     var id = -1;
     if (typeof params['viewer_id'] != 'undefined') {
         id = params['viewer_id'];
         delete params['viewer_id'];
     }
-    
+
     if (id != -1) {
         viewerModel.update(id, params, callback, function(err){ throw err; });
     } else {
@@ -156,28 +156,28 @@ exports.updateViewer = function(params, callback) {
  * @param {Function} callBack
  *      function(err, viewer)
  */
-var viewerLookup = function(attr, callBack) 
+var viewerLookup = function(attr, callBack)
 {
     var viewer = new ViewerLocal();
-    
-    viewerModel.findAll(attr, 
+
+    viewerModel.findAll(attr,
         function(list) {
             // DB Success
             if (!list || list.length < 1) {
-                // ...but no viewer found 
+                // ...but no viewer found
                 callBack(null, viewer);
-                
+
             } else {
                 // found viewer
                 viewer.loadData(list[0]);
                 viewer.isAuthenticated = true;
                 loadPermissions( viewer, callBack );
             }
-        }, 
-        function(err) {  
+        },
+        function(err) {
             // DB Error
-            console.log(err); 
-            callBack(err, viewer); 
+            console.log(err);
+            callBack(err, viewer);
     });
 }
 
@@ -192,10 +192,10 @@ var viewerLookup = function(attr, callBack)
  * @param {String} pWord
  * @param {Function} callBack
  */
-exports.viewerFromLogin = function(userID, pWord, callBack) 
+exports.viewerFromLogin = function(userID, pWord, callBack)
 {
 
-    viewerLookup({ viewer_userID:userID, viewer_passWord:pWord }, callBack); 
+    viewerLookup({ viewer_userID:userID, viewer_passWord:pWord }, callBack);
 }
 
 
@@ -209,9 +209,9 @@ exports.viewerFromLogin = function(userID, pWord, callBack)
  * @param {String} pWord
  * @param {Function} callBack
  */
-exports.viewerFromUserID = function(userID, callBack) 
+exports.viewerFromUserID = function(userID, callBack)
 {
-    viewerLookup({ viewer_userID:userID }, callBack); 
+    viewerLookup({ viewer_userID:userID }, callBack);
 }
 
 
@@ -224,15 +224,15 @@ exports.viewerFromUserID = function(userID, callBack)
  * @param string guid
  * @param function callBack
  */
-exports.viewerFromGUID = function(guid, callBack) 
+exports.viewerFromGUID = function(guid, callBack)
 {
-    
-    viewerLookup({ viewer_globalUserID:guid }, callBack); 
+
+    viewerLookup({ viewer_globalUserID:guid }, callBack);
 }
 
 
 // This is the cache for viewer permissions loaded from the DB.
-// Note that a separate instance will be created each time this 
+// Note that a separate instance will be created each time this
 // file is loaded through require().
 var cachePermissions = {};
 
@@ -250,7 +250,7 @@ exports.resetPermissionsCache = function()
 
 
 /**
- * Load the roles and tasks of a viewer, and embeds them into 
+ * Load the roles and tasks of a viewer, and embeds them into
  * the `viewer` object.
  *
  * Roles will be referenced by role_label, case insensitive.
@@ -263,7 +263,7 @@ exports.resetPermissionsCache = function()
  * @param {Boolean} refresh
  *      Set to TRUE to force loading from the DB even if a cached value exists
  */
-var loadPermissions = function(viewer, callBack, refresh) 
+var loadPermissions = function(viewer, callBack, refresh)
 {
     var guid = viewer['viewer_globalUserID'];
 
@@ -272,7 +272,7 @@ var loadPermissions = function(viewer, callBack, refresh)
         viewer.permissions = cachePermissions[guid];
         return callBack(undefined, viewer);
     }
-    
+
     // Otherwise fetch them from the database
     var sql = '\
         SELECT role_label, task_key \
@@ -285,26 +285,26 @@ var loadPermissions = function(viewer, callBack, refresh)
             ON ra.task_id=a.task_id \
         WHERE viewer_guid=? \
     ';
-    
+
     myDB.query(sql, [guid], function(err, results, fields) {
-    
+
         viewer.permissions = { roles:{},  tasks:{} };
-        
+
         if (err) {
-        
+
             console.log(err);
             return callBack(err, viewer);
-            
+
         }
         else if (results.length < 1) {
-        
+
             // didn't find any roles so return
             return callBack(null, viewer);
-        
-        } 
+
+        }
         else {
 
-            // found him, so load the viewer object 
+            // found him, so load the viewer object
             for (var indx=0; indx < results.length; indx++) {
                 // Every result must have a role label
                 var role = results[indx].role_label.toLowerCase();
@@ -315,13 +315,13 @@ var loadPermissions = function(viewer, callBack, refresh)
                     viewer.permissions.tasks[task] = true;
                 }
             }
-            
+
             // store the results in the cache
             cachePermissions[guid] = viewer.permissions;
-            
+
             return callBack(null, viewer);
         }
-    
+
     });
 
 }
@@ -334,11 +334,11 @@ exports.loadPermissions = loadPermissions;
  *
  * @return string
  */
-var getDateNow = function() 
+var getDateNow = function()
 {
     var now = new Date();
-    var ymdDate = '' + now.getFullYear() + '-' 
-        + (now.getMonth()+1) + '-' 
+    var ymdDate = '' + now.getFullYear() + '-'
+        + (now.getMonth()+1) + '-'
         + now.getDate() + ' '
         + now.getHours() + ':'
         + now.getMinutes();
@@ -369,9 +369,9 @@ var ViewerLocal = function(properties) {
     this.isAuthenticated= false;
     this.id = -1;
     this.languageKey='en';  // TODO: replace with Defaults.SITE_LANG_DEFAULT
-    
+
     this.permissions = { roles: {}, tasks: {} };
-    
+
     // Populate this ViewerLocal instance with the given properties
     if (typeof properties == 'object') {
         this.loadData(properties);
@@ -383,10 +383,10 @@ var ViewerLocal = function(properties) {
 /**
  * @function loadData
  *
- * Populate the data of the ViewerLocal object from the results of a 
+ * Populate the data of the ViewerLocal object from the results of a
  * database query.
  */
-ViewerLocal.prototype.loadData = function(data) 
+ViewerLocal.prototype.loadData = function(data)
 {
     for (var field in data) {
         this[field] = data[field];
@@ -399,18 +399,18 @@ ViewerLocal.prototype.loadData = function(data)
  * @function hasRole
  *
  * Checks the viewer's loaded permissions to see if a given role is present.
- * 
+ *
  * @param {String} key
  *      The role_label to check for, case insensitive.
  * @return {Boolean}
  */
-ViewerLocal.prototype.hasRole = function(key) 
+ViewerLocal.prototype.hasRole = function(key)
 {
     // Super User admin always has permissions to everything.
     if ((this.id === 1) || this.permissions.roles['root']) {
         return true;
     }
-    
+
     key = key.toLowerCase();
     return (typeof this.permissions.roles[key] != 'undefined');
 }
@@ -428,18 +428,18 @@ ViewerLocal.prototype.hasRole = function(key)
  *      (optional) Set this to TRUE to avoid checking implicit permissions.
  * @return {Boolean}
  */
-ViewerLocal.prototype.hasTask = function(key, strictChecking) 
+ViewerLocal.prototype.hasTask = function(key, strictChecking)
 {
     // Super User admin always has permissions to everything.
     if ((this.id === 1) || this.permissions.roles['root']) {
         return true;
     }
 
-    key = key.strToLower();
+    key = key.toLowerCase();
     var result = (typeof this.permissions.tasks[key] != 'undefined');
-    
+
     // The exact permission was not found. But we can also check to see if the
-    // permission is implicitly granted. 
+    // permission is implicitly granted.
     if (!result && !strictChecking) {
         for (var permKey in this.permissions.tasks) {
             // Permission is implied if there exists another permission that
@@ -451,7 +451,7 @@ ViewerLocal.prototype.hasTask = function(key, strictChecking)
             }
         }
     }
-    
+
     return result;
 }
 
@@ -464,7 +464,7 @@ ViewerLocal.prototype.hasTask = function(key, strictChecking)
  *
  * @return {string}
  */
-ViewerLocal.prototype.guid = function() 
+ViewerLocal.prototype.guid = function()
 {
     return this['viewer_globalUserID'];
 }

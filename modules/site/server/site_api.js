@@ -142,7 +142,7 @@ var isFound = function (req, res, next) {
 		// that resource wasn't found so send an error back:
 		var tmpl = 'Requested Link not found. module[[module]] resource[[resource]] action[[action]]'; //TODO: make this multilingual
 		var msg = AD.Util.String.render(tmpl, p);
-		var errorData = { message: msg};
+		var errorData = { errorMSG: msg};
 		AD.Comm.Service.sendError(req, res, errorData, AD.Const.HTTP.ERROR_NOTFOUND ); // 404 : that link isn't found ??
 	}
 };
