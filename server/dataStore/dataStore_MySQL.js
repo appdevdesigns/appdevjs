@@ -173,8 +173,8 @@ var read = function (dataMgr, callback) {
         tableName += ' AS p';
         tableName += getJoinedTables(dataMgr.dbName, dataMgr.joinedTables, 'p', values);
     }
-//console.log('model:');
-//console.log(dataMgr);
+console.log('model:');
+console.log(dataMgr);
 
     var conditionObj = AD.Model.Condition(dataMgr.model);
     /*

@@ -42,13 +42,14 @@ exports.connect = connect;
 var importSQL = function (req, res, next, paths, dbName) {
     // run this DB's command line import of the appropriate sql import
     // file.
-    
+   
     
     var exec = require('child_process').exec;
     var children = {};
     var finishedCount = 0;
 
     var dbClientPath = fetchKey('dbPathMySQL');
+ console.log('dbClientPath: ' + dbClientPath);
     if (fs.existsSync(dbClientPath)) {
         
         // skip this if there is nothing to init

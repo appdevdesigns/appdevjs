@@ -184,10 +184,21 @@ function ConditionObj( cond ) {
 
             // if field: { '>':value, ... }
             if (typeof value == 'object') {
-
+		if(typeof value.tref == 'undefined')
+		{
+			
+		
                 // get the complex field condition
                 var condition = fieldCondition(field, value, this.vals);
                 stack.push(condition);
+		}
+		else
+		{
+			stack.push( value.tref + '.' + field + '=?');
+                	this.vals.push(value.value);
+
+		}
+ 
 
             } else {
 
