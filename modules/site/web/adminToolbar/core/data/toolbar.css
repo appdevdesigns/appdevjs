@@ -34,9 +34,11 @@
     display: block; 
     float: left; 
     clear: none;
-    margin-bottom: -13px;
 }
-#admin-toolbar ul li.gear { }
+#admin-toolbar ul li.gear {
+    height: 34px;
+    cursor: pointer;
+}
 #admin-toolbar.animating ul li { 
     margin-bottom: 50px;
 }
@@ -46,7 +48,6 @@
     padding-bottom: 11px;
     max-height: 18px;
     /*max-width: 18px;*/
-    cursor: pointer;
 }
 #admin-toolbar ul li div.notification { 
     position: relative;
