@@ -89,7 +89,7 @@
                         if (newURL) {
                             window.location = newURL;
                         } else {
-                            window.location = '/page/test/viewer'; // change this to Site.Default:: AD.Settings['defaultURL'];
+                            window.location = '/page/site/welcome'; // change this to Site.Default:: AD.Settings['defaultURL'];
                         }
                         
                     
