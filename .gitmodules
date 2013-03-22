@@ -1,0 +1,3 @@
+[submodule "modules/appRAD"]
+	path = modules/appRAD
+	url = git@github.com:appdevdesigns/appdevjs_appRAD.git

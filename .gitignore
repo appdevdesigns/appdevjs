@@ -23,5 +23,6 @@ modules/site/install/data/appDev_setup_*.sql
 # ignore all installed modules (except our site/ module)
 modules/*
 !modules/site
+!modules/appRAD
 # ignore the nodeJS libraries that we install via NPM
 server/node_modules/*
