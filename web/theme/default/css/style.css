@@ -588,3 +588,7 @@ ul.social-bookmarks li.delicious a { background:url('../images/social-media-deli
 .twtr-bd { display:block; overflow:hidden; }
 
 .twtr-widget .twtr-tweet { border-bottom: 1px solid #353535 !important; padding: 0 0 5px 0; margin: 0 0 5px 0;  }
+
+table.appDev-login-form, .appDev-login-form tbody, .appDev-login-form td {
+    border:none;
+}

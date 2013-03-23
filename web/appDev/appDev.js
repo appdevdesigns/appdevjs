@@ -634,14 +634,14 @@ steal(
             var formHTML = '\
     <div id="appDev-formLogin" button_text="Submit" form_title="Re-login">\
       <form>\
-        <table width="100%">\
+        <table width="100%" class="appDev-login-form">\
           <tr>\
-            <th>User ID</th>\
-            <td><input name="userID" /></td>\
+            <td>User ID</td>\
+            <td><input type="text" name="userID" /></td>\
             <td class="error" field_error_msg="userID"></td>\
           </tr>\
           <tr>\
-            <th>Password</th>\
+            <td>Password</td>\
             <td><input type="password" name="pWord" /></td>\
             <td class="error" field_error_msg="pWord"></td>\
         </table>\
