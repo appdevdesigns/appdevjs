@@ -144,8 +144,10 @@ module.exports = AD.Model.ModelSQL('AD.Model.ModelSQLMultilingual', {
                     // for each of our multilingual fields
                     for(var mlI=0; mlI< self.multilingualFields.length; mlI++) {
 
-                        var fieldKey = self.multilingualFields[mlI];
-                        newFields[fieldKey] = '['+curLangCode+']'+fields[fieldKey];
+                        if (typeof fields[fieldKey] != 'undefined') {
+                            var fieldKey = self.multilingualFields[mlI];
+                            newFields[fieldKey] = '['+curLangCode+']'+fields[fieldKey];
+                        }
                     }
 
                     var newLangMgr = {
