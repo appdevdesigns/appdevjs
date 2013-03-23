@@ -74,12 +74,14 @@ var validOperations = {
 }
 
 
+
 var valueConversions = {
         'in': function(value) {
                 if ('array' == typeof value)  return '(' + array.join(',') + ')';
                 return '(' + value + ')';
             }
 }
+
 
 
 var fieldCondition = function(fieldName, obj, values) {
