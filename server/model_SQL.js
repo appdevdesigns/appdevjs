@@ -101,6 +101,31 @@ module.exports = $.Model('AD.Model.ModelSQL', {
         return providedData.dbCond || '';
     },
 
+
+
+    onlyModelFields: function( attr,  allowFilters ) {
+
+        var goodSet = {};
+
+        for (var a in attr) {
+         // search each body value for Model info and store them:
+
+            //if modelKey is in this.modelFields then store it:
+            if ( (typeof this.modelFields[a] != 'undefined')
+                || (a == 'language_code')
+                || (allowFilters && this.filters && (typeof this.filters[a] != 'undefined')) ) {
+
+                // store the value
+                goodSet[a] = attr[a];
+            }
+
+        }
+
+        return goodSet;
+    },
+
+
+
     loadFromReq: function(req, allowFilters) {
         var curModel = {};
 
@@ -108,6 +133,10 @@ module.exports = $.Model('AD.Model.ModelSQL', {
 
         var providedData = AD.jQuery.extend({}, req.body, req.query);
 
+
+        curModel = this.onlyModelFields(providedData, allowFilters);
+
+/*
         // search each body value for Model info and store them:
         for (var key in providedData) {
 
@@ -120,7 +149,7 @@ module.exports = $.Model('AD.Model.ModelSQL', {
                 curModel[key] = providedData[key];
             }
         }
-
+*/
         return curModel;
     },
 
@@ -348,8 +377,8 @@ module.exports = $.Model('AD.Model.ModelSQL', {
                       // Publish a .destroyed notification for this Model:
                       // published data:  { id: [newPrimaryKeyValue] }
                       var subscriptionKey = _self._notificationKey() + '.destroyed';
-                      console.log(subscriptionKey)
-                      console.log(object)
+                      console.log(subscriptionKey);
+                      console.log(object);
                       _self.__hub.publish(subscriptionKey, object);
                   }
               }
@@ -362,14 +391,15 @@ module.exports = $.Model('AD.Model.ModelSQL', {
     },
 
 
-
     findOne: function (attr, onSuccess, onError ) {
         ////  mimic the create() behavior just like the Client Side code.
         ////
-        var query = AD.Util.Object.clone(attr);
+        var query = this.onlyModelFields( AD.Util.Object.clone(attr));
         var id = -1;
-        if (typeof attr.id != 'undefined') { id = attr.id; delete query.id; }
+        if (typeof attr.id != 'undefined') { id = attr.id; }
         if (typeof attr[this.primaryKey] != 'undefined'){ id = attr[this.primaryKey]; delete query[this.primaryKey]; }
+
+        delete query.id;  // <-- make sure any id param is removed!
 
         // Add in language code to query
         var key = 'language_code';

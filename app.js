@@ -56,7 +56,7 @@ app.configure('development', function (){
     // Any file inside of [appdev]/web/... can be requested directly
     app.use(express.static(__dirname+'/web'));
     app.use(express.errorHandler({dumpExceptions:true, showStack:true}));
-    
+
 });
 
 // jQuery Deferreds to be used within the main app.js routine will go here.
@@ -72,10 +72,10 @@ var DFDs = {
 
 ////
 ////  Before any submodule gets their routing set
-////  we should add some app.all() commands to add in a 
-////  viewer object to the req.viewer ... this allows us to 
+////  we should add some app.all() commands to add in a
+////  viewer object to the req.viewer ... this allows us to
 ////  then determine viewer language/permission/etc...
-//// 
+////
 
 // Our favicon.ico is named "favicon.png"
 app.all('/favicon.ico', function(req, res) {
@@ -84,16 +84,16 @@ app.all('/favicon.ico', function(req, res) {
 
 
 /*
-// requests from our steal scripts will default to looking for modules 
+// requests from our steal scripts will default to looking for modules
 // under the steal root dir (/data/scripts).  So we need to take those
 // and simply return them from our /modules directory:
-app.all('/scripts/modules/*', function(req, res) { 
+app.all('/scripts/modules/*', function(req, res) {
 
     // *** SECURITY NOTE ***
-    // This route allows anyone to fetch any file from the [appdev]/modules/... 
-    // tree. 'defaults.js' is safe from this. But still be careful not to leave 
+    // This route allows anyone to fetch any file from the [appdev]/modules/...
+    // tree. 'defaults.js' is safe from this. But still be careful not to leave
     // any sensitive info like passwords hard coded into files there.
-    
+
     // Also note that there may be a symbolic link [appdev]/data/scripts/modules
     // that pretty much does the same thing as this.
 
@@ -112,30 +112,37 @@ var pageStack = [
         AD.Auth.switcheroo,     // allow viewer to impersonate another (developers)
         AD.Lang.loadLanguages   // any multilingual feature needs this
         ];
-    
-    
+
+
 // for all /service/ or /query/ requests, make sure we do our serviceStack:
 var serviceStack = [
-        AD.Defaults.setup, 
+        AD.Defaults.setup,
         AD.Auth.preAuthentication,
-        AD.Auth.authenticateService, 
+        AD.Auth.authenticateService,
         AD.Auth.switcheroo,
         AD.Lang.loadLanguages   // any multilingual feature needs this
         ];
-AD.App.Page.serviceStack = serviceStack;        
-        
+AD.App.Page.serviceStack = serviceStack;
+
 app.all('/*',  function (req, res, next) {
 
     log(req,' ');
     log(req,' ');
     log(req,'new request['+req.method+' '+req.originalUrl+']');
-    
+
     next();
 
 });
 
-// page:     any request that is attempting to load a full page.  These 
-//           requests need to redirect to the login page if the user's 
+
+//// NOTE: due to dependencies, we declare this after AD.App.Page.serviceStack
+////
+AD.Resource = require('./server/resource_controller.js');
+
+
+
+// page:     any request that is attempting to load a full page.  These
+//           requests need to redirect to the login page if the user's
 //           authentication is not valid.
 app.all('/page/*', pageStack, function(req, res, next) { log(req,'   - progressing through pageStack! /page/*'); next(); });
 
@@ -144,7 +151,7 @@ app.all('/api/*', serviceStack, function (req, res, next) { log(req,'   - progre
 
 
 // service:  usually any of our ajax based requests will start with /
-//           service/*.  These calls need to be able to conform to our 
+//           service/*.  These calls need to be able to conform to our
 //           message formats that respond with success:true|false
 app.all('/service/*', serviceStack, function (req, res, next) { log(req,'   - progressing through serviceStack! /service/* '); next(); });
 
@@ -217,41 +224,41 @@ var moduleObjDefinition = {
  *
  * Take the raw module object and store it in our list of modules.
  */
-var registerModule = function(key, module) 
+var registerModule = function(key, module)
 {
-    // we create our own interface object and make sure the given module 
+    // we create our own interface object and make sure the given module
     // conforms to our expected interface:
-    
+
     for (var a in moduleObjDefinition) {
-        
+
         if (typeof module[a] == 'undefined') {
             module[a] = moduleObjDefinition[a];
         }
-        
+
     }
-    
+
     //// We can now make sure we support older versions of our Models.
     //// (once we have some)
 //    if (module.version >= 1) {
-//        
+//
 //    }
-    
-    
+
+
     listModules[key] = module;
-    
-    
+
+
     // This will initialize the module's routes
-    var initModuleRoutes = function() 
+    var initModuleRoutes = function()
     {
         // Each module should have its own `listRoutes` which contains all
         // the routes used by its interfaces.
         // Take the module's routes and pass them on to our Express app.
         for (var routeMethod in module.listRoutes) {
             for (var routePath in module.listRoutes[routeMethod]) {
-                // First remove any prior routes that were assigned to the 
+                // First remove any prior routes that were assigned to the
                 // same verb+path combo.
                 app.routes.lookup(routeMethod, routePath).remove();
-                
+
                 var routeCallback = module.listRoutes[routeMethod][routePath];
                 if (typeof routeCallback == 'function') {
                     // callback is an actual function
@@ -264,14 +271,14 @@ var registerModule = function(key, module)
                 }
             }
         }
-        
+
         // Resolve this module's jQuery Deferred
         if (DFDs.modules[key]) {
             DFDs.modules[key].resolve();
         }
     }
-    
-    
+
+
     // Wait for the module to fully load before initializing the routes.
     if (module.initDFD) {
         $.when(module.initDFD).then(initModuleRoutes);
@@ -297,7 +304,7 @@ var disabledRouteHandler = function(req, res, next)
 
 // Module disable
 //  - event name: "ad.module.disable"
-//  - event data: { 
+//  - event data: {
 //      key: {String} case insensitive key
 //      name: {String} (optional) case sensitive name
 //      path: {String} (optional) module location in filesystem
@@ -305,7 +312,7 @@ var disabledRouteHandler = function(req, res, next)
 AD.Comm.Notification.subscribe('ad.module.disable', function(event, data) {
     var key = data['key'].toLowerCase(); // case insensitive
     if (key == 'site') return;
-    
+
     // Can only disable modules if they are currently enabled
     if (listModules[key]) {
         var module = listModules[key];
@@ -316,12 +323,12 @@ AD.Comm.Notification.subscribe('ad.module.disable', function(event, data) {
                 app[routeVerb](routePath, disabledRouteHandler);
             }
         }
-        
+
         // Call the module's destructor
         if (module.destructor) {
             module.destructor();
         }
-        
+
         // Remove the module from the Node.js code cache
         db.query(
             "SELECT * FROM "+AD.Defaults.dbName+".site_system WHERE system_type = ? AND system_name LIKE ?",
@@ -356,7 +363,7 @@ AD.Comm.Notification.subscribe('ad.module.disable', function(event, data) {
 
 // Module enable
 //  - event name: "ad.module.enable"
-//  - event data: { 
+//  - event data: {
 //      key: {String} case insensitive key
 //      name: {String} (optional) case sensitive name
 //      path: {String} (optional) module location in filesystem
@@ -364,14 +371,14 @@ AD.Comm.Notification.subscribe('ad.module.disable', function(event, data) {
 AD.Comm.Notification.subscribe('ad.module.enable', function(event, data) {
     var key = data['key'].toLowerCase(); // case insensitive
     if (key == 'site') return;
-    
+
     var doEnable = function(moduleName, modulePath) {
         if (fs.existsSync(modulePath)) {
             var moduleObj = require(modulePath + '/def_' + moduleName + '.js');
             registerModule(moduleName.toLowerCase(), moduleObj);
         }
     }
-    
+
     // Can only enable modules that are not already enabled
     if (!listModules[key]) {
         // Module case-sensitive name and path can be provided...
@@ -379,7 +386,7 @@ AD.Comm.Notification.subscribe('ad.module.enable', function(event, data) {
             doEnable(data['name'], data['path']);
             return;
         }
-        
+
         // ...otherwise we have to get it from the DB.
         db.query(
             "SELECT * FROM "+AD.Defaults.dbName+".site_system WHERE system_type = ? AND system_name LIKE ?",
@@ -421,18 +428,18 @@ log('::: path existed:::');
 //// Each module is responsible for defining any routes for their content
 ////
 //// The modules are defined as a directory in the /root/modules/ folder.
-//// 
+////
 db.query(
     " \
         SELECT * \
         FROM "+AD.Defaults.dbName+".site_system \
         WHERE system_type = ? \
         AND system_name != ? \
-    ", 
+    ",
     ['module', 'site'],
     function(err, values, fields) {
-        if (err) { 
-            console.error(err); 
+        if (err) {
+            console.error(err);
             return;
         }
 
@@ -441,16 +448,16 @@ db.query(
             var thisPath = values[i]['system_path'];
             var thisKey = thisName.toLowerCase();
             log('   - loading module ['+thisPath+']');
-            
+
             DFDs.modules[thisKey] = $.Deferred();
-            
+
             AD.Comm.Notification.publish('ad.module.enable', {
                 'key': thisKey,
                 'name': thisName,
                 'path': thisPath
             });
         }
-        
+
         DFDs.preModules.resolve();
     }
 );
@@ -460,7 +467,7 @@ db.query(
 /**
  * @attribute {object} ListWidgets
  *
- * Global variable that keeps track of all widgets currently active 
+ * Global variable that keeps track of all widgets currently active
  * within appDev. The object keys should be all lowercase.
  */
 ListWidgets = {};
@@ -469,9 +476,9 @@ ListWidgets = {};
 ////----------------------------------------------------------------------
 //// Load our AppDev/widgets here:
 ////
-//// These entries tell us of any dependency information required by a 
+//// These entries tell us of any dependency information required by a
 //// site widget.
-//// 
+////
 
 // This does the actual widget activation
 AD.Comm.Notification.subscribe('ad.widget.enable', function(event, data) {
@@ -481,7 +488,7 @@ AD.Comm.Notification.subscribe('ad.widget.enable', function(event, data) {
         log('   - loading widget [ '+data.path+']');
         ListWidgets[data.name.toLowerCase()] = require(widgetPath);
     }
-    
+
     if (DFDs.widgets[data.key]) {
         DFDs.widgets[data.key].resolve();
     }
@@ -494,11 +501,11 @@ db.query(
         SELECT * \
         FROM "+AD.Defaults.dbName+".site_system \
         WHERE system_type = ? \
-    ", 
+    ",
     ['widget'],
     function(err, values, fields) {
-        if (err) { 
-            console.error(err); 
+        if (err) {
+            console.error(err);
             return;
         }
 
@@ -509,16 +516,16 @@ db.query(
             var thisName = values[i]['system_name'];
             var thisPath = values[i]['system_path'];
             var thisKey = thisName.toLowerCase();
-            
+
             DFDs.widgets[thisKey] = $.Deferred();
-            
+
             AD.Comm.Notification.publish('ad.widget.enable', {
                 'key': thisKey,
                 'name': thisName,
                 'path': thisPath
             });
         }
-        
+
         DFDs.preWidgets.resolve();
     }
 );
@@ -536,33 +543,33 @@ db.query(
 var appModelHandler = function (req, res, next, p ) {
 
     if (canHandle(p.moduleKey, p.modelKey)) {
-        
+
         // handle request here
         log(req,'   - QUERY: a['+p.actionKey+'] app['+p.moduleKey+'] + db['+p.modelKey+']');
-        
+
         var id = req.params.id || -1;
-        
+
         var params = {
             req: req,
             id:id,
             callback:function (err, data) {
-        
+
                 if (err) {
                     logDump(req, '   *** a['+p.actionKey+'] error ' );
-                    AD.Comm.Service.sendError(req, res, { 
-                        success:false, 
-                        errorID:100, 
+                    AD.Comm.Service.sendError(req, res, {
+                        success:false,
+                        errorID:100,
                         errorMSG:err
                         }, AD.Const.HTTP.ERROR_NOTFOUND); // 404: they are asking for an action that isn't here (?)
-                    
+
                 } else {
                     logDump(req, '     a['+p.actionKey+'] success :: end ' );
                     AD.Comm.Service.sendSuccess(req, res, data);
                 }
             }
-        
+
         }
-        
+
         var model = listModules[p.moduleKey].listModels[p.modelKey];
         if (typeof model.hasPermission != 'function') {
             model[p.actionKey](params);
@@ -574,18 +581,18 @@ var appModelHandler = function (req, res, next, p ) {
             model[p.actionKey](params);
         } else {
             logDump(req,'   *** No permission to ['+p.actionKey+'] request for app['+p.moduleKey+'] db['+p.modelKey+'] ***');
-            AD.Comm.Service.sendError(req, res, { 
-            	errorMSG: "Insufficient permissions" 
+            AD.Comm.Service.sendError(req, res, {
+            	errorMSG: "Insufficient permissions"
             }, AD.Const.HTTP.ERROR_FORBIDDEN); // 403: authorized but not allowed
         }
-    
+
     } else {
-    
+
         log(req,'   *** Not able to handle a['+p.actionKey+'] request for app['+p.moduleKey+'] db['+p.modelKey+'] ***');
         log(req,'    --- listModules ---');
         logDump(req,listModules);
         next();
-    
+
     }
 
 }
@@ -596,14 +603,14 @@ var appModelHandler = function (req, res, next, p ) {
 // /query/create/:module/:model.:format?
 // /query/findall/:module/:model.:format?
 app.all('/query/:action/:module/:model.:format?',  serviceStack, function( req, res, next) {
-        
+
     var params = {};
     params.actionKey = req.params.action.toLowerCase()+'FromReq';
     params.moduleKey = req.params.module.toLowerCase();
     params.modelKey = req.params.model.toLowerCase();
 
     appModelHandler(req, res, next, params );
-    
+
 });
 
 
@@ -613,7 +620,7 @@ app.all('/query/:action/:module/:model.:format?',  serviceStack, function( req, 
 // /query/update/:module/:model/:id.:format?
 // /query/destroy/:module/:model/:id.:format?
 app.all('/query/:action/:module/:model/:id.:format?', serviceStack, function( req, res, next) {
-     
+
     var params = {};
     params.actionKey = req.params.action.toLowerCase()+'FromReq';
     params.moduleKey = req.params.module.toLowerCase();
@@ -629,23 +636,23 @@ app.all('/query/:action/:module/:model/:id.:format?', serviceStack, function( re
 
 //------------------------------------------------------------------------
 var canHandle = function( moduleKey, modelKey ) {
-    //  determine if we can handle the data request given the 
+    //  determine if we can handle the data request given the
     //  module and model keys
     //
 
     var canHandle = false;
-    
+
     if (typeof listModules[moduleKey] != 'undefined') {
-        
+
         if (typeof listModules[moduleKey].listModels[modelKey] != 'undefined') {
-        
+
             canHandle = true;
         }
     }
-    
+
     return canHandle;
 
-} 
+}
 
 
 
@@ -653,7 +660,7 @@ var canHandle = function( moduleKey, modelKey ) {
 //------------------------------------------------------------------------
 var loadFileDirect = function(req, res, dirName) {
 //  This routine will return the contents of a file based upon
-//  the request/dirName.  This is usually for the files based in our 
+//  the request/dirName.  This is usually for the files based in our
 //  root directory that aren't in our default data path: /data/...
 //
 //  In format:  /dirName/path/to/file.js
@@ -668,7 +675,7 @@ var loadFileDirect = function(req, res, dirName) {
     // But just to be on the safe side...
 
     var filePath = __appdevPath+'/'+dirName+'/'+path;
- 
+
     if (filePath.indexOf('../') >= 0) {
         // Requested path contains "../"
         // Don't allow breaking out of the AppDev base path.
@@ -696,15 +703,15 @@ var loadFileDirect = function(req, res, dirName) {
         //logDump(req, '- done');
         res.sendfile(filePath);
     }
-	
+
 	/*
 // explore a non blocking method:
 // not sure if sendfile() is blocking or not.  initial tests with steal seem like
-// i'm getting sequential return of files, rather than parallel returns ... steal.js issue or 
+// i'm getting sequential return of files, rather than parallel returns ... steal.js issue or
 // express?
 
 // JC:
-// Express' sendfile() seems to be asynchronous. I traced it to 
+// Express' sendfile() seems to be asynchronous. I traced it to
 // connect.static.send(), which uses fs.createReadStream().
 // But even though it is non-blocking, there is still the bottleneck of
 // the OS disk I/O. Maybe files from the same server can only truly be served
@@ -714,7 +721,7 @@ var fs = require('fs');
 var stream = fs.createWriteStream("my_file.txt");
 stream.once('open', function(fd) {
   stream.write("My first row\n");
-  stream.write("My second row\n");  
+  stream.write("My second row\n");
 });
 
 	 */
@@ -739,28 +746,28 @@ $.when(DFDs.preModules, DFDs.preWidgets).then(function() {
     for (var i in DFDs.widgets) {
         subDFDs.push(DFDs.widgets[i]);
     }
-    
+
     // Apply the array contents as arguments to the $.when() function
     $.when.apply($, subDFDs).then(function() {
-    
+
         //// Now start Listening on our Port:
         app.listen(AD.Defaults.sitePort);
         log( '');
         log( '============================================');
         log( 'express server listening on port['+AD.Defaults.sitePort+']');
         AD.Comm.Notification.publish('site.online', {});
-        
+
     });
 });
-  
+
 /*
 // Disable socket.io because it conflicts with the Faye websocket implementation used by AD.Comm.Dispatch
-// socket.io 
-var socket = io.listen(app); 
-socket.on('connection', function(client){ 
-  // new client is here! 
-  client.on('message', function(){  }) 
-  client.on('disconnect', function(){ }) 
+// socket.io
+var socket = io.listen(app);
+socket.on('connection', function(client){
+  // new client is here!
+  client.on('message', function(){  })
+  client.on('disconnect', function(){ })
 });
 */
 
