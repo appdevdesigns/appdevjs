@@ -204,7 +204,7 @@ module.exports = $.Model('AD.Model.ModelSQL', {
             // here we package it in an obj that reflects this object's
             // primaryKey field
             returnObj[autoIncrementKey] = data;
-            
+
             callback(err, returnObj);
 
         });  // returns True|False
@@ -365,10 +365,10 @@ module.exports = $.Model('AD.Model.ModelSQL', {
     findOne: function (attr, onSuccess, onError ) {
         ////  mimic the create() behavior just like the Client Side code.
         ////
-        var query = {};
+        var query = AD.Util.Object.clone(attr);
         var id = -1;
-        if (typeof attr.id != 'undefined') id = attr.id;
-        if (typeof attr[this.primaryKey] != 'undefined') id = attr[this.primaryKey];
+        if (typeof attr.id != 'undefined') { id = attr.id; delete query.id; }
+        if (typeof attr[this.primaryKey] != 'undefined'){ id = attr[this.primaryKey]; delete query[this.primaryKey]; }
 
         // Add in language code to query
         var key = 'language_code';
@@ -385,7 +385,7 @@ module.exports = $.Model('AD.Model.ModelSQL', {
                 if (err) {
                     if (typeof onError != 'undefined') onError( err );
                     dfd.reject(err);
-                }else {
+                } else {
                     // must return { id: new ID value }
 
                     // we are returned an array of objects
@@ -414,7 +414,12 @@ module.exports = $.Model('AD.Model.ModelSQL', {
 
         // create a temporary obj for this transaction:
         var currModel = this.langFromReq(req);
-        currModel[this.primaryKey] = id;  // setup the pk=>id key=>value pair
+        if (id != -1) {
+            currModel[this.primaryKey] = id;  // setup the pk=>id key=>value pair
+        } else {
+
+            currModel = params.req.query;
+        }
 
 
         var curDataMgr = this.getCurrentDataMgr(currModel, {joinedTables: []});
