@@ -360,6 +360,28 @@ AD.Util.Temp = require(__appdevPathNode + 'temp');
 AD.Util.String = {};
 
 
+/**
+ * @function endsWith
+ *
+ * Tests whether or not the last character matches the given suffix.
+ *
+ * @codestart
+ * var value = '/page/App/page/';
+ * if (AD.Util.String.endsWith( value, '/' )) {
+ *      console.log('value had /');
+ * } else {
+ *      console.log('nope ... move along');
+ * }
+ * @codeend
+ *
+ * @param {string} value the string to check
+ * @return {bool}
+ */
+AD.Util.String.endsWith = function(str, suffix) {
+    return str.indexOf(suffix, str.length - suffix.length) !== -1;
+}
+
+
 
 /**
  * @function isNumeric
