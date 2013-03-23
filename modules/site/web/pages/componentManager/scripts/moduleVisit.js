@@ -54,9 +54,11 @@
                             var listPages = '';
                             for (var i = 0; i<list.length; i++) {
                                 var name = list[i].name;
-                                var path = '/page/'+moduleName+'/'+name;
-                                var html = '<a href="'+path+'">'+name+'</a>';
-                                listPages += (html + ' ');
+                                if (name !== undefined) {
+                                    var path = '/page/'+moduleName+'/'+name;
+                                    var html = '<a href="'+path+'">'+name+'</a>';
+                                    listPages += (html + ' ');
+                                }
                             }
                             _this.append('<td class="pageList">'+listPages+'</td>');
                         });

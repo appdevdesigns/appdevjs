@@ -181,7 +181,7 @@ $(document).ready(function () {
     
     
     // Handle clicks on the gear icon
-    $toolbar.find('li.gear img').click(function() {
+    $toolbar.find('li.gear').click(function() {
         isToolbarExpanded = !isToolbarExpanded;
         
         if (isToolbarExpanded) {
