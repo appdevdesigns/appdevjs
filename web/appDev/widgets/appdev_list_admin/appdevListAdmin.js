@@ -561,13 +561,8 @@
             if (this.options.onSelect) {
                 this.options.onSelect(null, model);
             }
-        },
-
-        'li click': function(el, event) {
-            
-            this.onSelect(event);
         }
-        
+
     });
     
 }) ();
