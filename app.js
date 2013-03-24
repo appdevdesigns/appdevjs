@@ -481,6 +481,9 @@ AD.Comm.Notification.subscribe('ad.widget.enable', function(event, data) {
         log('   - loading widget [ '+data.path+']');
         ListWidgets[data.name.toLowerCase()] = require(widgetPath);
     }
+    else {
+        log('   - widget path not found [' + widgetPath + ']'); 
+    }
     
     if (DFDs.widgets[data.key]) {
         DFDs.widgets[data.key].resolve();
