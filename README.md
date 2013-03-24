@@ -4,7 +4,7 @@ appDev
 Prerequisites
 -------------
 
-Before installing appDev, set up your environment. You will need to [install NodeJS](http://nodejs.org/). After installing, verify that node and npm are working from your terminal:
+Before installing appDev, set up your environment. You will need to **install NodeJS** version 0.8.* [available here](http://nodejs.org/dist/v0.8.22/). After installing, verify that node and npm are working from your terminal:
 
     node -v
     npm -v
@@ -30,7 +30,7 @@ After cloning the repository or unpacking the zip file, change to the install di
 
     ./install.sh
     
-You should see a series of NPM install commands. These are installing the 3rd party components used by AppDev. When the process is done, you should see the following:
+You should see a series of NPM install commands. These are installing the 3rd party components used by AppDev. (Note that some node packages require a compiler to complete their install, so e.g. on Ubuntu, the package `build-essentials` should be installed.) When the process is done, you should see the following:
 
     Starting install server...
     Please start your web browser and go to http://localhost:8088/appDevInstall
