@@ -1,0 +1,209 @@
+.busyicon {
+	width:16px;
+	height:28px;
+	background-image:url(busy-icon.gif);
+	background-position: center;
+	background-repeat:no-repeat;
+	margin:0 auto;
+	
+}
+
+
+.busyicon-inline {
+	display:inline-block;
+	vertical-align:middle;
+	width:16px;
+	height:28px;
+	background-image:url(busy-icon.gif);
+	background-position: center;
+	background-repeat:no-repeat;
+	
+}
+
+
+/*
+CSS for adminlist on the left
+*/
+
+.admin-list .header-title {
+    float: left;
+}
+.admin-list .header-title h4 {
+    margin: 10px 0;
+}
+.adminlist-entry {
+    clear: both;
+}
+
+
+/*ADD, DELETE, EDIT ON LEFT*/
+
+.add-delete {
+	float:right;
+	width:40%;
+	text-align:right;
+	padding-right:5px;
+	padding-top: 4px;
+}
+
+.add-delete a span{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	display:none;
+	text-align:center;
+	line-height:27px;
+	position:absolute;
+	z-index:30;
+	margin-top:25px;
+	width:4%;
+	padding: 0 3px;
+	height:28px;
+	color:#fff;
+	background-color:#3c3b3b;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #999;
+}
+
+.add-delete a:hover span{
+	display:block;
+}
+
+/*ADD, DELETE, EDIT ON LEFT END*/
+
+/*IOS LIKE DELETE FUNCTION */
+
+.ios-buttons a {
+	line-height:18px !important;
+
+}
+
+.ios-buttons {
+	color:#fff !important;
+	font-size:10px !important;
+	padding: 2px 6px !important;
+	float:right;
+	
+
+}
+
+.ios-delete {
+	width:17px;
+	height:17px;
+	background-image:url(redminusicon.png);
+	background-position: center top;
+	background-repeat:no-repeat;
+	
+}
+
+.ios-wrap {
+	overflow:hidden;
+}
+
+
+.wrapper {
+	overflow: hidden;
+	margin:0 0 5px;
+	width:103.5%;
+}
+
+.pane {
+	padding: 0;
+}
+
+.pane_center {
+	overflow: hidden;
+	width:100%;	
+}
+
+.pane__content {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	text-align:left;
+	padding-left:5px;
+}
+
+.fl-selected {
+	background-color:#D9EDF7;
+	
+}
+
+.fl-selected:hover {
+		background-color:#D9EDF7 !important;
+		
+	}
+
+.fl-selected a{
+	color:#08618d !important;
+	
+}
+
+.fl-selected a:hover{
+		color:#08618d !important;
+		
+	}
+
+.pane__content:hover {
+}
+
+.pane_left {
+	float: left;
+	margin:0 0.4em 0 5px;	
+}
+
+.pane_right {
+	/*float: right;*/
+	margin:0 0.25em;	
+}
+
+
+/*IOS LIKE DELETE FUNCTION END*/
+
+/*ADMIN LIST ENTRY*/
+.admin {
+	min-height:675px !important;
+
+}
+.adminlist-entry {
+    color: #08C;
+	width:auto;
+	height:250px;
+	overflow-x:hidden;
+	overflow-y:auto;
+}
+
+
+ul.admin-list{
+    color: #08C;
+	margin:0 !important;
+
+}
+
+ul.admin-list li a{
+	padding:0 !important;
+	line-height:25px;
+	color:#08C;
+	text-decoration:none;
+	font-size:13px;
+	font-weight:normal;
+
+}
+
+ul.admin-list li {
+	width:179px;
+	line-height:29px !important;
+}
+
+ul.admin-list li a:hover{
+	color:#005580 !important;
+}
+
+/*ADMIN LIST ENTRY END*/
+
+.left-box {
+	width:174px;
+	display:none;
+
+}

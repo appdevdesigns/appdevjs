@@ -1,0 +1,55 @@
+<!-- Beginning appdevListAdmin view definition -->
+<%
+///// NOTE:  on the server, EJS uses < %- to return unescaped strings
+/////        on the client  EJS uses < %== 
+// This is CLIENT, so let's make displaying labels easier:
+// use:   L('[labelKey]')
+var L = function(key) { return AD.Lang.Labels.getLabelHTML(key); };
+var pL = function(prependText, key) {
+    // prepend the given text to the result of the label
+    var label = $(L(key)).prepend(prependText);
+    return $('<div>').append(label).html();
+}
+
+// This HTML block will be enclosed in
+// a <div class="appdev_list_admin"> tag.
+%>
+<!--header start-->
+<div class="header">
+    <div class="header-title"><h4 class="appdevListAdmin-title"></h4></div>
+    <div class="buttons add-delete">
+        <div class="busyicon-inline"></div>
+        <a class="btn-add add-fldlist icon-plus"><%== pL('[+]:','[site.button.Add]') %></a>
+        <a class="btn-del icon-delete icon-minus"><%== pL('[-]:','[site.button.Delete]') %></a>
+        <a class="btn-done ok hide"><p class="icon-ok"></p><%== L('[site.button.Done]') %></a>
+        <a class="btn-edit icon-edit"><%== L('[site.button.Edit]') %></a>
+    </div>
+</div>
+<!--header end--> 
+<!--appdevListAdmin - add-form  START -->
+<div class="appdevListAdmin-AddForm" class="left-box add">
+    <!-- Form Contents -->
+    <div class='add-form-items'>
+        <input type="text" class="span12 option-input" placeholder="[apprad.portal.webui.pages.add.name]">
+    </div>    
+    
+    <div class="control-group error">
+        <label class="appdevListAdmin-error control-label center-align" for="inputError">error msg area</label>
+    </div>
+    
+    <div class="save right-align">
+        <div class="busyicon-inline"></div>
+        <button class="add-form-btn-cancel option-cancel btn btn-small btn-primary option-cancel"><%== L('[site.button.Cancel]') %></button>
+        <button class="add-form-btn-submit option-save btn  btn-small btn-primary "><%== L('[site.button.Submit]') %></button>
+    </div> 
+</div>
+<!--appdevListAdmin - add-form  END--> 
+                           
+<!--List Content Here -->
+<div class="adminlist-entry">
+    <ul class="admin-list nav nav-list">
+        
+    </ul> 
+</div> 
+                     
+<!-- Ending of appdevListAdmin view definition -->
