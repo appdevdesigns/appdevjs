@@ -6,4 +6,6 @@ before_script:
 - mysql -e 'create database myapp_test;'
 
 # script: ./server/test/test.sh
-script: cd install && ./install.sh
+script: 
+- cd install
+- ./install.sh &
