@@ -5,8 +5,6 @@ Date:
 - - - - - - - - - - - - - - - - - - - - - */
   *{margin:0;padding:0}
   body {font:13px arial,helvetica,clean,sans-serif;
-      *font-size:small;
-      **font:x-small;
       color:#0464BB;       }
 
  .wiz-container{
@@ -25,6 +23,7 @@ Date:
       text-align:left;
       -moz-border-radius:8px;
       -webkit-border-radius: 8px;
+      border-radius:8px;
       z-index:100;
   }
   .wiz-container ul{
@@ -60,40 +59,19 @@ Date:
   .wiz-anc-default{
     background-color:#EBEBEB; 
     border:#E0E0E0 solid 1px; 
-    -moz-border-radius-bottomright  : 25px;
-    -moz-border-radius-topright     : 25px;
-    -moz-border-radius-bottomleft   : 2px;
-    -moz-border-radius-topleft      : 2px; 
-    -webkit-border-top-left-radius  : 2px;
-    -webkit-border-bottom-left-radius:2px;
-    -webkit-border-top-right-radius :20px;
-    -webkit-border-bottom-right-radius:20px;    
+    border-radius: 2px 20px 20px 2px;
   }
   .wiz-anc-current{
     color:#FFF !important; 
     background-color:#EA8511;
     border:#EA8511 solid 1px;
-    -moz-border-radius-bottomright  : 25px;
-    -moz-border-radius-topright     : 25px;
-    -moz-border-radius-bottomleft   : 2px;
-    -moz-border-radius-topleft      : 2px; 
-    -webkit-border-top-left-radius  : 2px;
-    -webkit-border-bottom-left-radius:2px;
-    -webkit-border-top-right-radius :20px;
-    -webkit-border-bottom-right-radius:20px;    
+    border-radius: 2px 20px 20px 2px;
   }
   .wiz-anc-done{
     color:#FFF !important; 
     background-color:#0464BB;
     border:#0464BB solid 1px;
-    -moz-border-radius-bottomright  : 25px;
-    -moz-border-radius-topright     : 25px;
-    -moz-border-radius-bottomleft   : 2px;
-    -moz-border-radius-topleft      : 2px; 
-    -webkit-border-top-left-radius  : 2px;
-    -webkit-border-bottom-left-radius:2px;
-    -webkit-border-top-right-radius :20px;
-    -webkit-border-bottom-right-radius:20px;
+    border-radius: 2px 20px 20px 2px;
   }
   .wiz-body{
     display:block; 
@@ -144,6 +122,7 @@ Date:
       width                 : 100px;
       -moz-border-radius    : 8px;
       -webkit-border-radius : 8px;
+      border-radius: 8px;
       background            : #5A5655;
       color                 : #FFFFFF;
       margin                : 0px 10px 0px 10px;
