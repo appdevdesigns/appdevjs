@@ -563,13 +563,6 @@
             }
         },
 
-        //-----------------------------------------------------------------
-        // Clears the selected item
-        deSelect: function(event) {
-            this.list.find('li').removeClass('active');
-        },
-        
-        
         'li click': function(el, event) {
             
             this.onSelect(event);
