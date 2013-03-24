@@ -11,6 +11,7 @@
     AD.Controller.extend('appdevListAdmin', {
 
         
+        //-----------------------------------------------------------------
         init: function (el, options) {
 
             //// Setup your controller here:
@@ -71,6 +72,7 @@
         },
         
         
+        //-----------------------------------------------------------------
         addEntry: function(rowMgr) {
             
             var self = this;
@@ -78,6 +80,8 @@
             var $li = $(html);
             
             $li.data('ad-model', rowMgr);
+            $li.attr('model-id', rowMgr.getID());
+
             $li.click(function(ev){ self.onSelect(ev); });
             $li.find('.ios-delete').click(function(ev){self.onDelSelect(ev);});
             $li.find('.ios-buttons').click(function(ev){self.onDelConfirm(ev);});
@@ -87,6 +91,7 @@
         
         
         
+        //-----------------------------------------------------------------
         clearList: function() {
             
             this.list.find('li.appdev-list-admin-entry').remove();
@@ -96,13 +101,14 @@
         },
         
         
+        //-----------------------------------------------------------------
         customButtonHandler:function( handler ) {
             // we don't know what the custom button handler actually wants to do,
             // so let's provide them with a list of any selected Models
             
             var listModels = [];
             
-            this.list.find('.ui-selected').each(function(indx, el){
+            this.list.find('.active').each(function(indx, el){
             
                 var $el = $(el);
                 var model = $el.data('ad-model');
@@ -117,6 +123,7 @@
         
         
         
+        //-----------------------------------------------------------------
         initTemplates: function() {
             // setup our templates here
             // templates passed in via options override ones 
@@ -159,6 +166,7 @@
         
 
         
+        //-----------------------------------------------------------------
         insertDOM: function() {
             var self = this;
             
@@ -271,11 +279,13 @@
                     
                     // we will call our own eventHandler for the button click,
                     // but pass in the handler that should be called when we are ready
+                    var self = this;
                     if (button.buttonHandler) {
                         
                         // in order to properly track which button.handler, we need a closure:
                         var buttonHandler = function (button) {
-                            thisButton.click(function(){ self.customButtonHandler(button.buttonHandler)});
+                            var _self = self;
+                            thisButton.click(function(){ _self.customButtonHandler(button.buttonHandler)});
                         }
                         buttonHandler(button);
                     }
@@ -289,6 +299,7 @@
         },
         
         
+        //-----------------------------------------------------------------
         loadFromDataManager: function() {
             
             var self = this;
@@ -304,6 +315,7 @@
         
         
         
+        //-----------------------------------------------------------------
         onAdd: function() {
           
             var defaultAction = true;
@@ -335,6 +347,7 @@
         
         
         
+        //-----------------------------------------------------------------
         onAddCancel: function() {
             
             
@@ -342,6 +355,7 @@
         
         
         
+        //-----------------------------------------------------------------
         onAddSubmit: function() {
             
             // get a new instance of our model
@@ -355,6 +369,7 @@
         
         
         
+        //-----------------------------------------------------------------
         onCancel: function(event, model) {
             
             this.addForm.hide();
@@ -365,6 +380,7 @@
         
         
         
+        //-----------------------------------------------------------------
         onDel: function(event) {
           
             if (this.options.buttons.del) {
@@ -379,11 +395,11 @@
         
         
         
+        //-----------------------------------------------------------------
         onDelConfirm: function(event) {
-            var doDe
             // get the associated model object for the obj to delete
             var me = $(event.currentTarget);
-            var myLI = me.parent().parent().parent();
+            var myLI = me.parents('li').first();
             var rowMgr = myLI.data('ad-model');
             
             //// TODO: try something like this.options.model.destroy : true/false                
@@ -404,6 +420,7 @@
         
         
         
+        //-----------------------------------------------------------------
         onDelSelect: function(event) {
             // they clicked the 'minus' icon next to an entry
             var me = $(event.currentTarget);
@@ -510,6 +527,7 @@
         
         
         //-----------------------------------------------------------------
+        // This is called when an item is clicked on
         onSelect: function(event) {
             
             // highlight only the selected item
@@ -523,13 +541,35 @@
                 this.options.onSelect(event, model);
             }
         },
+        
 
+        //-----------------------------------------------------------------
         // Clears the selected item
         deSelect: function(event) {
             this.list.find('li').removeClass('active');
         },
+        
+        
+        //-----------------------------------------------------------------
+        // Select an item which we know to be in the list
+        select: function(model) {
+            //
+            this.element.find('[model-id=' + model.getID() + ']').addClass('active');
+            
+            // call any provided onSelect handler when an item in our list 
+            // is selected.
+            if (this.options.onSelect) {
+                this.options.onSelect(null, model);
+            }
+        },
 
-
+        //-----------------------------------------------------------------
+        // Clears the selected item
+        deSelect: function(event) {
+            this.list.find('li').removeClass('active');
+        },
+        
+        
         'li click': function(el, event) {
             
             this.onSelect(event);

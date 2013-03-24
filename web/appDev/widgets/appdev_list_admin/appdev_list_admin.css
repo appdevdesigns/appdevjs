@@ -1,7 +1,29 @@
+.busyicon {
+	width:16px;
+	height:28px;
+	background-image:url(busy-icon.gif);
+	background-position: center;
+	background-repeat:no-repeat;
+	margin:0 auto;
+	
+}
+
+
+.busyicon-inline {
+	display:inline-block;
+	vertical-align:middle;
+	width:16px;
+	height:28px;
+	background-image:url(busy-icon.gif);
+	background-position: center;
+	background-repeat:no-repeat;
+	
+}
+
+
 /*
 CSS for adminlist on the left
 */
-
 
 .admin-list .header-title {
     float: left;
@@ -132,7 +154,7 @@ CSS for adminlist on the left
 }
 
 .pane_right {
-	float: right;
+	/*float: right;*/
 	margin:0 0.25em;	
 }
 
@@ -167,11 +189,6 @@ ul.admin-list li a{
 	font-size:13px;
 	font-weight:normal;
 
-}
-
-ul.admin-list li.ui-selected a {
-    background-color: #1879DD;
-    color: white;
 }
 
 ul.admin-list li {
