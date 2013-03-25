@@ -63,6 +63,12 @@ RCService.prototype.fieldValidations = function () {
 
 
 
+
+////---------------------------------------------------------------------
+RCService.prototype.setupModuleHub = function () {
+//    return  {}
+}
+
 ////---------------------------------------------------------------------
 RCService.prototype.find = function (req, res, next) {
     /// is expecting a req.aRAD.filter = { field:value }
@@ -101,6 +107,7 @@ console.log(err);
 RCService.prototype.create = function (req, res, next) {
     /// is expecting a req.aRAD.params = { field:value }
     /// places results in res.aRAD.results
+
 console.log(' in .create() ');
     var self = this;
 
@@ -111,11 +118,11 @@ console.log(' in .create() ');
     if (this.model) {
 
         var newObj = new this.model(this.model.onlyModelFields(params));
-        newObj.save(function(id) {
+        newObj.save(function(model) {
 
-                log(req,'     new id:'+ id);
+                log(req,'     new id:'+ model[self.model.id]);
                 var rID = {};
-                rID[self.model.id] = id;
+                rID[self.model.id] = model[self.model.id];
                 res.aRAD.results = rID;
                 next();
 
@@ -222,17 +229,25 @@ console.log(' resource destroy ...');
 
         var found = this.model.findOne({id:id});
         $.when(found).then(function( model ){
-            model.destroy(function(){
 
-                log(req,'     destroy completed');
+            if (model) {
+                model.destroy(function(){
+
+                    log(req,'     destroy completed');
+                    res.aRAD.results = {};
+                    next();
+
+                }, function(err) {
+                    error(req, '     error updating resource');
+                    errorDump(req, err);
+                    AD.Comm.Service.sendError(req, res, err, AD.Const.HTTP.ERROR_SERVER ); // 500 : our problem
+                })
+            } else {
+//// Q: do I respond with an error msg?
+                log(req,'     object entry not found id:'+id);
                 res.aRAD.results = {};
                 next();
-
-            }, function(err) {
-                error(req, '     error updating resource');
-                errorDump(req, err);
-                AD.Comm.Service.sendError(req, res, err, AD.Const.HTTP.ERROR_SERVER ); // 500 : our problem
-            })
+            }
         });
 
     } else {
@@ -410,11 +425,11 @@ Express.prototype.evalParams = function (req, res, next) {
 //note: in below definitions, any value in [] is a templated value replaced with the instances value for that attribute: [id] = obj.id;
 //note: params are defined like:  params:{ requiredParam1:'[requiredParam1]', requiredParam2: '[requiredParam2]'}
 Express.publicLinks = {
-    findAll: { method:'GET',    uri:'/rc/[app]/[resource]', params:{}, type:'resource' },
-    findOne: { method:'GET',    uri:'/rc/[app]/[resource]/[id]', params:{}, type:'resource' },
-    create:  { method:'POST',   uri:'/rc/[app]/[resource]', params:{}, type:'action' },
-    update:  { method:'PUT',    uri:'/rc/[app]/[resource]/[id]', params:{}, type:'action' },
-    destroy: { method:'DELETE', uri:'/rc/[app]/[resource]/[id]', params:{}, type:'action' },
+    findAll: { method:'GET',    uri:'/[app]/[resource]', params:{}, type:'resource' },
+    findOne: { method:'GET',    uri:'/[app]/[resource]/[id]', params:{}, type:'resource' },
+    create:  { method:'POST',   uri:'/[app]/[resource]', params:{}, type:'action' },
+    update:  { method:'PUT',    uri:'/[app]/[resource]/[id]', params:{}, type:'action' },
+    destroy: { method:'DELETE', uri:'/[app]/[resource]/[id]', params:{}, type:'action' },
 }
 
 //var serviceURL = publicLinks.create.uri.replace('[id]',':id').replace('[object_key]', ':hrisObjKey');
@@ -521,7 +536,10 @@ RCService.prototype.setup = function( app ) {
         log(req, '   - verifyParams(): checking parameters');
 
         var listRequiredParams = self.fieldValidations();
-        AD.Util.Service.validateParamsExpress(req, res, next, listRequiredParams);
+        var action = req.aRAD.pkey.action;
+
+        var setParams = listRequiredParams[action] || {};
+        AD.Util.Service.validateParamsExpress(req, res, next, setParams);
     };
 
 
@@ -593,6 +611,7 @@ RCService.prototype.setup = function( app ) {
 
 
     moduleHub = this.module.hub;
+
     var rcAttribs = { app: this.appKey,  resource:this.resourceKey };
     var publicLinks = this.publicLinks();
     for (var a in publicLinks) {
@@ -606,6 +625,9 @@ console.log('v['+verb+']  uri['+uri+']');
         app[verb](uri, this.Express.actionStacks[a]);
     }
 
+
+
+    this.setupModuleHub();
 
 
 /*
