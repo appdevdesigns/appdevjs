@@ -143,6 +143,8 @@
 
         __action: function(urlKey, attrib, onSuccess, onError ){
 
+            var thisModel = this;
+
         	//// To properly propagate the data through this process, each method must return the
             //// data to be passed on to the next step.
             //// Instead of counting on the programmers to remember to return a copy of the data, we
@@ -182,7 +184,26 @@
 
             		// url is a template, so fill it out:
             		var uri = AD.Comm.API.uri(link, attrib);
+            		uri = uri.replace('[id]', attrib[thisModel.id]);
+
+            		// check for required parameters:
+            		var goodParams = true;
             		var params = AD.Comm.API.params(link, attrib);
+            		for (var p in params) {
+            		    var value = params[p];
+            		    if (value == '['+p+']') {
+            		        goodParams = false;
+            		        console.err(' required parameter missing! : ['+p+']');
+            		    }
+            		}
+
+            		if (!goodParams) {
+            		    // Hey!  we didn't get a required parameter!
+            		    // so do we fail here?
+            		}
+
+            		params = attrib;  // make sure to send all given values back.
+
             		var verb = link.method.toLowerCase();
             		AD.ServiceModel[urlKey]({
             			verb: verb,
