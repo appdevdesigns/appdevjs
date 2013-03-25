@@ -69,6 +69,13 @@ RCService.prototype.setupModuleHub = function () {
 //    return  {}
 }
 
+
+////---------------------------------------------------------------------
+RCService.prototype.siteRegisterAPI = function () {
+    var publicLinks = this.publicLinks();
+    this.setupSiteAPI(this.resourceKey, publicLinks);
+}
+
 ////---------------------------------------------------------------------
 RCService.prototype.find = function (req, res, next) {
     /// is expecting a req.aRAD.filter = { field:value }
@@ -628,6 +635,7 @@ console.log('v['+verb+']  uri['+uri+']');
 
 
     this.setupModuleHub();
+    this.siteRegisterAPI();
 
 
 /*
