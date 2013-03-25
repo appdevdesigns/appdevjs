@@ -413,37 +413,39 @@
         //// inside these fn() the this refers to the instanced object.
 
     	////--------------------------------------------------------------
-    	bindToForm: function( el ) {
-    		// initialize any data elements in the given el object with
-    		// the default values of this instance
+        bindToForm: function( el ) {
+            // initialize any data elements in the given el object with
+            // the default values of this instance
+            
+            var _self = this;
+            
+            // data elements will have attributes of 'data-bind="[attributeName]"'
+            // so for each element that has a 'data-bind' attribute:
+            el.find('[data-bind]').each(function(a1, a2){
 
-    		var _self = this;
+                var element = $(this);
+                var key = element.attr('data-bind');
+                var value = '';
+                if (typeof _self[key] == 'function') {
+                    value = _self[key]();
+                } else {
+                    value = _self.attr(key);
+                }
 
-    		// data elements will have attributes of 'data-bind="[attributeName]"'
-    		// so for each element that has a 'data-bind' attribute:
-    		el.find('[data-bind]').each(function(a1, a2){
-
-        		var element = $(this);
-        		var key = element.attr('data-bind');
-        		var value = '';
-        		if (typeof _self[key] == 'function') {
-        			value = _self[key]();
-        		} else {
-        			value = _self.attr(key);
-        		}
-
-        		// Use .val() on inputs and .text() on other elements
-        		if (element.is(':input')) {
+                // This is handled differently for different elements
+                if (element.is(':checkbox')) {
+                    if (value == '1' || value == 1 || value == true)
+                        element.prop('checked', true);
+                    else
+                        element.prop('checked', false);
+                } else if (element.is(':input')) {
+                    // Not tested for radios
                     element.val(value).trigger('AD.bindToForm');
-        		}
-        		else {
-        		    element.text(value);
-        		}
-
-        	});
-
-    	},
-
+                } else {
+                    element.text(value);
+                }
+            });
+        },
 
 
         clear: function() {
@@ -457,7 +459,6 @@
         },
 
 
-
         loadFromDOM: function( el ) {
 
             var _self = this;
@@ -469,23 +470,25 @@
                 var element = $(this);
                 var key = element.attr('data-bind');
 
-                // Use .val() on inputs and .text() on other elements
+                // This is handled differently for different elements
                 var value;
-                if (element.is(':input')) {
+                if (element.is(':checkbox')) {
+                    // Returns a boolean
+                    // But server side expects 1 or 0, so we'll pass that
+                    // TODO: Server should also allow true or false
+                    value = element.prop('checked') ? 1 : 0;
+                } else if (element.is(':input')) {
+                    // Untested for radios
                     value = element.val();
-                }
-                else {
+                } else {
                     value = element.text();
                 }
 
                 if (value !== undefined) {
                     _self.attr(key, value);
                 }
-
             });
         },
-
-
 
 
         ////--------------------------------------------------------------
