@@ -553,7 +553,9 @@
         //-----------------------------------------------------------------
         // Select an item which we know to be in the list
         select: function(model) {
-            //
+            // Clear previously selected item
+            this.deSelect();
+            // Select this item
             this.element.find('[model-id=' + model.getID() + ']').addClass('active');
             
             // call any provided onSelect handler when an item in our list 
