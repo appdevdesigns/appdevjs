@@ -1,0 +1,19 @@
+<%
+///// NOTE:  on the server, EJS uses < %- to return unescaped strings
+/////        on the client  EJS uses < %== 
+// This is CLIENT, so let's make displaying labels easier:
+// use:   L('[labelKey]')
+var L = function(key) { return AD.Lang.Labels.getLabelHTML(key); };
+%>
+<div class="appdev-file-upload" style="float: none; clear: both;">
+
+    <div class="progress progress-striped active">
+          <div class="bar" style="width: 0%"></div>
+    </div>
+    <pre class="info"></pre>
+
+    <button type="button" class="btn"><%== L('[Upload]') %></button>
+
+    <input type="file" name="files[]" class="uploader hide" />
+
+</div>
