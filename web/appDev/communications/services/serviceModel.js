@@ -218,8 +218,11 @@
 		 */
         returnFirst: function (data) {
 
-            if (data.data && data.data[0]) {
+            if ($.isArray(data.data)) {
+            //if (data.data && data.data[0]) {
                 data = data.data[0];
+            } else if (data.data) {
+                data = data.data;
             } else {
                 data = null;
             }

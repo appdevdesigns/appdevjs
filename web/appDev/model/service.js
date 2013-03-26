@@ -303,6 +303,8 @@
 
         	var newList = list;
 
+        	if (newList == null) return newList;
+
         	if (typeof newList.length != 'undefined'){
         		// if a Model Object was given, then convert each entry
         		// to an instance of that Object.
