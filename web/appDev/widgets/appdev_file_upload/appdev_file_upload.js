@@ -20,6 +20,8 @@ AD.Controller.extend("AppdevFileUpload",
     },
 
     "button click": function(ev){
+        // We are using a <button> to trigger the the real <input type="file">
+        // element, which is ugly and hidden.
         this.$uploader.click();
     },
 
