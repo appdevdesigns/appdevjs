@@ -6,13 +6,8 @@
 var L = function(key) { return AD.Lang.Labels.getLabelHTML(key); };
 %>
 <div class="appdev-file-upload">
-
     <div class="progress progress-striped active">
           <div class="bar hide" style="width: 0%"></div>
     </div>
-    <pre class="info"></pre>
-
     <button type="button" class="btn"><%== L('[Upload]') %></button>
-    <input type="file" name="files[]" class="uploader" style="opacity:0; height:1px; width:1px;" />
-
 </div>
