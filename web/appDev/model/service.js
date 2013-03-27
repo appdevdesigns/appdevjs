@@ -241,7 +241,14 @@
 
         findOne : function(params, onSuccess, onError){
 
-            return this.__action('findOne', params, onSuccess, onError);
+            // find* operations return an array of results,
+            // findOne should only pass back 1 item
+            var foSuccess = function (data) {
+                if ($.isArray(data))  data = data[0];
+                if (onSuccess) onSuccess(data);
+                return data;
+            }
+            return this.__action('findOne', params, foSuccess, onError);
 
         },
 
@@ -301,13 +308,48 @@
 
         _returnModels: function(list) {
 
-        	var newList = list;
+
+            var newList = list;
+
+
+            // case:  empty array was sent back so don't create
+            // empty objects.
+            if ('undefined' != typeof list.__ad_warn_empty) {
+                newList = [];
+                newList._use_call = true;
+                return newList;
+            }
+
+
 
         	if (newList == null) return newList;
 
-        	if (typeof newList.length != 'undefined'){
+//        	if (typeof newList.length != 'undefined'){
+        	if ((typeof newList == 'object') || ($.isArray(newList))){
         		// if a Model Object was given, then convert each entry
         		// to an instance of that Object.
+
+        	    var Model = this._adModel || this;
+
+        	    // make sure this list contains instances of this
+                // Service object
+                var convertedList = [];
+                if ($.isArray(list)) {
+
+                    for (var i=0; i< list.length; i++) {
+                        var obj = new Model(list[i]);
+                        convertedList.push(obj);
+                    }
+                } else {
+
+                    convertedList.push(new Model(list));
+                }
+
+                newList = convertedList;
+
+
+/*
+
         		if (this._adModel != null) {
         			var convertedList = [];
         			var length = list.length;
@@ -328,14 +370,15 @@
         				var obj = new this(list[i]);
         				convertedList.push(obj);
         			}
-        			newList = convertedList;
+*/
 
 
-        		} else {
 
-        			console.error('instances of ['+this._adModule+']/['+this._adService+']/['+this._adAction+'] have no getLabel()/getID().  This is bound to break something!');
+ //       		} else {
 
-        		}
+//        			console.error('instances of ['+this._adModule+']/['+this._adService+']/['+this._adAction+'] have no getLabel()/getID().  This is bound to break something!');
+
+//        		}
         	}
 
         	// new changes in javascriptMVC v3 : uses .apply to call our callbacks!

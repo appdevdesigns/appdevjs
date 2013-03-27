@@ -90,7 +90,7 @@ RCService.prototype.find = function (req, res, next) {
             .then(function(listResults){
 
                 if (req.aRAD._findOne) {
-                    res.aRAD.results = listResults[0];
+                    res.aRAD.results = [listResults[0]];
                 } else {
                     res.aRAD.results = listResults;
                 }
@@ -169,7 +169,26 @@ RCService.prototype.onDestroyed = function (ev, attr) {
 
 
 
+var valuesDidChange = function(Model, id, params) {
+    var dfd = $.Deferred();
 
+    var hasChanged = false;
+
+    var found = Model.findOne({id:id});
+    $.when(found).then(function(model){
+
+console.log(model);
+        for (var p in params) {
+            if ( params[p] != model[p]) hasChanged = true;
+        }
+
+        dfd.resolve(hasChanged);
+
+    });
+
+
+    return dfd;
+}
 ////---------------------------------------------------------------------
 RCService.prototype.update = function (req, res, next) {
     /// is expecting a req.aRAD.params = { field:value }
@@ -187,29 +206,43 @@ console.log(' resource update ...');
 
     delete params.id;
 
-    if (this.model) {
-        var found = this.model.findOne({id:id});
-        $.when(found).then(function( model ){
+    var changed = valuesDidChange(this.model, id, params);
+    $.when(changed).then(function(hasChanged) {
 
-            model.attrs(self.model.onlyModelFields(params));
-            model.save(function() {
+        if (hasChanged) {
 
-                log(req,'     update completed');
-                res.aRAD.results = {};
+            if (self.model) {
+                var found = self.model.findOne({id:id});
+                $.when(found).then(function( model ){
+
+                    model.attrs(self.model.onlyModelFields(params));
+                    model.save(function() {
+
+                        log(req,'     update completed');
+                        res.aRAD.results = {};
+                        next();
+
+                    }, function(err) {
+                        error(req, '     error updating resource');
+                        errorDump(req, err);
+                        AD.Comm.Service.sendError(req, res, err, AD.Const.HTTP.ERROR_SERVER ); // 500 : our problem
+                    });
+                });
+
+            } else {
+
+                log(req, 'no Model defined for this resource controller.');
                 next();
+            }
 
-            }, function(err) {
-                error(req, '     error updating resource');
-                errorDump(req, err);
-                AD.Comm.Service.sendError(req, res, err, AD.Const.HTTP.ERROR_SERVER ); // 500 : our problem
-            });
-        });
+        } else {
 
-    } else {
+            log(req, ' no change in the data so skipping update()');
+            res.aRAD.results = {};
+            next();
+        }
+    })
 
-        log(req, 'no Model defined for this resource controller.');
-        next();
-    }
 
 }
 

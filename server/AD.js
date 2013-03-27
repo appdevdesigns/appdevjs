@@ -715,6 +715,7 @@ AD.Const.HTTP.ERROR_CLIENT = 400;  // Generic 'Your Fault' error
 AD.Const.HTTP.ERROR_UNAUTHORIZED = 401; // You aren't authorized
 AD.Const.HTTP.ERROR_FORBIDDEN = 403; // You don't have permission
 AD.Const.HTTP.ERROR_NOTFOUND = 404;  // Requested resource not found
+AD.Const.HTTP.ERROR_METHODNOTALLOWED = 405;  // Method not allowed on resource
 AD.Const.HTTP.ERROR_CONFLICT = 409;  // State of resource conflicts with request
 AD.Const.HTTP.ERROR_SERVER = 500;  // Generic 'My Fault' error (Server Error)
 
