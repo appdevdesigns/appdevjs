@@ -3,7 +3,7 @@
 # Documentation is created from code comments
 
 #Check that the user has java installed:
-if [ ! java -version >/dev/null 2&>1 ]; then
+if ! ( java -version >/dev/null 2>&1 ); then
     echo "Error: Java Runtime Environment (JRE) not present";
     exit;
 fi;
