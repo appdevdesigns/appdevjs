@@ -2,6 +2,12 @@
 # This file is a batch script to create the appDev documentation locally.
 # Documentation is created from code comments
 
+#Check that the user has java installed:
+if [ ! java -version >/dev/null 2&>1 ]; then
+    echo "Error: Java Runtime Environment (JRE) not present";
+    exit;
+fi;
+
 STARTDATE=$(date)
 echo "Start..."$STARTDATE
 
@@ -53,7 +59,7 @@ cd ..
 documentjs/doc $AD_BASE>$BASE/docs_output.txt&
 
 echo "	rendering documentation for "$AD_BASE
-echo -n "	on process "$!
+echo "	on process "$!
 
 for (( ; ; ))
 do
