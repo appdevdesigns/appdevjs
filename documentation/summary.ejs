@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+	<head>
+		<title>
+			AppDev Documentation
+		</title>
+		<link rel="shortcut icon" href="<%= pathToRoot %>/documentjs/jmvcdoc/images/favicon.ico">
+	</head>
+	<body>
+		<div id='documentation'>
+			<div id='top'>
+				<div class="content">
+					<div id="searchRoundCorners">
+						<input id='search' type='input' disabled='true'>
+					</div>
+					<div id='defaults'>
+						
+					</div>
+					<div class="logo-text">
+						<a href='http://localhost:8088'><img src='../install/images/appdev_pieces.png' class="logo-image"></a>
+					</div>
+				</div>
+			</div>
+			<div id='bottom'>
+				<div id='nav'>
+					<a>Loading ...</a>
+				</div>
+				<div id='doc_container'>
+					<div id='doc'>
+						<%= this.indexPage ? this.indexPage.comment : "Add a page named 'index' to see something here." %>
+					</div>
+					<div id="disqus_thread"></div>
+				</div>
+			</div>
+		</div>
+		<div id='low'>
+			AppDev Training and Support Documentation
+		</div><script type='text/javascript'>
+DOCS_LOCATION = "docs/" //adds searchData to this
+		</script><script type='text/javascript' src='<%= pathToRoot %>/steal/steal.production.js?documentjs/jmvcdoc'>
+</script>
+	</body>
+</html>

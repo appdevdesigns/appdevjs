@@ -1,25 +1,36 @@
+@echo off
 
 
 
-::Before running we need to see if the user has Java in their path.
+:: Before running we need to see if the user has Java in their path.
 :: Instructions here
 :: http://introcs.cs.princeton.edu/java/15inout/windows-cmd.html
 :: Ignore the part about the JDK. The JRE will be fine for our purposes
 :: Note, on 64-bit Windows, my path was:
 :: C:\Program Files (x86)\Java\jre7\bin
+call java -version >NUL 2>&1 || (echo Java not found. Please install or ensure it is in your path. & GOTO:EOF)
 
 
-:: relative path to this script
-
+:: current directory at time of execution (cleanup will return here)
 set _=%CD%
-set ROOT=appdevjs_johnny
 
 :: set path to script path
-
 cd %~dps0
 
+:: grab the root directory
+:: (assumes we are in ROOT/documentation/instdocs.bat)
+:: basename command from:
+:: http://stackoverflow.com/a/3432895/1026991
+cd ../
+set FILE=%CD%
+for /F %%i in ("%FILE%") do set BASENAME=%%~ni
+echo %BASENAME%
+set ROOT=%BASENAME%
+cd %~dp0
 
-:: grab latest docjs steal
+
+
+
 echo setup...
 
 rd /Q/S ..\..\documentjs > nul
