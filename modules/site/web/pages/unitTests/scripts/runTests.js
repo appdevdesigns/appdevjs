@@ -36,6 +36,7 @@ $.Controller('RunTests',{
 		// get our div
 		// add initList to it's data()
 		$('#initCalls').data('initList',initList);
+		$('#runAll').attr('checked',true);
 		$('#listResults').hide();
 		
 		var listFiles = site.unitTestScripts.listIterator({module: id});
