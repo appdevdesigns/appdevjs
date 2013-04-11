@@ -311,6 +311,9 @@
 
             var newList = list;
 
+            // case: null was sent back
+            if (newList == null) return newList;
+
 
             // case:  empty array was sent back so don't create
             // empty objects.
@@ -322,7 +325,7 @@
 
 
 
-        	if (newList == null) return newList;
+
 
 //        	if (typeof newList.length != 'undefined'){
         	if ((typeof newList == 'object') || ($.isArray(newList))){

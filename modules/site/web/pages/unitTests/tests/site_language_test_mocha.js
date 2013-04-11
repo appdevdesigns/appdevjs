@@ -2,7 +2,8 @@
 	describe('site language', function(){
 		 it('site language findAll', function(){
 		    site.Language.findAll({},function(list){
-		    	chai.assert.deepEqual(list.length,2);
+console.log(list.length);
+		    	chai.assert.equal(list.length,2);
 		  	});
 		 })
 	})
