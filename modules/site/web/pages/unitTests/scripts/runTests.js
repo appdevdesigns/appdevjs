@@ -3,49 +3,41 @@ $.Controller('RunTests',{
 },
 {    
 	init: function(el, options) {
-		this.initDropDown();
-	},
-	initDropDown:function(){
-		var listModules = site.unitTestModules.listIterator({});
-		var loadedModules = listModules.loaded();
-		var self = this;
-		$.when(loadedModules).done(function(data){
-		  var listModulesData = listModules.listData;
-		  for (var a = 0; a < listModulesData.length; a++) {
-			var templateRow = self.element.find('.template-row');
-			var dropDown = templateRow.parent();
-			var newRow = templateRow.clone();
-			newRow.removeClass('hidden').removeClass('template-row');
-			var aLink = newRow.find('a');
-			aLink.html(listModulesData[a].name);
-			aLink.attr('id',listModulesData[a].name);
-			aLink.data('initList', listModulesData[a].initList);
-			aLink.click(function(el,event){
-				self.linkClick(this);
-			});
-			newRow.appendTo(dropDown);
-		  }
+		self = this;
+		this.selected = null;
+		listModules = site.unitTestModules.listIterator({});
+		this.$carousel = this.element.find('#unitTestCarousel').appdev_list_carousel({
+				dataManager: listModules,
+				onSelection: function(el){ self.onSelection(el); },
+				onElement:function(rowMgr){
+					return '<img src="'+(rowMgr.iconPath || '/site/unitTests/images/icon_application.png')+'" width="75" height="75" alt="">'+
+					'<div class="module-name"><h5 align="center">'+rowMgr.getLabel()+ '</h5></div>'
+				}
 		});
 	},
-	linkClick: function(aLink){
-		
-		var $aLink = $(aLink);
-		var id = $aLink.attr('id');
-		var initList = $aLink.data('initList');
-		
-		// get our div
-		// add initList to it's data()
-		$('#initCalls').data('initList',initList);
-		$('#listResults').hide();
-		
-		var listFiles = site.unitTestScripts.listIterator({module: id});
+	onSelection: function(el){
+		if (this.selected != null){
+			this.selected.removeClass('active');
+			var div = this.selected.find('.module-active');
+			div.remove();
+		}
+		this.selected = $(el.currentTarget);
+		var model = this.selected.data('adModel');
+		this.selected.addClass('active');
+		var selectedDiv = $('<div class="module-active"></div>');
+		selectedDiv.css('width',this.selected.css('width'));
+		this.selected.prepend(selectedDiv);
+		$('#initCalls').data('initList',model.initList);
+		$('#runAll').attr('checked',true);
+		$('#listResults').hide();	
+		var listFiles = site.unitTestScripts.listIterator({module: model.name});
 		var loadedFiles = listFiles.loaded();
 		$.when(loadedFiles).done(function(){
 			var listFilesData = listFiles.listData;
 			$('#listTests').show();
 			var clonedRows = $('#listTests').find('.cloneRow');
 			clonedRows.remove();
-			$('#displayModuleName').html(id);
+			$('#displayModuleName').html(model.id);
 			for (var i = 0; i < listFilesData.length; i++) {
 				var tableTemplateRow = $('#listTests').find('.tt-row');
 				var newTableRow = tableTemplateRow.clone();

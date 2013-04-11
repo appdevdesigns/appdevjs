@@ -29,7 +29,8 @@ var unitTestsPage = new AD.App.Interface({
     pathScripts: __dirname+'/scripts',
 */
     listWidgets: [ 
-// AppRAD: WIDGET DEPENDENCY //    
+// AppRAD: WIDGET DEPENDENCY // 
+		'appdev_list_carousel'
                  ]
     });
 module.exports = unitTestsPage;   

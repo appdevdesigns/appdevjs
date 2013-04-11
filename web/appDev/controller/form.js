@@ -631,7 +631,7 @@ $.Controller.extend("ADForm",
                             
                             var errRet = true;
                             if (self.options.onError) {
-                                errRet = options.onError(err);
+                                errRet = self.options.onError(err);
                             } 
                             
                             if (errRet) {
