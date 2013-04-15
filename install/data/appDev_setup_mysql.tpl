@@ -38,7 +38,7 @@ CREATE TABLE `site_multilingual_label` (
   `label_needs_translation` tinyint(1) unsigned NOT NULL DEFAULT '1',
   `label_path` text,
   PRIMARY KEY (`label_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=[dbCharset];
+) ENGINE=InnoDB  DEFAULT CHARSET=[dbCharset];
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
@@ -54,7 +54,7 @@ CREATE TABLE `site_multilingual_language` (
   `language_code` varchar(10) NOT NULL,
   `language_label` text,
   PRIMARY KEY (`language_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=[dbCharset];
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=[dbCharset];
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -79,7 +79,7 @@ CREATE TABLE `site_perm_tasks_data` (
   `task_id` int(11) NOT NULL AUTO_INCREMENT,
   `task_key` varchar(25) NOT NULL,
   PRIMARY KEY (`task_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=[dbCharset];
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=[dbCharset];
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 DROP TABLE IF EXISTS `site_perm_tasks_trans`;
@@ -91,7 +91,7 @@ CREATE TABLE `site_perm_tasks_trans` (
   `language_code` varchar(25) NOT NULL DEFAULT '',
   `task_label` TEXT NOT NULL DEFAULT '',
   PRIMARY KEY (`trans_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=[dbCharset];
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=[dbCharset];
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
@@ -125,7 +125,7 @@ CREATE TABLE `site_perm_role_tasks` (
   PRIMARY KEY (`roletask_id`),
   KEY `role_id` (`role_id`),
   KEY `task_id` (`task_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=[dbCharset];
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=[dbCharset];
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -149,7 +149,7 @@ CREATE TABLE `site_perm_roles` (
   `role_id` int(11) NOT NULL AUTO_INCREMENT,
   `role_label` text NOT NULL,
   PRIMARY KEY (`role_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=[dbCharset];
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=[dbCharset];
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -175,7 +175,7 @@ CREATE TABLE `site_perm_viewer_roles` (
   `role_id` int(11) NOT NULL,
   PRIMARY KEY (`viewerroles_id`),
   KEY `role_id` (`role_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=[dbCharset];
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=[dbCharset];
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -203,7 +203,7 @@ CREATE TABLE `site_system` (
   `system_path` varchar(255) NOT NULL DEFAULT '',
   `system_type` varchar(12) NOT NULL DEFAULT '',
   PRIMARY KEY (`system_id`)
-) ENGINE=MyISAM;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -228,7 +228,7 @@ CREATE TABLE `site_settings` (
   `settings_key` text,
   `settings_value` text,
   PRIMARY KEY (`settings_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=[dbCharset];
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=[dbCharset];
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -254,7 +254,7 @@ CREATE TABLE `site_settings_viewer` (
   `settingsviewer_key` text,
   `settingsviewer_value` text,
   PRIMARY KEY (`settingsviewer_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=[dbCharset];
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=[dbCharset];
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -283,7 +283,7 @@ CREATE TABLE `site_viewer` (
   `viewer_lastLogin` datetime DEFAULT NULL,
   `viewer_globalUserID` text,
   PRIMARY KEY (`viewer_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=[dbCharset];
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=[dbCharset];
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -309,7 +309,7 @@ CREATE TABLE `site_viewer_switcheroo` (
   `switcheroo_realID` text,
   `switcheroo_fakeID` text,
   PRIMARY KEY (`switcheroo_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=[dbCharset];
+) ENGINE=InnoDB DEFAULT CHARSET=[dbCharset];
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
