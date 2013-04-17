@@ -18,6 +18,8 @@
 		"underscore": "*",
 		"jsdom": "*",
 		"mimelib-noiconv": "*",
-		"cas": "git+https://github.com/joshchan/node-cas.git#master"
+		"cas": "git+https://github.com/joshchan/node-cas.git#master",
+		"mocha": "*",
+		"commander": "*"
 	}
 }
