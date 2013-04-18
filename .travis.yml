@@ -3,6 +3,5 @@ node_js:
 - 0.8
 
 script: 
-- travis-lint
 - ./server/test/mocha_test.sh
 # running a unit test in mocha command-line
