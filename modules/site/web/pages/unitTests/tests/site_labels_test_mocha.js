@@ -28,7 +28,7 @@
 		 it('site labels destroy', function(done){
 			 label.destroy(function(data){
 				 site.Labels.findAll({},function(list){
-					 chai.assert.deepEqual(list.length,344);
+					 chai.assert.deepEqual(list.length,377);
 					 done();
 				 })
 			 })
@@ -37,7 +37,7 @@
 		 it('site labels findAll', function(done){
 		    site.Labels.findAll({},function(list){
 
-		    	chai.assert.deepEqual(list.length,344);
+                chai.assert.deepEqual(list.length,377);
 		    	done();
 		  	});
 		 })
