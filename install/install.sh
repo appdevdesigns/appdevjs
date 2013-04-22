@@ -24,13 +24,13 @@ then
     cd ../install
     echo "Starting install server..."
     echo "Please start your web browser and go to http://localhost:$PORT/appDevInstall"
-    node app_install.js $PORT
+    node app_install $PORT
     if [ $? == 0 ];
     then
         # app_install.js completed normally
         cd ..
         echo "Starting appDev server..."
-        node app.js
+        node app
     else
         echo "Installation error."
     fi
