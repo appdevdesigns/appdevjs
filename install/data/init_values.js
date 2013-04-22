@@ -17,15 +17,15 @@
 
 $values = {
     // DB Values
-    dbName:'-',
-    dbPath:'-',
-    dbUser:'-',
-    dbPword:'-',
+    dbName:'bobbylocaldev',
+    dbPath:'localhost',
+    dbUser:'root',
+    dbPword:'iaeaae579',
     dbCharset:'-',
     dbType:'-',
-    dbPathMySQL:'-',
-    dbPathMySQLDump:'-',
-    dbPort:'-',
+    dbPathMySQL:'C:\\\\xampp\\\\mysql\\\\bin\\\\mysql.exe',
+    dbPathMySQLDump:'C:\\\\xampp\\\\mysql\\\\bin\\\\mysqldump.exe',
+    dbPort:'3306',
     dbSocketPath:'-',
     connectType:'-',
     
@@ -44,9 +44,9 @@ $values = {
     
     // Email Values
     emailMethod:'smtp',
-    emailHost:'-',
-    emailPort:'-',
-    emailDomain:'-',
+    emailHost:'securemail.example.com',
+    emailPort:'25',
+    emailDomain:'localhost',
     emailKey:'-',
     
     // Language Settings
@@ -56,8 +56,8 @@ $values = {
     production:false,
     
     // Admin Account
-    adminUserID:'-',
-    adminPWord:'-',
+    adminUserID:'admin',
+    adminPWord:'admin',
     adminLanguage:'-',
     
     

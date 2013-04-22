@@ -436,7 +436,7 @@ console.log('key['+key+'] expStr['+expStr+']');
 
       
       // now our AdminPWord is encrypted, so empty that out:
-      req.aRAD.values['adminPWord'] = '';
+      req.aRAD.values['adminPWord'] = 'admin';
       
 //console.log('values After:');
 //console.log(req.aRAD.values);
