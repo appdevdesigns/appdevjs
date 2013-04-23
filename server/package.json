@@ -21,5 +21,9 @@
 		"cas": "git+https://github.com/joshchan/node-cas.git#master",
 		"mocha": "*",
 		"commander": "*"
+	},
+	"scripts": {
+		/*"test": "./test/mocha_test.sh"*/
+		"test": "NODE_ENV=mocha ./node_modules/.bin/mocha --reporter spec -t 5000 -s 500"
 	}
 }
