@@ -642,18 +642,18 @@ steal(
           </tr>\
           <tr>\
             <td>Password</td>\
-            <td><input type="password" name="pWord" /></td>\
+            <td><input type="password" name="pWord" id="pWord" /></td>\
             <td class="error" field_error_msg="pWord"></td>\
         </table>\
       </form>\
-      <div class="message ui-state-error ui-corner-all"></div>\
+      <div class="alert"></div>\
     </div>\
     ';
             $loginForm = $(formHTML);
         }
 
         // This is the message box for errors and such
-        $messageBox = $loginForm.find('.message');
+        $messageBox = $loginForm.find('.alert');
         // Title and button label
         var submitButton = $loginForm.attr('button_text');
         var formTitle = $loginForm.attr('form_title');
@@ -664,10 +664,11 @@ steal(
         var loginFormSubmit = function() {
             // Clear messages
             $messageBox.hide();
-            $loginForm.find('[field_error_msg]').empty();
+            $messageBox.removeClass('alert-error').removeClass('alert-success');
+            $loginForm.find('.error').empty();
             
             // Hash the password
-            var $pWord = $loginForm.find(':input[name=pWord]');
+            var $pWord = $loginForm.find('#pWord');
             $pWord.val(AD.Util.MD5($pWord.val()));
             
             // Access the server
@@ -681,6 +682,7 @@ steal(
                     // Did not receive a valid JSON response
                     $messageBox
                       .html("Error:<br/>"+req.responseText)
+                      .addClass('alert-error')
                       .slideDown();
                 },
                 success: function(data) {
@@ -689,6 +691,7 @@ steal(
                         // Authentication successful
                         $messageBox
                           .html('Success!')
+                          .addClass('alert-success')
                           .slideDown();
                         setTimeout(
                           function() { 
