@@ -26,7 +26,7 @@
                       uid:'moduleVisit_uuid_notGiven',
 /*                      
                       dataManager:null, // the ListIterator of the data to display
-                      template:null,	// view(): the default view template
+                      template:null,   // view(): the default view template
                       templateEdit:null,// veiw(): the edit panel view
                       templateDelete:null, // view():  the delete confirmation view
                       title: null      // the MultilingualLabel Key for the title
@@ -54,11 +54,9 @@
                             var listPages = '';
                             for (var i = 0; i<list.length; i++) {
                                 var name = list[i].name;
-                                if (name !== undefined) {
-                                    var path = '/page/'+moduleName+'/'+name;
-                                    var html = '<a href="'+path+'">'+name+'</a>';
-                                    listPages += (html + ' ');
-                                }
+                                var path = '/page/'+moduleName+'/'+name;
+                                var html = '<a href="'+path+'">'+name+'</a>';
+                                listPages += (html + ' ');
                             }
                             _this.append('<td class="pageList">'+listPages+'</td>');
                         });
