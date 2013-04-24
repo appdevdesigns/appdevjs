@@ -166,7 +166,8 @@ exports.login = function( req, res, next)
     var pWord = req.body.pWord;
 
     log(req,'    - authentication.login:');
-    log(req, '      checking userID['+userID+'] pWord['+pWord+'] ... ');
+    log(req, '      checking userID['+userID+'] pWord[******] ... ');
+    //log(req, '      checking userID['+userID+'] pWord['+pWord+'] ... ');
 
     // Look for viewer entry with matching userID and password
     AD.Viewer.viewerFromLogin(userID, pWord,  function(err, currentViewer) {

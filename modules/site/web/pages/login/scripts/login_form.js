@@ -60,7 +60,8 @@
             this.element.find('form input').each(function() {
                 var key = this.name;
                 if (key == 'pWord') {
-                    var value = AD.Util.MD5(this.value);  // encrypt the pword before sending.
+                    // Send in the hash of the password, not the password itself
+                    var value = AD.Util.MD5(this.value);
                 } else {
                     var value = this.value;
                 }
