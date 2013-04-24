@@ -13,13 +13,16 @@
 		"temp": "*",
 		"eventemitter2": "*",
 		"async": "*",
-		"nodeunit": "*",
 		"request": "*",
 		"underscore": "*",
 		"jsdom": "*",
 		"mimelib-noiconv": "*",
 		"cas": "git+https://github.com/joshchan/node-cas.git#master",
 		"mocha": "*",
-		"commander": "*"
-	}
+		"chai": "*",
+        "chai-http": "*"
+	},
+    "scripts": {
+        "test": "./node_modules/.bin/mocha -R spec"
+    }
 }
