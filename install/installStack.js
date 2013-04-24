@@ -372,27 +372,27 @@ var setEnvironment = function(req, res, next) {
         // Make sure the `site` module is on top of the list so it gets
         // priority during installation. Disable all the other modules by
         // default.
+        var resultsCopy =[];
+        var siteModule = null;
         for (var i=0; i<results.length; i++) {
             var sysObj = results[i];
             if (sysObj.name == 'site' && sysObj.type == 'module') {
-                // remove the item
-                results.splice(i, 1);
-                // add it back to the front
-                results.unshift(sysObj);
-            }
-            else if (sysObj.type == 'module') {
-                // don't include any other modules
-                results.splice(i, 1);
+                // save this one
+                siteModule = sysObj;
+            } else if (sysObj.type != 'module') {
+                resultsCopy.push(sysObj);
             }
         }
-        
+        // Add the site module to the top of the list
+        resultsCopy.unshift(siteModule);
+
         // Combined list of all systems
-        req.aRAD.systems = results;
+        req.aRAD.systems = resultsCopy;
         
         // List of just the systems paths
         req.aRAD.systemsPaths = [];
-        for (var i=0; i<results.length; i++) {
-            req.aRAD.systemsPaths.push( results[i]['path'] );
+        for (var i=0; i<resultsCopy.length; i++) {
+            req.aRAD.systemsPaths.push( resultsCopy[i]['path'] );
         }
         
         next();
