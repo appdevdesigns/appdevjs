@@ -248,7 +248,7 @@ if (self.hasListAllLoaded) {
                 
                 this.element.html(this.view('/appDev/widgets/appdev_option_twocolumn/appdev_option_twocolumn.ejs', {}));
                 
-                this.element.find('ul').css('height', this.options.height);
+                this.element.find('.ulContainer').css('height', this.options.height);
                 
                 this.col1Title = this.element.find('.ad-title-col1');
                 this.col2Title = this.element.find('.ad-title-col2');

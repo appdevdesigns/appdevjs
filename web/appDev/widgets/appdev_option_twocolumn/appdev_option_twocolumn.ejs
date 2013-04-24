@@ -16,6 +16,7 @@ var L = function(key) { return AD.Lang.Labels.getLabelHTML(key); };
     <div class="table-holder x-panel-body">
         <div class="span6">
         <span class="ad-title-col1"> Col 1 Title</span>
+        <div class="ulContainer">
         <ul class="ad-items-all" style="margin-bottom: 0px;" >
                   
             <li key="ko" label="Korean">
@@ -45,10 +46,12 @@ var L = function(key) { return AD.Lang.Labels.getLabelHTML(key); };
                 
                   
          </ul>
+         </div>
          <button class="add-button x-btn-text  selButton ">&gt;&gt;</button>
         </div>
         <div class="span6">
             <span class="ad-title-col2" > Col 2 Title</span>
+            <div class="ulContainer">
             <ul class="ad-items-selected"  style="margin-bottom: 0px;">
                 <li key="en" label="English">
                 <div class="drag-icon language-icon-en"></div>
@@ -59,6 +62,7 @@ var L = function(key) { return AD.Lang.Labels.getLabelHTML(key); };
                   中文
                 </li>
             </ul>
+            </div>
             <button class="delete-button x-btn-text selButton ">&lt;&lt;</button>                                      
         </div>
         <input type="hidden" class="hidden" id="lang-encoded" name="langList"></input>

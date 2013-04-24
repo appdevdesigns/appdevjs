@@ -1,16 +1,17 @@
 
 .appdev-option-twocolumn ul {
-    border: 1px solid #B0B0B0;
-/*    margin: 0.2em;*/
-    max-height: 10em;
-    min-height: 7em;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: visible;
     padding: 0.3em;
     vertical-align: middle;
-    width: 97% !important;
+    width: 90% !important;
     margin-left:0px;
-    float: none;
+}
+
+.appdev-option-twocolumn .ulContainer {
+    overflow-y: auto;
+    max-height: 10em;
+    min-height: 7em;
+    border: 1px solid #B0B0B0;
 }
 
 .appdev-option-twocolumn .loading-indicator {
