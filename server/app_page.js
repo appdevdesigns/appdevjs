@@ -128,7 +128,7 @@ var FakeApp = function(context) {
     this.context = context;
 };
 
-var routeVerbs = require(__appdevPathNode+'express/lib/router/methods.js').concat(['all']);
+var routeVerbs = require('methods').concat(['all']);
 //['all', 'get', 'post', 'put', 'delete', 'head', ...];
 for (var i=0; i<routeVerbs.length; i++) {
     // Create a closure so `verb` remains the same when the function evaluates
