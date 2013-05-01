@@ -49,21 +49,21 @@ function simulateClick(control)
     			}
     			console.log('got here 5');
     			var submitButton = page.evaluate(function(){
-    				return document.getElementsByTagName('button');
+    				return document.getElementsByName('submit');
     			});
 				if (typeof jQuery == 'undefined'){
 					console.log('jquery is not defined');
 				} else {
 					console.log('jquery is defined');
 				}
-				console.log(jQuery.fn.jquery);
+				//console.log(jQuery.fn.jquery);
     			for (var m=0;m<submitButton.length;m++){;
-    					//page.evaluate(function(){
+    					page.evaluate(function(){
     						console.log('got here before click');
     						//simulateClick(submitButton[m]);
-    						//submitButton[m].click();
+    						submitButton[m].submit();
     						console.log('got here click');
-    					//});
+    					});
     				//});
     				console.log('got here 6');
     			}
