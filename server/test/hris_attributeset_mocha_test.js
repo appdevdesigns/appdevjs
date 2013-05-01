@@ -1,11 +1,15 @@
-var chai = require('../../web/scripts/chai');
-var hris_attributeset = require('../../modules/hris/web/pages/dbadmin/scripts/APIAttributeset.js');
-//var jQuery = require('../../web/scripts/jquery/jquery.js');
+//steal('/init/hris/dbadmin/dbadmin.js');
+//var hris_attributeset = require('../../modules/hris/web/pages/dbadmin/scripts/APIAttributeset.js');
+//var jQuery = require('../../web/scripts/base.min.js');
+//console.log('__appdevPath = '+__appdevPath);
+//var AD = require('../../server/AD.js');
+//var include = require('../../server/test/includeScripts.js');
+//steal('../../modules/hris/web/pages/dbadmin/dbadmin.js');
 //var string = require('../../web/scripts/jquery/lang/string/string.js');
-/*/scripts/jquery/controller/subscribe/subscribe.js');
-    listUrls.push('/scripts/jquery/view/ejs/ejs.js');
-    listUrls.push('/scripts/jquery/controller/view/view.js');
-    listUrls.push('/scripts/jquery/model/model.js');
+//var subscribe = require('../../web/scripts/jquery/controller/subscribe/subscribe.js');
+//var ejs = require('../../web/scripts/jquery/view/ejs/ejs.js');
+//var view = require('../../web/scripts/jquery/controller/view/view.js');
+    /*listUrls.push('/scripts/jquery/model/model.js');
     listUrls.push('/scripts/jquery/dom/fixture/fixture.js');
     listUrls.push('/scripts/jquery/dom/form_params/form_params.js');
     listUrls.push('/scripts/jquery/event/event.js');
@@ -148,4 +152,4 @@ var hris_attributeset = require('../../modules/hris/web/pages/dbadmin/scripts/AP
                         
 		  	
 		 });
-	})
+	});
