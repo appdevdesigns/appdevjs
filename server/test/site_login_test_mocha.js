@@ -17,4 +17,11 @@ describe('site login page', function(){
             expect(res).to.have.status(200);
         });
     });
+    it('should not respond to /', function() {
+        chai.request('http://localhost:8088')
+        .get('/').res(function(res) {
+            console.log(res);
+            expect(res).to.have.status(404);
+        });
+    });
 })
