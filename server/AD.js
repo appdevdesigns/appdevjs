@@ -20,6 +20,7 @@
  */
 AD = { App:{}, Comm:{}, Defaults:{}, Lang:{}, Model:{},  Util:{}  };
 
+var path = require('path');
 
 /**
  * @class AD_Server.AdminToolbar
@@ -1522,7 +1523,7 @@ module.exports = AD;
 ////
 ////The themes are defined as a directory in the /root/data/theme/ folder.
 ////
-var pathThemes = './web/theme/';
+var pathThemes = path.join(__appdevPath,'web/theme');
 var listThemes = {};
 fs.readdir(pathThemes, function (err, files) {
 
@@ -1548,7 +1549,7 @@ fs.readdir(pathThemes, function (err, files) {
             if (fs.existsSync(configPath)) {
 
                 AD.Util.Log('   - loading theme [ '+configPath+']');
-                var modelObj = require('.'+configPath); // <-- stupid Path issue.  fs works from app.js dir/ require is local to this file.
+                var modelObj = require(configPath);
 
                 listThemes[dirName] = modelObj;
 

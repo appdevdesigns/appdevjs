@@ -782,3 +782,5 @@ app.all('/test', function(req, res, next) {
     global.jQuery();
     //.trigger('test', {});
 });
+
+module.exports = app;
