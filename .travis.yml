@@ -4,5 +4,5 @@ node_js:
 
 script: 
 - cd server
-- ./test.sh
+- npm test
 # running a unit test in mocha command-line
