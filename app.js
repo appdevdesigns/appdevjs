@@ -411,7 +411,7 @@ AD.Comm.Notification.subscribe('ad.module.enable', function(event, data) {
 ////----------------------------------------------------------------------
 ////  Load our default 'site' module
 ////
-var sitePath = './modules/site/def_site.js';
+var sitePath = path.join(__appdevPath+'/modules/site/def_site.js');
 log('  ');
 log('::: Loading Site Module :::');
 log('   - loading ['+sitePath+']');

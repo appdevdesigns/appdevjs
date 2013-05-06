@@ -402,7 +402,7 @@ Module.prototype.loadInterfaces = function( onError )
                         log('        - ['+relativePathFromRoot(modulePath)+']');
                         
                         var interfacePath = relativePathFromRoot(modulePath);
-                        var currInterface = prepareInterface(self.require(interfacePath));
+                        var currInterface = prepareInterface(self.require(interfacePath,__appdevPath));
 
                         // only process this if it is a Page
                         if (currInterface.type && currInterface.type == 'ad.page') {
