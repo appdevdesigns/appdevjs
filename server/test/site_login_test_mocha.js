@@ -6,9 +6,13 @@ chai.use(chaiHttp);
 var expect = chai.expect;
 
 var testTarget = app;
-var testTarget = 'http://localhost:8088';
+//var testTarget = 'http://localhost:8088';
 
 describe('site login page', function(){
+    before(function(done) {
+       // wait for the module to load
+       done();
+    });
     it('should show a login page', function(done){
         chai.request(testTarget)
         .get('/page/site/login').res(function(res) {
