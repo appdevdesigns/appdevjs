@@ -1,28 +1,29 @@
 {
-	"name": "appdevjs",
-	"version": "0.1.0",
-	"dependencies": {
-		"ansi-color": "*",
-		"ejs": "*",
-		"express": "2.5.9",
-		"express-params": "*",
-		"socket.io": "~0.9.0",
-		"mysql": "~2.0.0",
-		"faye": "*",
-		"jquery-deferred": "*",
-		"temp": "*",
-		"eventemitter2": "*",
-		"async": "*",
-		"nodeunit": "*",
-		"request": "*",
-		"underscore": "*",
-		"jsdom": "*",
-		"mimelib-noiconv": "*",
-		"cas": "git+https://github.com/joshchan/node-cas.git#master",
-		"mocha": "*",
-		"commander": "*"
-	},
-	"scripts": {
-		"test": "./test/mocha_test.sh"
-	}
+  "name": "appdevjs",
+  "version": "0.1.0",
+  "dependencies": {
+    "ansi-color": "*",
+    "ejs": "*",
+    "express": "2.5.9",
+    "express-params": "*",
+    "socket.io": "~0.9.0",
+    "mysql": "~2.0.0",
+    "faye": "*",
+    "jquery-deferred": "*",
+    "temp": "*",
+    "eventemitter2": "*",
+    "async": "*",
+    "nodeunit": "*",
+    "request": "*",
+    "underscore": "*",
+    "jsdom": "*",
+    "mimelib-noiconv": "*",
+    "cas": "git+https://github.com/joshchan/node-cas.git#master",
+    "mocha": "*",
+    "commander": "*",
+    "methods": "0.0.1"
+  },
+  "scripts": {
+    "test": "./test/mocha_test.sh"
+  }
 }
