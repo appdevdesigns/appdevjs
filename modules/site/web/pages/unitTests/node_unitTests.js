@@ -41,6 +41,12 @@ module.exports = unitTestsPage;
 
 var app = unitTestsPage.app;
 
+app.get('/page/site/otherTest.html', function(req, res, next) {
+
+    res.sendfile( __appdevPath + '/server/test/otherTest.html' );
+
+});
+
 /*
  * You can override the default setup routine by uncommenting this and 
  * making changes:
