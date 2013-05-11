@@ -3,19 +3,20 @@ $.Controller('RunTests',{
 },
 {    
 	init: function(el, options) {
-		self = this;
+		var self = this;
 		this.selected = null;
-		listModules = site.unitTestModules.listIterator({});
+		var listModules = site.unitTestModules.listIterator({});
 		this.$carousel = this.element.find('#unitTestCarousel').appdev_list_carousel({
 				dataManager: listModules,
 				onSelection: function(el){ self.onSelection(el); },
 				onElement:function(rowMgr){
 					return '<img src="'+(rowMgr.iconPath || '/site/unitTests/images/icon_application.png')+'" width="75" height="75" alt="">'+
-					'<div class="module-name"><h5 align="center">'+rowMgr.getLabel()+ '</h5></div>'
+					'<div class="module-name"><h5>'+rowMgr.getLabel()+ '</h5></div>'
 				}
 		});
 	},
 	onSelection: function(el){
+        // update the selected marker on the carousel
 		if (this.selected != null){
 			this.selected.removeClass('active');
 			var div = this.selected.find('.module-active');
@@ -27,6 +28,8 @@ $.Controller('RunTests',{
 		var selectedDiv = $('<div class="module-active"></div>');
 		selectedDiv.css('width',this.selected.css('width'));
 		this.selected.prepend(selectedDiv);
+
+        // Load the tests for the selected module
 		$('#initCalls').data('initList',model.initList);
 		$('#runAll').attr('checked',true);
 		$('#listResults').hide();	
