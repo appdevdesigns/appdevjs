@@ -64,33 +64,40 @@ $.Controller('RunTests',{
 	},
 	"#applyButton click": function(el,event) {
 		var checkboxes = this.element.find('input:checkbox:checked');
-		var scriptList = [];
+		this.scriptList = [];
 		var initList = $('#initCalls').data('initList')|| [];
 		for (var a in initList) {
-			scriptList.push(initList[a]);
+			this.scriptList.push(initList[a]);
 		}
 		
 		// now that all init/* script are loaded, load mocha
 		// NOTE:  put this after our loading of our Models since mocha
 		// defines a 'process' object and confuses our Models into thinking
 		// we are on the server.
-		scriptList.push('/scripts/mocha/mocha.js');
-		scriptList.push('/scripts/chai/chai.js');
-		scriptList.push('/site/unitTests/scripts/hrefGrep.js');
+		this.scriptList.push('/scripts/mocha/mocha.js');
+		this.scriptList.push('/scripts/chai/chai.js');
+		this.scriptList.push('/site/unitTests/scripts/hrefGrep.js');
 		
+        var self = this;
 		checkboxes.each(function(index){
 			if ($(this).attr('id') !== 'runAll'){
-				scriptList.push($(this).attr('id'));
+				self.scriptList.push($(this).attr('id'));
 			}
 		});
 
-		$('#listTests').hide();
+        this.runTests();
+	},
+    "#refreshResults click": function(el, event) {
+        this.runTests();
+    },
+    runTests: function() {
+        $('#listTests').hide();
 		$('#listResults').show();
 		if ($('#iframeListResults').length !== 0){
 			$('#iframeListResults').remove();
 		}
 		var iframe = $('<iframe id="iframeListResults" frameborder=0 width="900" height="600"></iframe>');
-		iframe.attr('src','/site/mocha/load?scriptList='+scriptList);
+		iframe.attr('src','/site/mocha/load?scriptList='+this.scriptList);
 		iframe.appendTo($('#listResults'));
-	}
+    }
 });

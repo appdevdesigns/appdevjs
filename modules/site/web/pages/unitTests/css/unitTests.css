@@ -255,3 +255,6 @@ code .number { color: #2F6FAD }
     text-shadow: 0px 0px 0px;
 }
 
+#listResults {
+    padding-top: 10px;
+}
