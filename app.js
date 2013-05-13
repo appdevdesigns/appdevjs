@@ -37,7 +37,7 @@ express = require(__appdevPathNode + 'express');
 var params = require(__appdevPathNode + 'express-params');
 app = express.createServer();
 params.extend(app);
-
+app.$siteOnline = $.Deferred();
 
 //Session store
 AD.SessionStore = new express.session.MemoryStore;
@@ -759,7 +759,7 @@ $.when(DFDs.preModules, DFDs.preWidgets).then(function() {
         log( '============================================');
         log( 'express server listening on port['+AD.Defaults.sitePort+']');
         AD.Comm.Notification.publish('site.online', {});
-
+        app.$siteOnline.resolve();
     });
 });
 

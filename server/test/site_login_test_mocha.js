@@ -1,6 +1,8 @@
 var chai = require('chai');
 var chaiHttp = require('chai-http');
 var app = require('../../app.js');
+var $ = require('../AD.js').jQuery;
+
 chai.use(chaiHttp);
 
 var expect = chai.expect;
@@ -10,8 +12,9 @@ var testTarget = app;
 
 describe('site login page', function(){
     before(function(done) {
-       // wait for the module to load
-       done();
+       $.when(app.$siteOnline).then( function() {
+        done();
+       });
     });
     it('should show a login page', function(done){
         chai.request(testTarget)
