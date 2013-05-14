@@ -49,7 +49,7 @@ function simulateClick(control)
     			}
     			console.log('got here 5');
     			var submitButton = page.evaluate(function(){
-    				return document.getElementsByName('submit');
+    				return document.getElementsByTagName('button');
     			});
 				if (typeof jQuery == 'undefined'){
 					console.log('jquery is not defined');
