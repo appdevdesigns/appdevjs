@@ -88,8 +88,14 @@ module.exports = AD.Model.ModelSQL('AD.Model.ModelSQLMultilingual', {
         }
 
         return DataStore.create( curDataMgr, function( err, data) {
-
-
+            
+            if (err) {
+                // Do not proceed further if there was an error creating
+                // the basic table entry.
+                callback(err, data);
+                return;
+            }
+            
             // the mysql obj returns the insertID of the new row.
             // here we package it in an obj that reflects this object's
             // primaryKey field
