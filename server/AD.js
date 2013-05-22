@@ -916,6 +916,7 @@ AD.App.Page.listFrameworkScripts = [
     '//jquery/view/view.js',
     '//jquery/lang/openajax/openajax.js',
     '//base.min.js',
+    '//async.js',
     '<then>',
     '//kendoui/js/kendo.web.min.js',
     '//bootstrap/js/bootstrap.min.js',
