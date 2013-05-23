@@ -42,13 +42,15 @@ steal(
     '/appDev/communications/api/api.js',
     '/appDev/model/model.js',
     '/appDev/model/service.js',
-    '/appDev/model/serviceOld.js',   // Depreciated: will delete soon.
+    '/appDev/model/serviceOld.js',   // Deprecated: will delete soon.
     '/appDev/lang/multilingual.js',
     '/appDev/lang/xlation.js',
     '/appDev/communications/services/serviceModel.js',
     '/appDev/model/listIterator.js',
     '/appDev/controller/controller.js',
-    '/appDev/controller/form.js').then(function($) {
+    '/appDev/controller/form.js')
+.then('/appDev/model/dummyModel.js')
+.then(function($) {
 
 
     //------------------------------------------------------------
