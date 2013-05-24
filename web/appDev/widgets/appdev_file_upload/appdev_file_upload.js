@@ -3,7 +3,11 @@ AD.Controller.extend("AppdevFileUpload",
 {
     init: function(el, options) {
         defaults = {
+            // The URL to uplaod the file to.
             urlUpload: null,
+            // Set to TRUE to allow the user to immediately upload another
+            // file after the first one is done.
+            autoReset: false,
             data: {}
         };
         this.options = $.extend(defaults, options);
@@ -23,6 +27,13 @@ AD.Controller.extend("AppdevFileUpload",
                 
         // Remove any previous file input elements
         this.element.find('input.uploader').remove();
+        
+        // Make sure the upload button is not disabled
+        this.element.find('button').removeAttr('disabled');
+        this.$progressBar
+            .hide()
+            .css('width', '0')
+            .removeClass('active');
         
         // There is no viewable content in this markup. So let's not use a
         // view for it.
@@ -64,16 +75,27 @@ AD.Controller.extend("AppdevFileUpload",
             .css('width', 0)
             .addClass('active')
             .show();
+        this.element.trigger('submit');
     },
     
     // This is triggered after the upload has completed.
-    "input.uploader fileuploaddone": function(e, data) {
+    "input.uploader fileuploaddone": function(el, ev, data) {
         this.$progressBar
             .css('width', '99.7%')
             .removeClass('active');
-        this.element.find('button').removeAttr('disabled');
-        // Re-initialize the uploader widget after each use
-        this.initUpload();
+        // Can re-initialize the uploader widget after each use
+        if (this.options.autoReset) {
+            this.reset();
+        }
+        // Trigger a simplified event on this appdev_file_upload widget
+        this.element.trigger('uploaded', {
+            name: data.files[0].name,
+            size: data.files[0].size
+        });
+    },
+    
+    reset: function() {
+        return this.initUpload();
     },
     
     insertDOM: function() {
