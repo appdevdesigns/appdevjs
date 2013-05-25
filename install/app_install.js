@@ -82,6 +82,25 @@ app.all('/', function(req, res) {
 });
 
 
+// workaround for incompatibility of Express with latest Node.js version
+app.all('*', function(req, res, next) {
+    var oldSendfile = res.sendfile;
+    // Add a wrapper that initializes the `root` option if needed.
+    res.sendfile = function(path, options, fn) {
+        options = options || {}
+        if (!options.root) {
+            if (path[0] == '/') {
+                options.root = '/';
+            } else {
+                options.root = './';
+            }
+        }
+        return oldSendfile.apply(res, [path, options, fn]);
+    };
+    next();
+});
+
+
 /**
  * @attribute path_appDevInstall /appDevInstall
  * ###Path: `/appDevInstall`
