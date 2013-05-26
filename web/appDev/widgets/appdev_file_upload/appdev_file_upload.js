@@ -69,28 +69,36 @@ AD.Controller.extend("AppdevFileUpload",
     
     // This is triggered when the user selects a file from their browser's
     // file upload dialog.
-    "input.uploader fileuploadsubmit": function(e, data) {
+    "input.uploader fileuploadsubmit": function(el, ev, data) {
         this.element.find('button').attr('disabled', 1);
         this.$progressBar
             .css('width', 0)
             .addClass('active')
             .show();
-        this.element.trigger('submit');
+        this.element.trigger('submit', data);
     },
     
     // This is triggered after the upload has completed.
     "input.uploader fileuploaddone": function(el, ev, data) {
         this.$progressBar
-            .css('width', '99.7%')
+            .css('width', '100%')
             .removeClass('active');
         // Can re-initialize the uploader widget after each use
         if (this.options.autoReset) {
             this.reset();
         }
+        
+        // Parse the userfile_id value from the server response
+        var res;
+        try {
+            res = $.parseJSON(data.jqXHR.responseText);
+        } catch (err) {}
+        
         // Trigger a simplified event on this appdev_file_upload widget
         this.element.trigger('uploaded', {
             name: data.files[0].name,
-            size: data.files[0].size
+            size: data.files[0].size,
+            response: res
         });
     },
     
