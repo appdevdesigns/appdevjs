@@ -3,6 +3,7 @@ node_js:
 - 0.8
 
 before_script:
+- mysql -e 'create database appdev;'
 - cd server
 - npm install
 - cd ..

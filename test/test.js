@@ -41,8 +41,8 @@ describe('testapp', function () {
 	    	var post_data = querystring.stringify({
 	    	      'dbType' : 'mysql',
 	    	      'dbName': 'appdevtest',
-	    	      'dbUser': 'appdevtest',
-	    	      'dbPword' : 'appdevtest',
+	    	      'dbUser': 'root',
+	    	      'dbPword' : '',
 	    	      'dbCharset' : 'utf8',
 	    	      'dbPathMySQL' : '/Applications/MAMP/Library/bin/mysql',
 	    	      'dbPathMySQLDump' : '/Applications/MAMP/Library/bin/mysqldump',
