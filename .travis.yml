@@ -8,4 +8,4 @@ before_script:
 - cd ..
 
 script: 
-- /server/node_modules/mocha/bin/mocha -t 10000 -R spec
+- ./server/node_modules/mocha/bin/mocha -t 10000 -R spec
