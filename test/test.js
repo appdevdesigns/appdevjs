@@ -40,9 +40,9 @@ describe('testapp', function () {
 	    	//var data = "dbType=mysql&dbName=appdev&dbUser=root&dbPword=root&dbCharset=utf8&dbPathMySQL=%2FApplications%2FMAMP%2FLibrary%2Fbin%2Fmysql&dbPathMySQLDump=%2FApplications%2FMAMP%2FLibrary%2Fbin%2Fmysqldump&connectType=url&dbPath=localhost&dbPort=3306&dbSocketPath=-&authType=local&sessionSecret=th3re+is+n0+sPo0n&casHost=-&casPort=-&casPath=-&casPgtCallback=&casSubmodule=&emailMethod=smtp&emailHost=securemail.example.com&emailPort=25&emailDomain=localhost&=&langList=en%3AEnglish%2Czh-hans%3A%E4%B8%AD%E6%96%87&langDefault=en&siteURL=localhost&sitePort=8088&production=false&adminUserID=root&adminPWord=root&adminLanguage=en";
 	    	var post_data = querystring.stringify({
 	    	      'dbType' : 'mysql',
-	    	      'dbName': 'appdev',
-	    	      'dbUser': 'root',
-	    	      'dbPword' : 'root',
+	    	      'dbName': 'appdevtest',
+	    	      'dbUser': 'appdevtest',
+	    	      'dbPword' : 'appdevtest',
 	    	      'dbCharset' : 'utf8',
 	    	      'dbPathMySQL' : '/Applications/MAMP/Library/bin/mysql',
 	    	      'dbPathMySQLDump' : '/Applications/MAMP/Library/bin/mysqldump',
@@ -67,8 +67,8 @@ describe('testapp', function () {
 	    	      'siteURL' : 'localhost',
 	    	      'sitePort' : '8088',
 	    	      'production' : 'false',
-	    	      'adminUserID' : 'root',
-	    	      'adminPWord' : 'root',
+	    	      'adminUserID' : 'appdevtest',
+	    	      'adminPWord' : 'appdevtest',
 	    	      'adminLanguage' : 'en'
 	    	  });
 	    	var options = {
