@@ -1,6 +1,6 @@
 var http = require('http');
 var assert = require("assert");
-var request = require("request");
+//var request = require("request");
 var querystring = require('querystring');
 //var steal = require("../server/node-steal.js");
 //var AD = require("../web/appDev/appDev.js");
@@ -109,13 +109,13 @@ describe('testapp', function () {
     child.kill();
   });
 
-  it('listens on the specified port simple test', function (done) {
+  /*it('listens on the specified port simple test', function (done) {
 	  request('http://localhost:' + port + '/test', function(err, res, body) {
 	      console.log('****response:' + res.statusCode );
 	    assert(res.statusCode === 200);
 	    done();
 	  });
-  });
+  });*/
   
   it('listens on the specified port express', function (done) {
 	  var options = {
