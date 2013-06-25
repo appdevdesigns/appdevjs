@@ -32,6 +32,7 @@ $values = {
     
     // Site Authentication Values
     authType:'-',
+    authRequired:'true',
     sessionSecret:'th3re is n0 sPo0n',
     
     

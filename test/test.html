@@ -2,44 +2,40 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link type="text/css" rel="stylesheet" href="../modules/site/web/pages/unitTests/css/unitTests.css">
-<script type="text/javascript" src="../web/scripts/steal/steal.js"></script>
+<link type="text/css" rel="stylesheet" href="/site/unitTests/css/unitTests.css">
+<script type="text/javascript" src="/scripts/steal/steal.js"></script>
 <script>
 
 	var listUrls = [];
-	listUrls.push('//jquery/jquery.js');
-    listUrls.push('//jquery/lang/string/string.js');
-    listUrls.push('//jquery/controller/subscribe/subscribe.js');
-    listUrls.push('//jquery/view/ejs/ejs.js');
-    listUrls.push('//jquery/controller/view/view.js');
-    listUrls.push('//jquery/model/model.js');
-    listUrls.push('//jquery/dom/fixture/fixture.js');
-    listUrls.push('//jquery/dom/form_params/form_params.js');
-    listUrls.push('//jquery/event/event.js');
-    listUrls.push('//jquery/event/destroyed/destroyed.js');
-    listUrls.push('//jquery/lang/object/object.js');
-    listUrls.push('//jquery/lang/string/rsplit/rsplit.js');
-    listUrls.push('//jquery/dom/dom.js');
-    listUrls.push('//jquery/class/class.js');
-    listUrls.push('//jquery/controller/controller.js');
-    listUrls.push('//jquery/view/view.js');
-    listUrls.push('//jquery/lang/openajax/openajax.js');
-    listUrls.push('//base.min.js');
-	//listUrls.push('//../appDev/appDev.js');
+	listUrls.push('/scripts/jquery/jquery.js');
+    listUrls.push('/scripts/jquery/lang/string/string.js');
+    listUrls.push('/scripts/jquery/controller/subscribe/subscribe.js');
+    listUrls.push('/scripts/jquery/view/ejs/ejs.js');
+    listUrls.push('/scripts/jquery/controller/view/view.js');
+    listUrls.push('/scripts/jquery/model/model.js');
+    listUrls.push('/scripts/jquery/dom/fixture/fixture.js');
+    listUrls.push('/scripts/jquery/dom/form_params/form_params.js');
+    listUrls.push('/scripts/jquery/event/event.js');
+    listUrls.push('/scripts/jquery/event/destroyed/destroyed.js');
+    listUrls.push('/scripts/jquery/lang/object/object.js');
+    listUrls.push('/scripts/jquery/lang/string/rsplit/rsplit.js');
+    listUrls.push('/scripts/jquery/dom/dom.js');
+    listUrls.push('/scripts/jquery/class/class.js');
+    listUrls.push('/scripts/jquery/controller/controller.js');
+    listUrls.push('/scripts/jquery/view/view.js');
+    listUrls.push('/scripts/jquery/lang/openajax/openajax.js');
+    listUrls.push('/scripts/base.min.js');
+	listUrls.push('/appDev/appDev.js');
 
-    //listUrls.push('/init/site/componentManager/componentManager.js');
-    //listUrls.push('/init/site/email/email.js');
-    //listUrls.push('/init/site/login/login.js');
-    //listUrls.push('/init/site/unitTests/unitTests.js');
-    //listUrls.push('/init/site/welcome/welcome.js');
-    listUrls.push('//mocha/mocha.js');
-    listUrls.push('//chai/chai.js');
-    //listUrls.push('/site/unitTests/scripts/hrefGrep.js');
-    //listUrls.push('//../../test/site_labels_test_mocha.js');
+	listUrls.push('/scripts/mocha/mocha.js');
 
-	listUrls.push(function(){ mocha.setup({reporter: 'dot', ui: 'bdd', ignoreLeaks: true});});  // <-- after chai
+	listUrls.push('/scripts/chai/chai.js');
 
-	//var appDev_authMethod = '<%- AD.Defaults.authMethod %>';
+	listUrls.push(function(){ mocha.setup({ui: 'bdd', ignoreLeaks: true});});  // <-- after chai
+
+	listUrls.push('/site/unitTests/tests/site_labels_test_mocha.js');
+	
+	var appDev_authMethod = 'local';
 	
 	var a =0;
 	var stealIt = function(a, ilist) {
@@ -50,6 +46,7 @@
 		} else {
 			// at the end of our list of required files, so run the tests.
 			mocha.run();
+			$('#mocha').href_grep({});
 		}
 	}
 	stealIt(a, listUrls);

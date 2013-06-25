@@ -99,6 +99,7 @@ var createContent = function(req, res, next){
 				'Content-type':'text/html'	
 		};
 	
+		//log(listParams);
 		AD.App.Page.returnTemplate(req, res, listParams);
 	}else{
 		next();

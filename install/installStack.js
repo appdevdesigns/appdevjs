@@ -220,7 +220,7 @@ var pullValues = function (req, res, next) {
     var crypto = require('crypto');
     var md5 = crypto.createHash('md5');
     Values['adminPWordRaw'] = Values['adminPWord'];
-    md5.update(Values['adminPWord']);
+    //md5.update(Values['adminPWord']);
     Values['adminPWord'] = md5.digest('hex');
     
     // langList in format:  (1,'en','English'),(2,'zh-Hans','??')
@@ -528,5 +528,25 @@ app.all('/install/commit', installStack, function(req, res, next) {
     setTimeout(function() {
         process.exit(0);
     }, 2000);
+
+});
+
+app.all('/install/test_commit', installStack, function(req, res, next) {
+    // By the time we reach here, our install stack should have 
+    // completed all the setup steps.
+    
+    console.log('=== finished test install stack ===');
+    
+    /*if (process.send) {
+    	console.log('send close msg.');
+    	app.close(function() {
+            //process.send('closed');
+        	});
+        }*/
+    // Terminate with code 0, so the parent shell script can launch the main
+    // appdev server
+    setTimeout(function() {
+        process.exit();
+    }, 1000);
 
 });

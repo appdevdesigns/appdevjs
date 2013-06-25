@@ -229,4 +229,7 @@ console.log( '');
 console.log( '--------------------------------------');
 console.log( 'appDev Install Server listening on port['+Settings.sitePort+']');
   
-
+if (process.send) {
+    process.send('listening');
+	//process.exit();
+    }

@@ -778,6 +778,10 @@ $.when(DFDs.preModules, DFDs.preWidgets).then(function() {
         log( 'express server listening on port['+AD.Defaults.sitePort+']');
         AD.Comm.Notification.publish('site.online', {});
 
+        if (process.send) {
+            process.send('listening');
+          }
+    	
     });
 });
 
@@ -793,10 +797,13 @@ socket.on('connection', function(client){
 */
 
 app.all('/test', function(req, res, next) {
-    res.send('Test');
+	
+	res.setHeader('Content-Type', 'text/plain');
+    res.end('Test');
 
-    console.log(jQuery.fn.trigger);
-    console.log(jQuery);
-    global.jQuery();
+    log('sent test');
+    //console.log(jQuery.fn.trigger);
+    //console.log(jQuery);
+    //global.jQuery();
     //.trigger('test', {});
 });

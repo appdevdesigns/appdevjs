@@ -20,7 +20,9 @@
     "mimelib-noiconv": "*",
     "cas": "git+https://github.com/joshchan/node-cas.git#master",
     "mocha": "*",
+    "chai": "*",
     "commander": "*",
+    "mocha-phantomjs": "*",
     "methods": "0.0.1"
   },
   "scripts": {

@@ -4,7 +4,7 @@ var log = AD.Util.Log;
 
 exports.production = [production];
 exports.authMethod = '[authType]';
-exports.authRequired = true;
+exports.authRequired = [authRequired];
 
 var authCAS = {
     'host': '[casHost]',
