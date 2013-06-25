@@ -3,11 +3,8 @@ node_js:
 - 0.8
 
 script: 
-#- ./server/test/mocha_test.sh
-# running a unit test in mocha command-line
 
-cd server
-npm install
-cd ..
-
-mocha -t 10000 -R spec 
+- cd server
+- npm install
+- cd ..
+- mocha -t 10000 -R spec
