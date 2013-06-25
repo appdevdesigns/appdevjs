@@ -42,7 +42,7 @@ describe('testapp', function () {
 	    	      'dbType' : 'mysql',
 	    	      'dbName': 'appdevtest',
 	    	      'dbUser': 'root',
-	    	      'dbPword' : '',
+	    	      'dbPword' : 'root',
 	    	      'dbCharset' : 'utf8',
 	    	      'dbPathMySQL' : 'mysql',
 	    	      'dbPathMySQLDump' : 'mysqldump',
