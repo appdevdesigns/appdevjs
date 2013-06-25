@@ -50,7 +50,7 @@ var importSQL = function (req, res, next, paths, dbName) {
 
     var dbClientPath = fetchKey('dbPathMySQL');
  console.log('dbClientPath: ' + dbClientPath);
-    if (fs.existsSync(dbClientPath)) {
+    if (true//fs.existsSync(dbClientPath)) { 
         
         // skip this if there is nothing to init
         if (paths.length == 0) {
