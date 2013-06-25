@@ -77,7 +77,7 @@ var importSQL = function (req, res, next, paths, dbName) {
                 dbClientPath + ' ' +
                 hostInfo + ' ' +
                 '-u' + fetchKey('dbUser') + ' ' +
-                '-p' + fetchKey('dbPword') + ' ' +
+                '-p\'' + fetchKey('dbPword') + '\' ' +
                 (dbName + ' ' || '') + // optional DB name
                 '< ' + sqlFile;
             console.log('executing [' + shellCommand + ']');

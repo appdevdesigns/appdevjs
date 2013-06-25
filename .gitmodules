@@ -1,3 +1,7 @@
 [submodule "modules/appRAD"]
 	path = modules/appRAD
 	url = git://github.com/appdevdesigns/appdevjs_appRAD.git
+
+[submodule "modules/hris"]
+	path = modules/hris
+	url = https://github.com/appdevdesigns/appdevjs_hris.git
