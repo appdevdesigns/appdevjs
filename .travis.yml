@@ -7,14 +7,15 @@ before_script:
 - echo "USE mysql;\nUPDATE user SET password=PASSWORD('root') WHERE user='root';\nFLUSH PRIVILEGES;\n" | mysql -u root
 
 - npm install coffee-script
-- npm install mocha-phantomjs
-- cd node_modules/mocha-phantomjs
-- npm install
+- npm install mocha-phantomjs phantomjs
 
 - cd ../../server
 - npm install
 - cd ..
 
 script:
+# server only tests
 # - ./server/node_modules/mocha/bin/mocha -t 10000 -R spec
+
+# server and client tests
 - node_modules/coffee-script/bin/cake test
