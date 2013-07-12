@@ -116,12 +116,10 @@ function HTML(runner, root) {
   });
 
   runner.on('fail', function(test, err){
-    if ('hook' == test.type || err.uncaught) runner.emit('test end', test);
+    if ('hook' == test.type) runner.emit('test end', test);
   });
 
   runner.on('test end', function(test){
-    window.scrollTo(0, document.body.scrollHeight);
-
     // TODO: add to stats
     var percent = stats.tests / this.total * 100 | 0;
     if (progress) progress.update(percent).draw(ctx);
@@ -165,7 +163,7 @@ function HTML(runner, root) {
 
       on(h2, 'click', function(){
         pre.style.display = 'none' == pre.style.display
-          ? 'inline-block'
+          ? 'block'
           : 'none';
       });
 

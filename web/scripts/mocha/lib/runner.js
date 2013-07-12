@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -8,8 +7,7 @@ var EventEmitter = require('events').EventEmitter
   , Test = require('./test')
   , utils = require('./utils')
   , filter = utils.filter
-  , keys = utils.keys
-  , noop = function(){};
+  , keys = utils.keys;
 
 /**
  * Non-enumerable globals.
@@ -45,6 +43,7 @@ module.exports = Runner;
  *   - `hook end`  (hook) hook complete
  *   - `pass`  (test) test passed
  *   - `fail`  (test, err) test failed
+ *   - `pending`  (test) test pending
  *
  * @api public
  */
@@ -60,6 +59,15 @@ function Runner(suite) {
   this.grep(/.*/);
   this.globals(this.globalProps().concat(['errno']));
 }
+
+/**
+ * Wrapper for setImmediate, process.nextTick, or browser polyfill.
+ *
+ * @param {Function} fn
+ * @api private
+ */
+
+Runner.immediately = global.setImmediate || process.nextTick;
 
 /**
  * Inherit from `EventEmitter.prototype`.
@@ -119,7 +127,7 @@ Runner.prototype.globalProps = function() {
 
   // non-enumerables
   for (var i = 0; i < globals.length; ++i) {
-    if (~props.indexOf(globals[i])) continue;
+    if (~utils.indexOf(props, globals[i])) continue;
     props.push(globals[i]);
   }
 
@@ -181,9 +189,11 @@ Runner.prototype.checkGlobals = function(test){
 Runner.prototype.fail = function(test, err){
   ++this.failures;
   test.state = 'failed';
+
   if ('string' == typeof err) {
     err = new Error('the string "' + err + '" was thrown, throw an Error :)');
   }
+
   this.emit('fail', test, err);
 };
 
@@ -222,7 +232,10 @@ Runner.prototype.hook = function(name, fn){
   function next(i) {
     var hook = hooks[i];
     if (!hook) return fn();
+    if (self.failures && suite.bail()) return fn();
     self.currentRunnable = hook;
+
+    hook.ctx.currentTest = self.test;
 
     self.emit('hook', hook);
 
@@ -236,11 +249,12 @@ Runner.prototype.hook = function(name, fn){
       if (testError) self.fail(self.test, testError);
       if (err) return self.failHook(hook, err);
       self.emit('hook end', hook);
+      delete hook.ctx.currentTest;
       next(++i);
     });
   }
 
-  process.nextTick(function(){
+  Runner.immediately(function(){
     next(0);
   });
 };
@@ -483,12 +497,11 @@ Runner.prototype.run = function(fn){
   var self = this
     , fn = fn || function(){};
 
-  debug('start');
-
-  // uncaught callback
-  function uncaught(err) {
+  function uncaught(err){
     self.uncaught(err);
   }
+
+  debug('start');
 
   // callback
   this.on('end', function(){
@@ -521,6 +534,8 @@ Runner.prototype.run = function(fn){
 
 function filterLeaks(ok, globals) {
   return filter(globals, function(key){
+    // Firefox and Chrome exposes iframes as index inside the window object
+    if (/^d+/.test(key)) return false;
     var matched = filter(ok, function(ok){
       if (~ok.indexOf('*')) return 0 == key.indexOf(ok.split('*')[0]);
       // Opera and IE expose global variables for HTML element IDs (issue #243)

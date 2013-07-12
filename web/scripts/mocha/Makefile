@@ -1,13 +1,15 @@
 
 REPORTER ?= dot
-TM_DEST = ~/Library/Application\ Support/TextMate/Bundles
 TM_BUNDLE = JavaScript\ mocha.tmbundle
 SRC = $(shell find lib -name "*.js" -type f | sort)
 SUPPORT = $(wildcard support/*.js)
 
 all: mocha.js
 
-mocha.js: $(SRC) $(SUPPORT)
+lib/browser/diff.js: node_modules/diff/diff.js
+	cp node_modules/diff/diff.js lib/browser/diff.js
+
+mocha.js: $(SRC) $(SUPPORT) lib/browser/diff.js
 	@node support/compile $(SRC)
 	@cat \
 	  support/head.js \
@@ -30,7 +32,7 @@ lib-cov:
 
 test: test-unit
 
-test-all: test-bdd test-tdd test-qunit test-exports test-unit test-grep test-jsapi test-compilers
+test-all: test-bdd test-tdd test-qunit test-exports test-unit test-grep test-jsapi test-compilers test-glob test-requires
 
 test-jsapi:
 	@node test/jsapi
@@ -39,6 +41,7 @@ test-unit:
 	@./bin/mocha \
 		--reporter $(REPORTER) \
 		test/acceptance/*.js \
+		--growl \
 		test/*.js
 
 test-compilers:
@@ -47,6 +50,16 @@ test-compilers:
 		--compilers coffee:coffee-script,foo:./test/compiler/foo \
 		test/acceptance/test.coffee \
 		test/acceptance/test.foo
+
+test-requires:
+	@./bin/mocha \
+		--reporter $(REPORTER) \
+		--compilers coffee:coffee-script \
+		--require test/acceptance/require/a.js \
+		--require test/acceptance/require/b.coffee \
+		--require test/acceptance/require/c.js \
+		--require test/acceptance/require/d.coffee \
+		test/acceptance/require/require.js
 
 test-bdd:
 	@./bin/mocha \
@@ -97,6 +110,9 @@ test-async-only:
 	  --async-only \
 	  test/acceptance/misc/asyncOnly
 
+test-glob:
+	@./test/acceptance/glob/glob.sh
+
 non-tty:
 	@./bin/mocha \
 		--reporter dot \
@@ -120,7 +136,6 @@ non-tty:
 	@cat /tmp/spec.out
 
 tm:
-	mkdir -p $(TM_DEST)
-	cp -fr editors/$(TM_BUNDLE) $(TM_DEST)
+	@open editors/$(TM_BUNDLE)
 
 .PHONY: test-cov test-jsapi test-compilers watch test test-all test-bdd test-tdd test-qunit test-exports test-unit non-tty test-grep tm clean

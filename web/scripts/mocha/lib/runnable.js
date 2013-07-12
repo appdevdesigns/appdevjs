@@ -18,6 +18,12 @@ var Date = global.Date
   , clearInterval = global.clearInterval;
 
 /**
+ * Object#toString().
+ */
+
+var toString = Object.prototype.toString;
+
+/**
  * Expose `Runnable`.
  */
 
@@ -125,16 +131,14 @@ Runnable.prototype.inspect = function(){
  */
 
 Runnable.prototype.resetTimeout = function(){
-  var self = this
-    , ms = this.timeout();
+  var self = this;
+  var ms = this.timeout() || 1e9;
 
   this.clearTimeout();
-  if (ms) {
-    this.timer = setTimeout(function(){
-      self.callback(new Error('timeout of ' + ms + 'ms exceeded'));
-      self.timedOut = true;
-    }, ms);
-  }
+  this.timer = setTimeout(function(){
+    self.callback(new Error('timeout of ' + ms + 'ms exceeded'));
+    self.timedOut = true;
+  }, ms);
 };
 
 /**
@@ -188,7 +192,7 @@ Runnable.prototype.run = function(fn){
   if (this.async) {
     try {
       this.fn.call(ctx, function(err){
-        if (err instanceof Error) return done(err);
+        if (err instanceof Error || toString.call(err) === "[object Error]") return done(err);
         if (null != err) return done(new Error('done() invoked with non-Error: ' + err));
         done();
       });

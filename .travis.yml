@@ -6,9 +6,15 @@ before_script:
 - mysql -e 'create database appdevtest;'
 - echo "USE mysql;\nUPDATE user SET password=PASSWORD('root') WHERE user='root';\nFLUSH PRIVILEGES;\n" | mysql -u root
 
-- cd server
+- npm install coffee-script
+- npm install mocha-phantomjs
+- cd node_modules/mocha-phantomjs
+- npm install
+
+- cd ../../server
 - npm install
 - cd ..
 
-script: 
-- ./server/node_modules/mocha/bin/mocha -t 10000 -R spec
+script:
+# - ./server/node_modules/mocha/bin/mocha -t 10000 -R spec
+- node_modules/coffee-script/bin/cake test

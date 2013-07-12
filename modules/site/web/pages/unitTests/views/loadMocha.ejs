@@ -59,8 +59,8 @@ if (script.names.length > 0) {
 			});
 		} else {
 			// at the end of our list of required files, so run the tests.
-			mocha.run();
-			$('#mocha').href_grep({});
+			if (window.mochaPhantomJS) { mochaPhantomJS.run(); }
+      		else { mocha.run(); $('#mocha').href_grep({}); }
 		}
 	}
 	stealIt(a, listUrls);
