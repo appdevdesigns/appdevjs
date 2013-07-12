@@ -9,7 +9,7 @@ before_script:
 - npm install coffee-script
 - npm install mocha-phantomjs phantomjs
 
-- cd ../../server
+- cd ./server
 - npm install
 - cd ..
 
