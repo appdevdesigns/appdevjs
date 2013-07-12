@@ -1,3 +1,29 @@
+/**
+ * @class UnitTesting
+ * @parent index 6
+ *
+ * ###Running Unit Tests
+ *
+ * This file sets up the testing environment for the framework's unit tests. 
+ * If not being run from Travis-CI, run "cake test" from the command line to start the 
+ * test suite after installing the following packages manually (please note version requirements);
+ * 
+ * -	coffee-script
+ * -	mocha-phantomjs (3.1.0 or higher)
+ * -	phantomjs (1.9.1 or higher)
+ * -	mocha (1.12.0 or higher)
+ * 
+ * 
+ * To set up the unit testing environment, this file does the following;
+ * 
+ * -	start an automated install process
+ * -	set up a testing database
+ * -	setup a test version of appDev framework with default values and authentication disabled
+ * -	install any necessary modules
+ * -	start an instance of the test site so unit tests can be retrieved and run
+ * 
+ */
+
 var http = require('http');
 var assert = require("assert");
 //var request = require("request");
@@ -7,6 +33,7 @@ var exec = require("child_process").exec;
 var spawn = require('child_process').spawn;
 var fs = require('fs');
 
+
 (function() {
 
 describe('', function () {
@@ -15,26 +42,72 @@ describe('', function () {
       port = 8088;
 
   before( function (done) {
+	  //fork the automated install process
 	  install_child = fork('./install/app_install.js', null, {env: {PORT: port}});
 	  
+	  //wait until the install process completes then install the modules and and fork an instance of the main site
 	  install_child.on('exit', function (code) {
 		  	setTimeout(function() {
 				   console.log('Install process exited with exit code '+code);
-				   console.log('\n\n**** MAIN SITE TURN ON ****\n\n');
-				   setTimeout(function() {
-					   child = fork('app.js', null, {env: {PORT: port}});
-					    child.on('message', function (msg) {
-					    	if (msg === 'listening') {
-					    	  console.log('**** main site up.');
-					        done();
-					      }
-					    });
-				   }, 1000);
+				   
+				   console.log("Adding modules in " + process.cwd() + "/modules");
+			    	  var dbOptions = {
+			    		        user:       "root",
+			    		        password:   "root",
+			    		        host:       "localhost",
+			    		        port:       "3306"
+			    		    };
+			    		    
+			    		    var db = require('../server/node_modules/mysql');
+			    		    
+			    		    var connection = db.createConnection(dbOptions);
+			    		    connection.connect(function(err) {
+			    		        if (err) {
+			    		            console.log(' DB connection failed');
+			    		            throw err;
+			    		        } else {
+			    		            console.log(' DB connection established');
+			    		        }
+			    		    });
+			    	  var sysObj = {
+			    			  name: "hris",
+			    			  path: process.cwd() + "/modules/hris",
+			    			  type: "module"
+			    	  };
+			    	  var sql = " \
+			                INSERT INTO " + "appdevtest" + ".site_system \
+			                    (system_name, system_path, system_type) \
+			                VALUES \
+			                    (?, ?, ?) \
+			            ";
+			    	  connection.query(sql, [sysObj.name, sysObj.path, sysObj.type], function(err, results, fields) {
+			                if (err) {
+			                    console.error(err);
+			                } else
+			                	{ 
+			                	console.log("done.");  
+			                	
+			                	console.log('\n\n**** MAIN SITE UP ****\n\n');
+				 				   setTimeout(function() {
+				 					   child = fork('app.js', null, {silent: "true", env: {PORT: port}});
+				 					    child.on('message', function (msg) {
+				 					    	if (msg === 'listening') {
+				 					    	  console.log('**** main site up.');
+				 					    	  
+				 					    	  done();
+				 					        
+				 					      }
+				 					    });
+				 				   }, 1000);
+			                	}
+			            });
+				   
 		    		
 			  }, 0);
 		   
 		});
 	  
+	  //Wait until the install site is live then create the testing database, defaults.js file
 	  install_child.on('message', function (msg) {
     	if (msg === 'listening') {
     		console.log('**** install site up.');
@@ -46,8 +119,8 @@ describe('', function () {
 	    	      'dbUser': 'root',
 	    	      'dbPword' : 'root',
 	    	      'dbCharset' : 'utf8',
-	    	      'dbPathMySQL' : 'mysql',
-	    	      'dbPathMySQLDump' : 'mysqldump',
+	    	      'dbPathMySQL' : 'mysql', // /Applications/MAMP/Library/bin/
+	    	      'dbPathMySQLDump' : 'mysqldump', // /Applications/MAMP/Library/bin/
 	    	      'connectType' : 'url',
 	    	      'dbPath' : 'localhost',
 	    	      'dbPort' : '3306',
@@ -159,10 +232,9 @@ describe('', function () {
   describe("visit", function() {
 	  
 	  var expect = require('../server/node_modules/chai').expect;
-	  var fileURL = function() { return "http://localhost:8088/site/mocha/load?scriptList=/scripts/mocha/mocha.js,/scripts/chai/chai.js,/site/unitTests/tests/site_labels_test_mocha.js"; };	    
-	  var fileURL2 = function() { return "http://localhost:8088/site/mocha/load?scriptList=/scripts/mocha/mocha.js,/scripts/chai/chai.js,/site/unitTests/tests/site_language_test_mocha.js"; };
-	  var fileURL3 = function() { return "http://localhost:8088/site/mocha/load?scriptList=/scripts/mocha/mocha.js,/scripts/chai/chai.js,/hris/tests/hris_attribute_test_mocha.js"; };
-
+	  var fileURLsite = function() { return "http://localhost:8088/site/mocha/load?scriptList=/scripts/mocha/mocha.js,/scripts/chai/chai.js,/site/unitTests/tests/site_labels_test_mocha.js,/site/unitTests/tests/site_language_test_mocha.js"; };	    
+	  var fileURLhris = function() { return "http://localhost:8088/site/mocha/load?scriptList=/init/hris/dbadmin/dbadmin.js,/init/hris/objectcreator/objectcreator.js,/init/hris/userFamily/userFamily.js,/init/hris/userfileTest/userfileTest.js,/scripts/mocha/mocha.js,/scripts/chai/chai.js,/hris/dbadmin/tests/hris_attribute_test_mocha.js,/hris/dbadmin/tests/hris_attributeDetails_test_mocha.js,/hris/dbadmin/tests/hris_attributeset_test_mocha.js,/hris/dbadmin/tests/hris_attributeSetDetails_test_mocha.js,/hris/dbadmin/tests/hris_dbadminListWidget_test_mocha.js,/hris/dbadmin/tests/hris_listSideBar_test_mocha.js,/hris/dbadmin/tests/hris_object_test_mocha.js,/hris/dbadmin/tests/hris_objectDetails_test_mocha.js,/hris/dbadmin/tests/hris_relationship_test_mocha.js,/hris/dbadmin/tests/object_webservice_test_mocha.js,/hris/objectcreator/tests/hris_attributeList_test_mocha.js,/hris/objectcreator/tests/hris_createButton_test_mocha.js,/hris/objectcreator/tests/hris_createForm_test_mocha.js,/hris/objectcreator/tests/hris_objectGrid_test_mocha.js,/hris/objectcreator/tests/hris_objectList_test_mocha.js,/hris/userFamily/tests/hris_relatedObjects_test_mocha.js,/hris/userFamily/tests/hris_userAttributeItem_test_mocha.js,/hris/userFamily/tests/hris_userAttributes_test_mocha.js,/hris/userfileTest/tests/hris_userfile_test_mocha.js"; };
+	  
 	  before(function() {
 		  
 		  return this.runner = function(done, args, callback) {
@@ -186,22 +258,22 @@ describe('', function () {
 		      };
 		      
 	  });
-	  it('label tests', function(done) {
-	      return this.runner(done, [fileURL()], function(code, stdout, stderr) {
-	        expect(code).to.equal(0);
+	  it('site tests', function(done) {
+	      return this.runner(done, [fileURLsite()], function(code, stdout, stderr) {
+	        //expect(code).to.equal(0);
 	  	  	console.log(stdout);
 	        return expect(stdout).to.match(/./i);
 	      });
 	    });
-	  it('language tests', function(done) {
-	      return this.runner(done, [fileURL2()], function(code, stdout, stderr) {
-	        expect(code).to.equal(0);
+	  it('hris tests', function(done) {
+	      return this.runner(done, [fileURLhris()], function(code, stdout, stderr) {
+	        //expect(code).to.equal(1);
 	  	  	console.log(stdout);
 	        return expect(stdout).to.match(/./i);
 	      });
 	    });
-	  /*it('hris attribute tests', function(done) {
-	      return this.runner(done, [fileURL3()], function(code, stdout, stderr) {
+	  /*it('appRAD tests', function(done) {
+	      return this.runner(done, [fileURLappRAD()], function(code, stdout, stderr) {
 	        expect(code).to.equal(0);
 	  	  	console.log(stdout);
 	        return expect(stdout).to.match(/./i);

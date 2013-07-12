@@ -40,7 +40,7 @@ if (script.names.length > 0) {
 		if (name.indexOf('chai.js') !== -1) {
 		
 %>
-	listUrls.push(function(){ mocha.setup({ui: 'bdd', ignoreLeaks: true});});  // <-- after chai
+	listUrls.push(function(){ mocha.setup({reporter: 'html', ui: 'bdd', ignoreLeaks: true});});  // <-- after chai
 <%
 
 		} // end if script
