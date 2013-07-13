@@ -55,6 +55,7 @@ $values = {
     langList:'',   // <- not a typo
     
     production:false,
+    logging:true,
     
     // Admin Account
     adminUserID:'-',

@@ -32,6 +32,7 @@ var fork = require("child_process").fork;
 var exec = require("child_process").exec;
 var spawn = require('child_process').spawn;
 var fs = require('fs');
+var expect = require('../server/node_modules/chai').expect;
 
 
 (function() {
@@ -43,11 +44,12 @@ describe('', function () {
 
   before( function (done) {
 	  //fork the automated install process
-	  install_child = fork('./install/app_install.js', null, {env: {PORT: port}, silent: true});
+	  install_child = fork('./install/app_install.js', null, {env: {PORT: port}, silent: false});
 	  
 	  //wait until the install process completes then install the modules and and fork an instance of the main site
 	  install_child.on('exit', function (code) {
 		  	setTimeout(function() {
+				   expect(code).to.equal(0);
 				   console.log('Install process exited with exit code '+code);
 				   
 				   console.log("Adding modules in " + process.cwd() + "/modules");
@@ -81,6 +83,7 @@ describe('', function () {
 			                    (?, ?, ?) \
 			            ";
 			    	  connection.query(sql, [sysObj.name, sysObj.path, sysObj.type], function(err, results, fields) {
+						   expect(!err).to.equal(true);
 			                if (err) {
 			                    console.error(err);
 			                } else
@@ -89,7 +92,7 @@ describe('', function () {
 			                	
 			                	console.log('\n\n**** MAIN SITE UP ****\n\n');
 				 				   setTimeout(function() {
-				 					   child = fork('app.js', null, {env: {PORT: port}, silent: true});
+				 					   child = fork('app.js', null, {env: {PORT: port}, silent: false});
 				 					    child.on('message', function (msg) {
 				 					    	if (msg === 'listening') {
 				 					    	  console.log('**** main site up.');
@@ -142,6 +145,7 @@ describe('', function () {
 	    	      'siteURL' : 'localhost',
 	    	      'sitePort' : '8088',
 	    	      'production' : 'false',
+	    	      'logging' : 'false',
 	    	      'adminUserID' : 'appdevtest',
 	    	      'adminPWord' : 'appdevtest',
 	    	      'adminLanguage' : 'en'
@@ -231,7 +235,6 @@ describe('', function () {
   
   describe("visit", function() {
 	  
-	  var expect = require('../server/node_modules/chai').expect;
 	  var fileURLsite = function() { return "http://localhost:8088/site/mocha/load?scriptList=/scripts/mocha/mocha.js,/scripts/chai/chai.js,/site/unitTests/tests/site_labels_test_mocha.js,/site/unitTests/tests/site_language_test_mocha.js"; };	    
 	  var fileURLhris_dbadmin = function() { return "http://localhost:8088/site/mocha/load?scriptList=/init/hris/dbadmin/dbadmin.js,/init/hris/objectcreator/objectcreator.js,/init/hris/userFamily/userFamily.js,/init/hris/userfileTest/userfileTest.js,/scripts/mocha/mocha.js,/scripts/chai/chai.js,/hris/dbadmin/tests/hris_attribute_test_mocha.js,/hris/dbadmin/tests/hris_attributeDetails_test_mocha.js,/hris/dbadmin/tests/hris_attributeset_test_mocha.js,/hris/dbadmin/tests/hris_attributeSetDetails_test_mocha.js,/hris/dbadmin/tests/hris_dbadminListWidget_test_mocha.js,/hris/dbadmin/tests/hris_listSideBar_test_mocha.js,/hris/dbadmin/tests/hris_object_test_mocha.js,/hris/dbadmin/tests/hris_objectDetails_test_mocha.js,/hris/dbadmin/tests/hris_relationship_test_mocha.js,/hris/dbadmin/tests/object_webservice_test_mocha.js"; };
 	  var fileURLhris_objectcreator = function() { return "http://localhost:8088/site/mocha/load?scriptList=/init/hris/dbadmin/dbadmin.js,/init/hris/objectcreator/objectcreator.js,/init/hris/userFamily/userFamily.js,/init/hris/userfileTest/userfileTest.js,/scripts/mocha/mocha.js,/scripts/chai/chai.js,/hris/objectcreator/tests/hris_attributeList_test_mocha.js,/hris/objectcreator/tests/hris_createButton_test_mocha.js,/hris/objectcreator/tests/hris_createForm_test_mocha.js,/hris/objectcreator/tests/hris_objectGrid_test_mocha.js,/hris/objectcreator/tests/hris_objectList_test_mocha.js"; };

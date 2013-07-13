@@ -28,9 +28,8 @@ var errorFormat = 'red+bold';
 //-----------------------------------------------------------------------
 var myLog = function(req, message, prefix, format) {
     // Helper function to compile sequential log info for a specific req.
-
+		
     if (typeof message == 'undefined') {
-    
         
         console.log(color(prefix, format) + color(req, 'white'));
     } else {
@@ -45,6 +44,11 @@ var myLog = function(req, message, prefix, format) {
             req.aRAD.log = [];
         }
         
+    	if (typeof AD.Defaults.logging != 'undefined')
+    		if (!AD.Defaults.logging)
+    			return;
+    		
+        
         var entry = {
             message:message,
             prefix:prefix,
@@ -53,7 +57,6 @@ var myLog = function(req, message, prefix, format) {
         req.aRAD.log.push(entry);
     
     }
-
 }
 var log = function(req, message) {
     myLog(req, message, ' info  - ', logFormat);
@@ -68,14 +71,16 @@ exports.error = error;
 //-----------------------------------------------------------------------
 var myDump = function (req, message, prefix, format ) {
     // displays the stored log file to the console.
-
+	
 	if (typeof req.aRAD == 'undefined') { 
 		req.aRAD = {}; 
 	}
     if (typeof req.aRAD.log == 'undefined') {
         req.aRAD.log = [];
     }
-    
+    if (typeof AD.Defaults.logging != 'undefined')
+		if (!AD.Defaults.logging)
+			return;  
     
     console.log(color(AD.Util.Timestamp(), logFormat));
 
@@ -105,6 +110,7 @@ var myDump = function (req, message, prefix, format ) {
     console.log('');
     
     req.aRAD.log = [];  // clear entries now that they are dumped ...
+	
 }
 
 var logDump = function(req, message) {
