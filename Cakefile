@@ -28,7 +28,7 @@ test = ->
   tester = (file) ->
     (callback) ->
       mochaCmd = './node_modules/mocha-phantomjs/node_modules/mocha/bin/mocha' + if process.platform is 'win32' then '.cmd' else ''
-      mocha = spawn mochaCmd, ['-u', 'bdd', '-R', 'json', '-t', '200000', '--colors', "test/#{file}"]
+      mocha = spawn mochaCmd, ['-u', 'bdd', '-R', 'spec', '-t', '500000', '--colors', "test/#{file}"]
       mocha.stdout.pipe process.stdout, end: false
       mocha.stderr.pipe process.stderr, end: false
       mocha.on 'exit', (code) -> callback?(code,code)

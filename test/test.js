@@ -43,7 +43,7 @@ describe('', function () {
 
   before( function (done) {
 	  //fork the automated install process
-	  install_child = fork('./install/app_install.js', null, {env: {PORT: port}});
+	  install_child = fork('./install/app_install.js', null, {env: {PORT: port}, silent: true});
 	  
 	  //wait until the install process completes then install the modules and and fork an instance of the main site
 	  install_child.on('exit', function (code) {
@@ -89,7 +89,7 @@ describe('', function () {
 			                	
 			                	console.log('\n\n**** MAIN SITE UP ****\n\n');
 				 				   setTimeout(function() {
-				 					   child = fork('app.js', null, {silent: "true", env: {PORT: port}});
+				 					   child = fork('app.js', null, {env: {PORT: port}, silent: true});
 				 					    child.on('message', function (msg) {
 				 					    	if (msg === 'listening') {
 				 					    	  console.log('**** main site up.');
@@ -233,7 +233,9 @@ describe('', function () {
 	  
 	  var expect = require('../server/node_modules/chai').expect;
 	  var fileURLsite = function() { return "http://localhost:8088/site/mocha/load?scriptList=/scripts/mocha/mocha.js,/scripts/chai/chai.js,/site/unitTests/tests/site_labels_test_mocha.js,/site/unitTests/tests/site_language_test_mocha.js"; };	    
-	  var fileURLhris = function() { return "http://localhost:8088/site/mocha/load?scriptList=/init/hris/dbadmin/dbadmin.js,/init/hris/objectcreator/objectcreator.js,/init/hris/userFamily/userFamily.js,/init/hris/userfileTest/userfileTest.js,/scripts/mocha/mocha.js,/scripts/chai/chai.js,/hris/dbadmin/tests/hris_attribute_test_mocha.js,/hris/dbadmin/tests/hris_attributeDetails_test_mocha.js,/hris/dbadmin/tests/hris_attributeset_test_mocha.js,/hris/dbadmin/tests/hris_attributeSetDetails_test_mocha.js,/hris/dbadmin/tests/hris_dbadminListWidget_test_mocha.js,/hris/dbadmin/tests/hris_listSideBar_test_mocha.js,/hris/dbadmin/tests/hris_object_test_mocha.js,/hris/dbadmin/tests/hris_objectDetails_test_mocha.js,/hris/dbadmin/tests/hris_relationship_test_mocha.js,/hris/dbadmin/tests/object_webservice_test_mocha.js,/hris/objectcreator/tests/hris_attributeList_test_mocha.js,/hris/objectcreator/tests/hris_createButton_test_mocha.js,/hris/objectcreator/tests/hris_createForm_test_mocha.js,/hris/objectcreator/tests/hris_objectGrid_test_mocha.js,/hris/objectcreator/tests/hris_objectList_test_mocha.js,/hris/userFamily/tests/hris_relatedObjects_test_mocha.js,/hris/userFamily/tests/hris_userAttributeItem_test_mocha.js,/hris/userFamily/tests/hris_userAttributes_test_mocha.js,/hris/userfileTest/tests/hris_userfile_test_mocha.js"; };
+	  var fileURLhris_dbadmin = function() { return "http://localhost:8088/site/mocha/load?scriptList=/init/hris/dbadmin/dbadmin.js,/init/hris/objectcreator/objectcreator.js,/init/hris/userFamily/userFamily.js,/init/hris/userfileTest/userfileTest.js,/scripts/mocha/mocha.js,/scripts/chai/chai.js,/hris/dbadmin/tests/hris_attribute_test_mocha.js,/hris/dbadmin/tests/hris_attributeDetails_test_mocha.js,/hris/dbadmin/tests/hris_attributeset_test_mocha.js,/hris/dbadmin/tests/hris_attributeSetDetails_test_mocha.js,/hris/dbadmin/tests/hris_dbadminListWidget_test_mocha.js,/hris/dbadmin/tests/hris_listSideBar_test_mocha.js,/hris/dbadmin/tests/hris_object_test_mocha.js,/hris/dbadmin/tests/hris_objectDetails_test_mocha.js,/hris/dbadmin/tests/hris_relationship_test_mocha.js,/hris/dbadmin/tests/object_webservice_test_mocha.js"; };
+	  var fileURLhris_objectcreator = function() { return "http://localhost:8088/site/mocha/load?scriptList=/init/hris/dbadmin/dbadmin.js,/init/hris/objectcreator/objectcreator.js,/init/hris/userFamily/userFamily.js,/init/hris/userfileTest/userfileTest.js,/scripts/mocha/mocha.js,/scripts/chai/chai.js,/hris/objectcreator/tests/hris_attributeList_test_mocha.js,/hris/objectcreator/tests/hris_createButton_test_mocha.js,/hris/objectcreator/tests/hris_createForm_test_mocha.js,/hris/objectcreator/tests/hris_objectGrid_test_mocha.js,/hris/objectcreator/tests/hris_objectList_test_mocha.js"; };
+	  var fileURLhris_userFamily = function() { return "http://localhost:8088/site/mocha/load?scriptList=/init/hris/dbadmin/dbadmin.js,/init/hris/objectcreator/objectcreator.js,/init/hris/userFamily/userFamily.js,/init/hris/userfileTest/userfileTest.js,/scripts/mocha/mocha.js,/scripts/chai/chai.js,/hris/userFamily/tests/hris_relatedObjects_test_mocha.js,/hris/userFamily/tests/hris_userAttributeItem_test_mocha.js,/hris/userFamily/tests/hris_userAttributes_test_mocha.js,/hris/userfileTest/tests/hris_userfile_test_mocha.js"; };
 	  
 	  before(function() {
 		  
@@ -265,8 +267,22 @@ describe('', function () {
 	        return expect(stdout).to.match(/./i);
 	      });
 	    });
-	  it('hris tests', function(done) {
-	      return this.runner(done, [fileURLhris()], function(code, stdout, stderr) {
+	  it('hris dbadmin tests', function(done) {
+	      return this.runner(done, [fileURLhris_dbadmin()], function(code, stdout, stderr) {
+	        //expect(code).to.equal(1);
+	  	  	console.log(stdout);
+	        return expect(stdout).to.match(/./i);
+	      });
+	    });
+	  it('hris objectcreator tests', function(done) {
+	      return this.runner(done, [fileURLhris_objectcreator()], function(code, stdout, stderr) {
+	        //expect(code).to.equal(1);
+	  	  	console.log(stdout);
+	        return expect(stdout).to.match(/./i);
+	      });
+	    });
+	  it('hris userFamily tests', function(done) {
+	      return this.runner(done, [fileURLhris_userFamily()], function(code, stdout, stderr) {
 	        //expect(code).to.equal(1);
 	  	  	console.log(stdout);
 	        return expect(stdout).to.match(/./i);
