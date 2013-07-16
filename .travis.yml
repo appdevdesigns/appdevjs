@@ -5,7 +5,6 @@ node_js:
 before_script:
 - mysql -e 'create database appdevtest;'
 - echo "USE mysql;\nUPDATE user SET password=PASSWORD('root') WHERE user='root';\nFLUSH PRIVILEGES;\n" | mysql -u root
-- mysql -hlocalhost -P3306 -uroot -p'root' appdevtest < modules/site/install/data/appDev_setup_mysql.sql
 - mysql -hlocalhost -P3306 -uroot -p'root' appdevtest < modules/hris/install/data/setup_mysql.sql
 
 - npm install coffee-script
