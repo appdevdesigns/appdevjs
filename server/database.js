@@ -3,16 +3,16 @@
 ////
 //// A generic interface for our site DB
 ////
-//// This is responsible for returning an instance of the currently 
+//// This is responsible for returning an instance of the currently
 //// defined DB.
-////    
+////
 
 var dbInstanceCounter = 0;
 
 /**
  * return a new instance of our DB.
  */
-var newDB = function() 
+var newDB = function()
 {
     var dbIndex = dbInstanceCounter++;
 
@@ -23,9 +23,9 @@ var newDB = function()
         host:       AD.Defaults.dbPath,
         port:       AD.Defaults.dbPort
     };
-    
+
     var db = require('mysql');
-    
+
     var connection = db.createConnection(dbOptions);
     connection.connect(function(err) {
         if (err) {
@@ -36,13 +36,13 @@ var newDB = function()
         }
     });
 
-    var handleConnectionError = function(err) 
+    var handleConnectionError = function(err)
     {
         var req = {}; // fake req object for AD.Util.Log()
-    
+
         // Log and ignore non-fatal errors
         if (!err.fatal) {
-            AD.Util.Error(req, '['+dbIndex+'] Non-fatal DB error');
+            AD.Util.Error(req, '-['+dbIndex+'] Non-fatal DB error');
             AD.Util.ErrorDump(req, err);
         }
         // Automatically re-connect to DB if the connection drops
@@ -90,7 +90,7 @@ var newDB = function()
         }
     };
     connection.on('error', handleConnectionError);
-    
+
     return connection;
 }
 exports.newDB = newDB;
@@ -102,7 +102,7 @@ var siteDB = {}
 /**
  * return our shared DB
  */
-var sharedDB = function () 
+var sharedDB = function ()
 {
     if (!siteDB.connected) {
         siteDB = newDB();
