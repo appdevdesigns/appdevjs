@@ -64,11 +64,11 @@
     	 * @param {string} action
     	 * 				One of the default javascriptMVC model methods:
     	 *              'findAll', 'findOne', 'create', 'update', 'destroy'
-    	 * @param {function} cbSuccess
+    	 * @param {fn} cbSuccess
     	 * 				SuccessCallback: It is possible this will require a
     	 *              network lookup, so provide an async callback.  The
     	 *              requested url is provided as a parameter: cbSuccess(link)
-    	 * @param {function} cbErr
+    	 * @param {fn} cbErr
     	 * 				Error Callback: an optional callback when there is an error.
     	 * @return {object} deferred
     	 */
@@ -388,7 +388,7 @@
             // we now need to indicate that we need to ._use_call instead:
             newList._use_call = true;
         	return newList;
-        },
+        }
 
 
 

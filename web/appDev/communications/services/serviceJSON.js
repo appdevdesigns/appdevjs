@@ -2,7 +2,7 @@
     //
     // serviceJSON.js
     //
-    // our Service JSON objects provide a mechanism for determinining if a
+    // our Service JSON objects provide a mechanism for determining if a
     // viewer's login authentication has expired and then requiring them to
     // re-authenticate before continuing on with the request.
     //
@@ -31,10 +31,12 @@
             options['method'] = 'GET';
             return AppDev.ServiceJSON.request(options);
         },
+/*
         delete: function(options) {
             options['method'] = 'DELETE';
             return AppDev.ServiceJSON.request(options);
         },
+*/
         put: function(options) {
             options['method'] = 'PUT';
             return AppDev.ServiceJSON.request(options);
@@ -201,6 +203,11 @@
 
     } // AppDev.ServiceJSON
 
+    // because 'delete' is a reserved word:
+    AppDev.ServiceJSON['delete'] = function(options) {
+        options['method'] = 'DELETE';
+        return AppDev.ServiceJSON.request(options);
+    };
 
 
     if ("undefined" == typeof AD.Comm) {
